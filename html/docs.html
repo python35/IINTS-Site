@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Official documentation for IINTS-AF SDK v1.0. The Open-Source Research Framework for Autonomous Insulin Delivery.">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; img-src 'self' data: https://cdn.contentful.com https://images.ctfassets.net; connect-src 'self' https://cdn.contentful.com https://docs.google.com https://pypi.org; media-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>IINTS-AF SDK Documentation (v1.0)</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+    <!-- MathJax -->
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Docs Layout */
+        .docs-container {
+            display: flex;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .docs-sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background: #f8fafc;
+            border-right: 1px solid #e2e8f0;
+            padding: 2rem 1.5rem;
+            position: fixed;
+            top: 80px;
+            bottom: 0;
+            overflow-y: auto;
+            z-index: 10;
+        }
+
+        .docs-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 2rem 4rem 4rem 4rem;
+            max-width: 1100px;
+        }
+
+        .docs-nav-group {
+            margin-bottom: 2rem;
+        }
+
+        .docs-nav-header {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #94a3b8;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .docs-nav-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: var(--med-text-body);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-left: 2px solid transparent;
+            padding-left: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .docs-nav-link:hover,
+        .docs-nav-link.active {
+            color: var(--med-blue-dark);
+            font-weight: 600;
+            border-left-color: var(--clinical-blue);
+        }
+
+        .docs-search {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .docs-search input {
+            width: 100%;
+            padding: 0.6rem 1rem 0.6rem 2.2rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        .docs-search i {
+            position: absolute;
+            left: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+
+        /* Typography & Components */
+        .page-docs h1 {
+            font-size: 2.5rem;
+            color: var(--med-blue-dark);
+            margin-bottom: 1rem;
+        }
+
+        .page-docs h2 {
+            font-size: 1.8rem;
+            color: var(--med-blue-dark);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 0.5rem;
+            margin-top: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        .page-docs h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--med-blue-dark);
+            margin-top: 2rem;
+        }
+
+        .page-docs p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            color: var(--med-text-body);
+        }
+
+        .page-docs ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            line-height: 1.7;
+            color: var(--med-text-body);
+        }
+
+        /* Tables */
+        .docs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .docs-table th,
+        .docs-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: left;
+        }
+
+        .docs-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: var(--med-blue-dark);
+        }
+
+        /* Global Inline Code */
+        code {
+            background: #334155;
+            /* Dark Slate 700 */
+            color: #f1f5f9;
+            /* Slate 100 */
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85em;
+        }
+
+        /* Reset for code inside pre blocks to avoid double styling */
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+            border-radius: 0;
+            font-size: inherit;
+        }
+
+        /* Code Blocks - Unified Styling */
+        /* 1. Base style for ALL code blocks (standalone pre) */
+        pre {
+            background: #f1f5f9;
+            /* Slate 100 - Slightly darker background */
+            border: 1px solid #cbd5e1;
+            /* Slate 300 - Visible border */
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            color: #334155;
+            /* Slate 700 - Dark Text */
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* 2. Wrapper for titled blocks (inherits style, adds header) */
+        .code-block-wrapper {
+            position: relative;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f1f5f9;
+            /* Match pre background */
+            border: 1px solid #cbd5e1;
+            /* Match pre border */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        /* 3. Header styling */
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: #e2e8f0;
+            /* Slate 200 - Darker than body */
+            border-bottom: 1px solid #cbd5e1;
+            color: #475569;
+            /* Slate 600 */
+            font-size: 0.8rem;
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+        }
+
+        /* 4. Reset pre when inside wrapper (wrapper handles border/bg) */
+        .code-block-wrapper pre {
+            margin: 0;
+            border: none;
+            border-radius: 0;
+            background: transparent;
+        }
+
+        .copy-btn {
+            background: white;
+            border: 1px solid #cbd5e1;
+            color: #64748b;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            color: var(--clinical-blue);
+            border-color: var(--clinical-blue);
+        }
+
+        /* Principle Cards (From Blueprint) */
+        .principle-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .p-card {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--clinical-blue);
+        }
+
+        /* Floating Edit Button */
+        .edit-on-github {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 4rem;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            color: var(--med-text-body);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .edit-on-github:hover {
+            background: #f8fafc;
+            color: var(--med-blue-dark);
+            border-color: #cbd5e1;
+        }
+
+        @media (max-width: 900px) {
+            .docs-container {
+                flex-direction: column;
+            }
+
+            .docs-sidebar {
+                width: 100%;
+                position: static;
+                height: auto;
+                border: none;
+                padding: 1rem;
+            }
+
+            .docs-content {
+                margin-left: 0;
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* New Content Helpers */
+        .note {
+            border-left: 4px solid var(--clinical-blue);
+            background: #f8fafc;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            color: var(--med-text-body);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: var(--med-blue-dark);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+        }
+
+        .kicker {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: var(--clinical-blue);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="page-docs">
+    <header class="global-nav">
+        <nav>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="../index.html" class="nav-link logo"><img src="../img/iints-logo.png"
+                            alt="IINTS Logo" style="height: 80px; width: auto; vertical-align: middle;"></a></li>
+                <li class="nav-item"><a href="hardware.html" class="nav-link">The Hardware</a></li>
+                <li class="nav-item"><a href="intelligence.html" class="nav-link">The Intelligence</a></li>
+                <li class="nav-item"><a href="docs.html" class="nav-link"
+                        style="color: var(--clinical-blue); opacity: 1;">Documentation</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle navigation"><span class="hamburger"></span></button>
+    </header>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <div class="docs-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search v1.0 docs...">
+            </div>
+            <nav>
+                <div class="docs-nav-group">
+                    <div class="docs-nav-header">Getting Started</div>
+                    <a href="#overview" class="docs-nav-link">Overview</a>
+                    <a href="#install" class="docs-nav-link">Installation</a>
+                    <a href="#quickstart-cli" class="docs-nav-link">Quickstart (CLI)</a>
+                    <a href="#quickstart-python" class="docs-nav-link">Quickstart (Python)</a>
+                    <a href="#layout" class="docs-nav-link">Project Layout</a>
+                </div>
+                <div class="docs-nav-group">
+                    <div class="docs-nav-header">Core Concepts</div>
+                    <a href="#safety" class="docs-nav-link">Safety Model</a>
+                    <a href="#algorithms" class="docs-nav-link">Algorithms</a>
+                    <a href="#metrics" class="docs-nav-link">Metrics</a>
+                </div>
+                <div class="docs-nav-group">
+                    <div class="docs-nav-header">Reference</div>
+                    <a href="#cli" class="docs-nav-link">CLI Reference</a>
+                    <a href="#python-api" class="docs-nav-link">Python API</a>
+                    <a href="#scenario-schema" class="docs-nav-link">Scenario Schema</a>
+                    <a href="#patient-schema" class="docs-nav-link">Patient Schema</a>
+                </div>
+                <div class="docs-nav-group">
+                    <div class="docs-nav-header">Data & Tools</div>
+                    <a href="#data" class="docs-nav-link">Data Workflows</a>
+                    <a href="#registry" class="docs-nav-link">Dataset Registry</a>
+                    <a href="#reports" class="docs-nav-link">Reports</a>
+                    <a href="#notebooks" class="docs-nav-link">Notebook Manual</a>
+                </div>
+                <div class="docs-nav-group">
+                    <div class="docs-nav-header">Support</div>
+                    <a href="#repro" class="docs-nav-link">Reproducibility</a>
+                    <a href="#profiling" class="docs-nav-link">Profiling</a>
+                    <a href="#troubleshooting" class="docs-nav-link">Troubleshooting</a>
+                    <a href="#ethics" class="docs-nav-link">Ethics</a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="docs-content">
+            <section id="overview">
+                <span class="kicker">IINTS-AF SDK</span>
+                <h1 style="margin-top: 0; margin-bottom: 0.5rem;">End-User Guide</h1>
+                <p style="color: #64748b; font-size: 1.2rem;">Complete, practical documentation for researchers,
+                    engineers, and clinical users.</p>
+
+                <h2 style="margin-top: 2rem;">What this SDK is</h2>
+                <p>IINTS-AF is a safety-first simulation and validation platform for insulin dosing algorithms. It
+                    provides deterministic safety rails, auditing, and clinical report generation before anything
+                    touches a real patient.</p>
+
+
+
+                <div class="grid">
+                    <div class="card">
+                        <h3>Core capabilities</h3>
+                        <ul>
+                            <li>Clinic-safe presets and patient profiles</li>
+                            <li>Supervisor safety guardrails with reasons</li>
+                            <li>Audit trail export (CSV/JSONL)</li>
+                            <li>Baseline comparison vs. PID/standard pump</li>
+                            <li>PDF clinical reports with branded visuals</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Who it is for</h3>
+                        <ul>
+                            <li>Clinical researchers validating new strategies</li>
+                            <li>ML engineers benchmarking AI controllers</li>
+                            <li>Developers building decision-support tooling</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="install">
+                <h2>Installation</h2>
+                <pre><code>python -m venv .venv
+source .venv/bin/activate
+python -m pip install -U pip
+pip install iints-sdk-python35</code></pre>
+                <p style="font-size: 0.9rem; color: #64748b;">Optional Torch support:
+                    <code>pip install iints-sdk-python35[torch]</code>
+                </p>
+                <p style="font-size: 0.9rem; color: #64748b;">From source (editable): <code>pip install -e .</code></p>
+            </section>
+
+            <section id="quickstart-cli">
+                <h2>Quickstart (CLI)</h2>
+                <pre><code>iints quickstart --project-name iints_quickstart
+cd iints_quickstart
+iints presets run --name baseline_t1d --algo algorithms/example_algorithm.py</code></pre>
+                <p style="font-size: 0.9rem; color: #64748b;">Outputs are saved to <code>results/</code> inside the
+                    project.</p>
+                <pre><code>iints run-full --algo algorithms/example_algorithm.py --duration 240 --output-dir results/run_full</code></pre>
+            </section>
+
+            <section id="quickstart-python">
+                <h2>Quickstart (Python)</h2>
+                <pre><code>import iints
+from iints.core.algorithms.pid_controller import PIDController
+
+outputs = iints.run_full(
+    algorithm=PIDController(),
+    scenario="scenarios/example_scenario.json",
+    patient_config="default_patient",
+    duration_minutes=240,
+    seed=42,
+    output_dir="results/quick_run",
+)
+print(outputs["report_pdf"])</code></pre>
+            </section>
+
+            <section id="layout">
+                <h2>Project Layout</h2>
+                <pre><code>iints_quickstart/
+  algorithms/
+    example_algorithm.py
+  scenarios/
+    clinic_safe_baseline.json
+  results/
+    presets/
+    run_full/</code></pre>
+            </section>
+
+            <section id="cli">
+                <h2>CLI Reference</h2>
+                <p>Run <code>iints --help</code> for full flags and options.</p>
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Purpose</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>iints init</code></td>
+                            <td>New research project</td>
+                            <td><code>iints init --project-name my_proj</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>iints quickstart</code></td>
+                            <td>Clinic-safe starter project</td>
+                            <td><code>iints quickstart --project-name iints_quickstart</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>iints new-algo</code></td>
+                            <td>Algorithm template</td>
+                            <td><code>iints new-algo --name MyAlgo</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>iints run</code></td>
+                            <td>Run a custom scenario</td>
+                            <td><code>iints run --algo ...</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>iints run-full</code></td>
+                            <td>One-line full run</td>
+                            <td><code>iints run-full --algo ...</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>iints report</code></td>
+                            <td>PDF report from CSV</td>
+                            <td><code>iints report --results-csv results.csv</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>iints validate</code></td>
+                            <td>Validation</td>
+                            <td><code>iints validate --scenario-path ...</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>iints presets</code></td>
+                            <td>Clinic presets</td>
+                            <td><code>iints presets run ...</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>iints profiles</code></td>
+                            <td>Patient profiles</td>
+                            <td><code>iints profiles create ...</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>iints data</code></td>
+                            <td>Official datasets</td>
+                            <td><code>iints data fetch aide_t1d</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="python-api">
+                <h2>Python API Reference</h2>
+                <ul>
+                    <li><code>iints.run_simulation(...)</code> returns results + audit + report when
+                        <code>output_dir</code> is set.
+                    </li>
+                    <li><code>iints.run_full(...)</code> always exports results + audit + baseline + PDF.</li>
+                    <li><code>iints.Simulator(...)</code> for custom loops and live stepping.</li>
+                    <li><code>Simulator.save_state()</code> and <code>Simulator.load_state()</code> for time-travel
+                        debugging.</li>
+                    <li><code>iints.generate_report(...)</code> for PDF only.</li>
+                </ul>
+            </section>
+
+            <section id="algorithms">
+                <h2>Algorithm Interface</h2>
+                <p>Implement <code>predict_insulin</code> and return a dict with <code>total_insulin_delivered</code>.
+                </p>
+                <div class="code-block-wrapper">
+                    <pre><code>from iints.api.base_algorithm import InsulinAlgorithm, AlgorithmInput
+
+class MyAlgorithm(InsulinAlgorithm):
+    def predict_insulin(self, data: AlgorithmInput):
+        if data.current_glucose > 180:
+            return {"total_insulin_delivered": 1.0, "bolus_insulin": 1.0}
+        return {"total_insulin_delivered": 0.0}</code></pre>
+                </div>
+            </section>
+
+            <section id="scenario-schema">
+                <h2>Scenario Schema</h2>
+                <div class="code-block-wrapper">
+                    <pre><code>{
+  "scenario_name": "Pizza Paradox",
+  "scenario_version": "1.0",
+  "description": "Late spike after high-fat meal",
+  "stress_events": [
+    {"start_time": 30, "event_type": "meal", "value": 75, "absorption_delay_minutes": 180}
+  ]
+}</code></pre>
+                </div>
+                <p style="font-size: 0.9rem;">Valid event types: <code>meal</code>, <code>missed_meal</code>,
+                    <code>sensor_error</code>, <code>exercise</code>, <code>exercise_end</code>.
+                </p>
+            </section>
+
+            <section id="patient-schema">
+                <h2>Patient Profile Schema</h2>
+                <p>Patient config is validated with safety ranges.</p>
+                <ul>
+                    <li><code>basal_insulin_rate</code> (0.0 - 3.0 U/hr)</li>
+                    <li><code>insulin_sensitivity</code> (10 - 200 mg/dL per unit)</li>
+                    <li><code>carb_factor</code> (3 - 30 g per unit)</li>
+                    <li><code>initial_glucose</code> (40 - 400 mg/dL)</li>
+                    <li><code>insulin_action_duration</code> (60 - 720 min)</li>
+                </ul>
+            </section>
+
+            <section id="safety">
+                <h2>Safety Model</h2>
+                <ul>
+                    <li>Hard cutoff for hypoglycemia</li>
+                    <li>Rate-of-change protection</li>
+                    <li>IOB (insulin-on-board) clamps</li>
+                    <li>Time-window caps to prevent stacking</li>
+                </ul>
+                <div class="note">Default critical stop: glucose below 40 mg/dL for 30 minutes triggers termination.
+                </div>
+            </section>
+
+            <section id="metrics">
+                <h2>Metrics</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Glycemic Control</h3>
+                        <ul>
+                            <li>TIR (70-180 mg/dL)</li>
+                            <li>TIR Tight (70-140 mg/dL)</li>
+                            <li>GMI (Estimated A1C)</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Risk Indices</h3>
+                        <ul>
+                            <li>LBGI (Low Blood Glucose Index)</li>
+                            <li>HBGI (High Blood Glucose Index)</li>
+                            <li>CV (Coefficient of Variation)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="data">
+                <h2>Data Workflows</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Import Real-World CGM</h3>
+                        <p>Import CSV data from Dexcom, Libre, or generic formats.</p>
+                        <code>iints import-data --input-csv data/my_cgm.csv</code>
+                    </div>
+                    <div class="card">
+                        <h3>Sample Datasets</h3>
+                        <p>Fetch offline sample packs for testing.</p>
+                        <code>iints data fetch sample</code>
+                    </div>
+                </div>
+            </section>
+
+            <section id="registry">
+                <h2>Official Dataset Registry</h2>
+                <pre><code>iints data list
+iints data info aide_t1d
+iints data fetch aide_t1d</code></pre>
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Access</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>sample</code></td>
+                            <td>IINTS Sample CGM</td>
+                            <td>Bundled</td>
+                        </tr>
+                        <tr>
+                            <td><code>aide_t1d</code></td>
+                            <td>AIDE T1D Public Dataset</td>
+                            <td>Public Download</td>
+                        </tr>
+                        <tr>
+                            <td><code>pedap</code></td>
+                            <td>PEDAP Public Dataset</td>
+                            <td>Public Download</td>
+                        </tr>
+                        <tr>
+                            <td><code>azt1d</code></td>
+                            <td>AZT1D Real-World</td>
+                            <td>Manual Download</td>
+                        </tr>
+                        <tr>
+                            <td><code>openaps</code></td>
+                            <td>OpenAPS Data Commons</td>
+                            <td>Request Required</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="reports">
+                <h2>Reports and Outputs</h2>
+                <p>Standardized output structure for every run.</p>
+                <pre><code>results/
+  run_full/
+    results.csv
+    clinical_report.pdf
+    audit/
+    baseline/</code></pre>
+            </section>
+
+            <section id="repro">
+                <h2>Reproducibility</h2>
+                <p>Use <code>seed</code> in CLI or Python to get deterministic runs. All outputs include safety report
+                    metadata.</p>
+            </section>
+
+            <section id="profiling">
+                <h2>Performance Profiling</h2>
+                <p>When <code>run_full</code> is used, a performance summary is added to the safety report
+                    (<code>performance_report</code>), detailing execution time and overhead.</p>
+            </section>
+
+            <section id="notebooks">
+                <h2>Notebook Manual</h2>
+                <p>Hands-on Jupyter notebooks are available for every core feature.</p>
+                <ul>
+                    <li><code>00_Quickstart.ipynb</code></li>
+                    <li><code>01_Presets_and_Scenarios.ipynb</code></li>
+                    <li><code>02_Safety_and_Supervisor.ipynb</code></li>
+                    <li><code>03_Audit_Trail_and_Report.ipynb</code></li>
+                </ul>
+            </section>
+
+            <section id="troubleshooting">
+                <h2>Troubleshooting</h2>
+                <ul>
+                    <li><strong>Module not found</strong>: Ensure you are using a venv (<code>python -m venv</code>).
+                    </li>
+                    <li><strong>PEP 668 error</strong>: Do not install globally on managed Python environments (like
+                        Homebrew); use a venv.</li>
+                    <li><strong>Early termination</strong>: Safety stops simulation if glucose stays below critical
+                        threshold (40 mg/dL) for 30 mins.</li>
+                </ul>
+            </section>
+
+            <section id="ethics">
+                <h2>Ethics and Safety</h2>
+                <div class="note" style="border-color: #ef4444; background: #fef2f2;">
+                    <strong>Critical Warning:</strong> This SDK is for research and validation ONLY. It is not a medical
+                    device and must not be used for clinical dosing decisions.
+                </div>
+            </section>
+
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 3rem 0;">
+            <a href="https://github.com/python35/IINTS-SDK" target="_blank" rel="noopener noreferrer"
+                class="edit-on-github">
+                <i class="fab fa-github"></i> Edit on GitHub
+            </a>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+        function copyCode(btn) {
+            const pre = btn.parentElement.nextElementSibling;
+            const code = pre.querySelector('code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = 'Copied!';
+                setTimeout(() => { btn.innerText = originalText; }, 2000);
+            });
+        }
+    </script>
+</body>
+
+</html>

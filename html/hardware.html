@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Technical specifications of the IINTS insulin pump hardware. Built on RP2040 architecture with modular 3D-printed design.">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://cdn.contentful.com https://images.ctfassets.net; connect-src 'self' https://cdn.contentful.com https://docs.google.com https://pypi.org; media-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>IINTS V1 - Hardware Specifications</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="global-nav">
+        <nav>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="../index.html" class="nav-link logo"><img src="../img/iints-logo.png"
+                            alt="IINTS Logo" style="height: 80px; width: auto; vertical-align: middle;"></a></li>
+                <li class="nav-item"><a href="hardware.html" class="nav-link"
+                        style="color: var(--clinical-blue); opacity: 1;">The Hardware</a></li>
+                <li class="nav-item"><a href="intelligence.html" class="nav-link">The Intelligence</a></li>
+                <li class="nav-item"><a href="docs.html" class="nav-link">Documentation</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+    </header>
+
+    <main>
+        <section class="content-section" style="background-color: var(--med-grey-bg); padding-top: 8rem;">
+            <span class="badge badge-blue">Foundation</span>
+            <h1 class="section-title">IINTS: Open-Source Insulin Management</h1>
+            <p class="section-subtitle">The foundations of affordable and accessible insulin delivery.</p>
+
+            <div class="grid"
+                style="grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; text-align: left; margin-top: 4rem;">
+                <div>
+                    <!-- Keep existing image -->
+                    <img src="../img/rp2040.png"
+                        alt="IINTS Internal Hardware - RP2040 Microcontroller and Custom Circuitry" width="600"
+                        height="400"
+                        style="width: 100%; height: auto; border-radius: 12px; box-shadow: var(--shadow-hover);">
+                </div>
+                <div>
+                    <h2 style="font-size: 1.8rem; font-weight: 700; color: var(--med-blue-dark); margin-bottom: 1rem;">
+                        User-Centric Interface & Control</h2>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.7; color: var(--med-text-body);">
+                        Built on the <strong>Raspberry Pi Pico (RP2040)</strong> architecture, IINTS combines hardware
+                        reliability
+                        with an accessible interface. The system features an OLED/TFT display and physical controls,
+                        allowing user settings and dosages to be managed directly and transparently via MicroPython
+                        configurations.
+                    </p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check"
+                                style="color: var(--dashboard-green); margin-right: 10px;"></i> RP2040 Architecture</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check"
+                                style="color: var(--dashboard-green); margin-right: 10px;"></i> MicroPython Config</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check"
+                                style="color: var(--dashboard-green); margin-right: 10px;"></i>
+                            OLED/TFT Interface</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Technical Specifications</h2>
+
+            <div style="max-width: 800px; margin: 0 auto 4rem auto;">
+                <h3 style="margin-bottom: 2rem; color: #666; text-align: center;">Fabrication Process</h3>
+                <div class="hero-carousel"
+                    style="aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-soft);">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <video autoplay muted loop playsinline
+                                style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                <source src="../img/videomakencase.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-slide">
+                            <video autoplay muted loop playsinline
+                                style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                <source src="../img/videomakencase2.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid" style="margin-top: 3rem;">
+
+                <!-- Modular Physical Design (Replaces Stepper Motor) -->
+                <div class="feature-card">
+                    <i class="fas fa-layer-group"
+                        style="font-size: 2rem; color: var(--clinical-blue); margin-bottom: 1rem;"></i>
+                    <h3 class="feature-card-title">Modular Physical Design</h3>
+                    <p class="feature-card-description">
+                        Built for reproducibility and adaptability. The hardware architecture utilizes
+                        <strong>3D-printed
+                            components</strong> and standard parts, allowing researchers to easily modify the chassis
+                        for specific experimental needs.
+                    </p>
+                </div>
+
+                <!-- Clinical Calculation Models -->
+                <div class="feature-card">
+                    <i class="fas fa-calculator"
+                        style="font-size: 2rem; color: var(--clinical-blue); margin-bottom: 1rem;"></i>
+                    <h3 class="feature-card-title">Clinical Calculation Models</h3>
+                    <p class="feature-card-description">
+                        IINTS integrates essential physiological parameters for personalized treatment. The framework
+                        facilitates precise calculations based on:
+                    </p>
+                    <ul style="font-size: 0.9rem; color: var(--med-text-body); padding-left: 1.2rem; line-height: 1.6;">
+                        <li><strong>ICR</strong>: Insulin-to-Carb Ratio</li>
+                        <li><strong>ISF</strong>: Insulin Sensitivity Factor</li>
+                        <li><strong>TDD</strong>: Total Daily Dose</li>
+                    </ul>
+                </div>
+
+                <!-- Safety & Open Source -->
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"
+                        style="font-size: 2rem; color: var(--clinical-blue); margin-bottom: 1rem;"></i>
+                    <h3 class="feature-card-title">Safety & Open-Source Validation</h3>
+                    <p class="feature-card-description">
+                        Safety is at the core of the design. IINTS incorporates fundamental <strong>fail-safes</strong>
+                        to minimize operational risks.
+                        As a fully <strong>open-source project (MIT License)</strong>, IINTS invites global
+                        collaboration and transparent validation.
+                    </p>
+                    <a href="https://github.com/python35/IINTS" class="btn btn-secondary" target="_blank"
+                        rel="noopener noreferrer" style="margin-top: 1rem; width: 100%; text-align: center;">View
+                        Repository</a>
+                </div>
+
+                <!-- IINTS-AF Section (Merged) -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>The Project</h4>
+                    <ul>
+                        <li><a href="hardware.html">Hardware Specs</a></li>
+                        <li><a href="intelligence.html">AI Sandbox</a></li>
+
+                    </ul>
+                </div>
+                <!-- ... standardized footer content ... -->
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="about.html">About Rune</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:rune.bobbaers@gmail.com">rune.bobbaers@gmail.com</a></li>
+                        <li><a href="https://github.com/python35/IINTS-SDK" target="_blank"
+                                rel="noopener noreferrer">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span class="current-year">2025</span> IINTS & IINTS-AF. Open Science.</p>
+                <img src="../img/iints-logo.png" alt="IINTS Logo"
+                    style="height: 70px; width: auto; margin-top: 1rem; margin-bottom: -15px; opacity: 0.8;">
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+</body>
+
+</html>

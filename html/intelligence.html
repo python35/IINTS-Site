@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Explore IINTS-AF, an independent research platform for opening the 'Black Box' of autonomous insulin delivery algorithms.">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://cdn.contentful.com https://images.ctfassets.net; connect-src 'self' https://cdn.contentful.com https://docs.google.com https://pypi.org; media-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>IINTS-AF - Artificial Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="page-intelligence">
+
+    <header class="global-nav">
+        <nav>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="../index.html" class="nav-link logo"><img src="../img/iints-logo.png"
+                            alt="IINTS Logo" style="height: 80px; width: auto; vertical-align: middle;"></a></li>
+                <li class="nav-item"><a href="hardware.html" class="nav-link">The Hardware</a></li>
+                <li class="nav-item"><a href="intelligence.html" class="nav-link"
+                        style="color: var(--clinical-blue); opacity: 1;">The Intelligence</a></li>
+                <li class="nav-item"><a href="docs.html" class="nav-link">Documentation</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+    </header>
+
+    <main>
+        <!-- Cinematic Video Hero Background -->
+        <section class="video-hero"
+            style="position: relative; height: 80vh; min-height: 600px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #000;">
+            <video autoplay muted loop playsinline
+                style="position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; object-fit: cover; transform: translate(-50%, -50%); opacity: 0.6; filter: brightness(0.7);">
+                <source src="../img/glucose.mp4" type="video/mp4">
+            </video>
+            <!-- Gradient Overlay for Readability -->
+            <div
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,37,84,0.4) 0%, rgba(0,37,84,0.2) 100%);">
+            </div>
+
+            <div class="container"
+                style="position: relative; z-index: 2; text-align: center; color: white; max-width: 1000px; padding: 0 2rem;">
+
+                <span class="badge"
+                    style="background: var(--med-blue-light); color: white; margin-bottom: 2rem; border: none; letter-spacing: 0.1em; text-transform: uppercase;">Accessible
+                    Discovery</span>
+                <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.5rem; color: white;">What exactly is a
+                    <span style="white-space: nowrap;">"Smart" Insulin Pump?</span>
+                </h1>
+                <p style="font-size: clamp(1.2rem, 3vw, 2rem); color: rgba(255,255,255,0.9); font-weight: 300;">
+                    Demystifying the algorithms that drive autonomous care.</p>
+            </div>
+        </section>
+
+        <!-- The Algorithm Analogy -->
+        <section style="padding: 10rem 1rem; background: white; width: 100%;">
+            <div class="container" style="max-width: 900px; text-align: center; margin: 0 auto;">
+                <img src="../img/iints-sdk-logo.png" alt="IINTS-AF SDK Logo"
+                    style="max-width: 150px; margin-bottom: 2rem; display: block; margin-left: auto; margin-right: auto;">
+                <h2 style="font-size: 2.5rem; color: var(--med-blue-dark); margin-bottom: 3rem;">Understanding the
+                    "Recipe"</h2>
+                <p style="font-size: 1.25rem; line-height: 1.8; color: var(--med-text-body); margin-bottom: 4rem;">
+                    An algorithm is simply a <strong>recipe</strong> a set of rules. In a standard pump, you set the
+                    rules <span style="white-space: nowrap;">(e.g., "delivered 2 units for this meal")</span>.
+                    In a smart pump, the computer attempts to determine the rules itself based on your glucose levels.
+                </p>
+
+                <!-- The Problem: The Black Box -->
+                <div
+                    style="background: #f8fafc; padding: 5rem 3rem; border-radius: 32px; border: 1px solid #e2e8f0; margin-top: 6rem; text-align: left;">
+                    <div style="max-width: 700px; margin: 0 auto;">
+                        <h3 style="color: var(--med-blue-dark); font-size: 2.2rem; margin-bottom: 2rem;">The "Black Box"
+                            Problem</h3>
+                        <p
+                            style="font-size: 1.15rem; line-height: 1.7; color: var(--med-text-body); margin-bottom: 2.5rem;">
+                            Major manufacturers often keep these algorithms hidden. While you see the outcome the
+                            insulin being delivered you often don't understand <strong>why</strong> the decision was
+                            made.
+                        </p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem; align-items: flex-start;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"
+                                    style="width: 24px; height: 24px; flex-shrink: 0;">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="15" y1="9" x2="9" y2="15" />
+                                    <line x1="9" y1="9" x2="15" y2="15" />
+                                </svg>
+                                <span style="font-size: 1.1rem; color: var(--med-blue-dark);"><strong>Hidden
+                                        Logic:</strong> You lack insight into the actual decision-making process.</span>
+                            </li>
+                            <li style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem; align-items: flex-start;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"
+                                    style="width: 24px; height: 24px; flex-shrink: 0;">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="15" y1="9" x2="9" y2="15" />
+                                    <line x1="9" y1="9" x2="15" y2="15" />
+                                </svg>
+                                <span style="font-size: 1.1rem; color: var(--med-blue-dark);"><strong>Trial &
+                                        Risk:</strong> You cannot safely experiment with how the system reacts to stress
+                                    or exercise.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IINTS-AF: Opening the Black Box -->
+        <section style="padding: 10rem 1rem; background: #002554; color: white; width: 100%;">
+            <div class="container" style="max-width: 1000px; text-align: center; margin: 0 auto;">
+                <h2 style="font-size: 3rem; color: white; margin-bottom: 2.5rem;">IINTS-AF: The Research SDK</h2>
+                <p
+                    style="font-size: 1.4rem; line-height: 1.8; color: rgba(255,255,255,0.9); font-weight: 300; max-width: 800px; margin: 0 auto;">
+                    IINTS-AF has evolved from a standalone experiment into a comprehensive <strong>Software Development
+                        Kit (SDK)</strong>.
+                    It provides an independent research framework that allows developers and academics to build, test,
+                    and validate AI algorithms
+                    within a safe, deterministic environment.
+                </p>
+            </div>
+        </section>
+
+        <!-- Feature 1: The Safe Sandbox (Digital Twin) -->
+        <section style="background: #F0F4F8; padding: 10rem 0;">
+            <div class="container"
+                style="max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 6rem;">
+                <div style="flex: 1.2;">
+                    <span class="badge badge-blue" style="margin-bottom: 1.5rem; background: white;">Data
+                        Registry</span>
+                    <h2 style="font-size: 3rem; color: var(--med-blue-dark); margin-bottom: 2rem;">Global Data Access &
+                        Integration</h2>
+                    <p style="font-size: 1.3rem; line-height: 1.7; color: var(--med-text-body); margin-bottom: 2.5rem;">
+                        Before an algorithm ever controls a real pump, it must be validated against diverse, real-world
+                        physiological data. The IINTS-AF SDK features a built-in Data Registry, allowing researchers to
+                        instantly fetch and benchmark against world-class datasets, including the <strong>Jaeb Center
+                            AIDE T1D</strong>, <strong>Tidepool Big Data Donation</strong>, and the <strong>OpenAPS Data
+                            Commons</strong>. We provide the bridge between raw clinical data and actionable AI safety.
+                    </p>
+                    <div style="border-left: 4px solid var(--med-blue-light); padding-left: 1.5rem;">
+                        <span
+                            style="font-size: 1.5rem; color: var(--med-blue-dark); font-weight: 500; font-style: italic; display: block;">
+                            "Simulation is the first step toward safety."
+                        </span>
+                    </div>
+                </div>
+                <div style="flex: 1;">
+                    <div
+                        style="background: white; padding: 4rem; border-radius: 32px; box-shadow: var(--shadow-soft); position: relative; overflow: hidden;">
+                        <svg viewBox="0 0 400 200" style="width: 100%; height: auto; display: block;">
+                            <line x1="0" y1="180" x2="400" y2="180" stroke="#f0f0f0" stroke-width="1" />
+                            <line x1="0" y1="140" x2="400" y2="140" stroke="#f0f0f0" stroke-width="1" />
+                            <line x1="0" y1="100" x2="400" y2="100" stroke="#f0f0f0" stroke-width="1" />
+                            <line x1="0" y1="60" x2="400" y2="60" stroke="#f0f0f0" stroke-width="1" />
+                            <path d="M0,150 Q50,140 100,160 T200,100 T300,130" fill="none" stroke="#e0e0e0"
+                                stroke-width="3" />
+                            <path d="M0,145 Q50,135 100,155 T200,95 T300,125" fill="none" stroke="var(--med-blue-light)"
+                                stroke-width="3" />
+                            <path d="M300,125 Q350,120 400,140" fill="none" stroke="var(--med-blue-light)"
+                                stroke-width="3" stroke-dasharray="8,5" />
+                            <circle cx="300" cy="125" r="5" fill="var(--med-blue-light)" />
+                            <text x="310" y="115" font-size="12" font-weight="600" fill="var(--med-blue-dark)"
+                                font-family="Inter">Prediction Point</text>
+                        </svg>
+                        <p
+                            style="margin-top: 2rem; text-align: center; color: #999; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">
+                            Ohio T1DM Physiological Sandbox</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature 2: Demystifying the Algorithm (The Glass Box) -->
+        <section style="padding: 10rem 1rem; background: #f8fafc; position: relative; overflow: hidden; width: 100%;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+
+                <div style="display: flex; align-items: stretch; gap: 6rem; flex-wrap: wrap;">
+                    <!-- Left Side: Cinematic Video Visualization -->
+                    <div style="flex: 1.2; min-width: 400px; position: relative;">
+                        <div
+                            style="position: sticky; top: 120px; border-radius: 48px; overflow: hidden; box-shadow: var(--shadow-soft); aspect-ratio: 4/5; background: #000;">
+                            <video autoplay muted loop playsinline
+                                style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
+                                <source src="../img/grafiek.mp4" type="video/mp4">
+                            </video>
+
+                            <!-- Glass Overlay Card on Video -->
+                            <div
+                                style="position: absolute; bottom: 2rem; left: 2rem; right: 2rem; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 2.5rem; border-radius: 32px; border: 1px solid rgba(255, 255, 255, 0.2); color: white;">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                    <div
+                                        style="width: 10px; height: 10px; background: #ef4444; border-radius: 50%; box-shadow: 0 0 10px #ef4444;">
+                                    </div>
+                                    <span
+                                        style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.7);">Live
+                                        System Logic</span>
+                                </div>
+                                <p style="font-size: 1.15rem; line-height: 1.5; color: white; font-weight: 300;">
+                                    The algorithm identifies trends in the glucose curve, neutralizing peaks before they
+                                    occur.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: The Narrative & Path -->
+                    <div
+                        style="flex: 1; min-width: 400px; display: flex; flex-direction: column; justify-content: center;">
+                        <span class="badge"
+                            style="background: var(--med-blue-dark); color: white; margin-bottom: 2rem; padding: 0.8rem 1.8rem; border-radius: 100px; font-weight: 700; font-size: 0.8rem;">Clinical
+                            Transparency</span>
+                        <h2
+                            style="font-size: clamp(2.5rem, 5vw, 3.5rem); color: var(--med-blue-dark); margin-bottom: 2rem; line-height: 1.1; font-weight: 800;">
+                            From "Black Box" to "Open Logic"</h2>
+
+                        <h3
+                            style="color: var(--med-blue-dark); font-size: 1.8rem; margin-bottom: 1rem; margin-top: 2rem;">
+                            Dual-Guard Security Architecture</h3>
+                        <p
+                            style="font-size: 1.15rem; line-height: 1.7; color: var(--med-text-body); margin-bottom: 3rem;">
+                            We do not believe in blind trust in AI. That is why the IINTS-AF SDK introduces a layered
+                            defense strategy:
+                            <br><br>
+                            <strong>Layer 1: Input Validator</strong> – A biological plausibility filter that
+                            scrutinizes sensor data. It prevents algorithm "hallucinations" caused by sensor artifacts
+                            or noise.
+                            <br><br>
+                            <strong>Layer 2: Independent Supervisor</strong> – A deterministic safety layer that audits
+                            every AI decision against hard medical rules (IOB capping and hypoglycemia prevention)
+                            before any action is taken.
+                        </p>
+
+                        <!-- Vertical Decision Path -->
+                        <div style="display: flex; flex-direction: column; gap: 3.5rem;">
+                            <!-- Step 1 -->
+                            <div style="display: flex; gap: 2rem; position: relative;" class="hover-scale-subtle">
+                                <div
+                                    style="flex-shrink: 0; width: 48px; height: 48px; background: var(--med-blue-light); color: white; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; box-shadow: 0 8px 16px rgba(0,171,214,0.25);">
+                                    01</div>
+                                <div>
+                                    <h4
+                                        style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
+                                        Validation</h4>
+                                    <p style="color: var(--med-text-body); font-size: 1.1rem; line-height: 1.6;">The
+                                        <strong>InputValidator</strong> filters noise and artifacts from the Ohio T1DM
+                                        CGM data, ensuring only physiologically plausible values reach the controller.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div style="display: flex; gap: 2rem; position: relative;" class="hover-scale-subtle">
+                                <div
+                                    style="flex-shrink: 0; width: 48px; height: 48px; background: var(--med-blue-dark); color: white; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; box-shadow: 0 8px 16px rgba(0,37,84,0.25);">
+                                    02</div>
+                                <div>
+                                    <h4
+                                        style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
+                                        Intelligence</h4>
+                                    <p style="color: var(--med-text-body); font-size: 1.1rem; line-height: 1.6;">An
+                                        <strong>LSTM Neural Network</strong> identifies hidden insulin sensitivity
+                                        patterns to predict future glucose trends.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div style="display: flex; gap: 2rem; position: relative;" class="hover-scale-subtle">
+                                <div
+                                    style="flex-shrink: 0; width: 48px; height: 48px; background: var(--clinical-blue); color: white; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; box-shadow: 0 8px 16px rgba(0,102,204,0.25);">
+                                    03</div>
+                                <div>
+                                    <h4
+                                        style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
+                                        Supervision</h4>
+                                    <p style="color: var(--med-text-body); font-size: 1.1rem; line-height: 1.6;">
+                                        The <strong>Independent Supervisor</strong> validates the dose in microseconds
+                                        on the Jetson Nano, ensuring safety logic always overrides AI suggestions when
+                                        risks are detected.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Impact Quote -->
+                        <div style="margin-top: 6rem; padding: 4rem 0; border-top: 1px solid rgba(0,37,84,0.1);">
+                            <p
+                                style="font-size: 1.9rem; color: var(--med-blue-dark); font-weight: 300; font-style: italic; line-height: 1.4;">
+                                "Code shouldn't be a secret when it's managing a life."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: The Tech Hub (GitHub & Mission) -->
+        <section style="background: #001a3d; padding: 12rem 1rem; color: white; position: relative; overflow: hidden;">
+            <!-- Background Accent -->
+            <div
+                style="position: absolute; top: -10%; right: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,75,135,0.2) 0%, transparent 70%); border-radius: 50%;">
+            </div>
+
+            <div class="container" style="max-width: 1100px; margin: 0 auto; position: relative; z-index: 2;">
+                <div style="text-align: center; margin-bottom: 6rem;">
+                    <span class="badge"
+                        style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); margin-bottom: 2rem;">Research
+                        Access</span>
+                    <h2 style="font-size: clamp(2.5rem, 5vw, 3.5rem); color: white; margin-bottom: 1.5rem;">Take Control
+                        of Your Technology</h2>
+                    <p
+                        style="font-size: 1.3rem; color: rgba(255,255,255,0.8); max-width: 750px; margin: 0 auto; line-height: 1.7;">
+                        IINTS-AF is a fully Open Source research platform designed to provide transparency into
+                        autonomous care.
+                        We believe you should be the master of your own technology through understanding.
+                    </p>
+                </div>
+
+                <!-- Feature Grid -->
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; margin-bottom: 8rem;">
+                    <div
+                        style="background: rgba(255,255,255,0.03); padding: 3rem; border-radius: 24px; border: 1px solid rgba(255,255,255,0.08);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--med-blue-light)" stroke-width="2"
+                            style="width: 32px; height: 32px; margin-bottom: 1.5rem;">
+                            <path d="M12 2v20m10-10H2" />
+                        </svg>
+                        <h4 style="color: white; font-size: 1.3rem; margin-bottom: 1rem;">Simulation</h4>
+                        <p style="color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.6;">High-fidelity
+                            in-silico testing using the Ohio T1DM physiological dataset.</p>
+                    </div>
+                    <div
+                        style="background: rgba(255,255,255,0.03); padding: 3rem; border-radius: 24px; border: 1px solid rgba(255,255,255,0.08);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--med-blue-light)" stroke-width="2"
+                            style="width: 32px; height: 32px; margin-bottom: 1.5rem;">
+                            <rect x="2" y="2" width="20" height="20" rx="2" ry="2" />
+                            <path d="M7 2v20m10-20v20M2 7h20m-20 10h20" />
+                        </svg>
+                        <h4 style="color: white; font-size: 1.3rem; margin-bottom: 1rem;">Edge AI</h4>
+                        <p style="color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.6;">Optimized for the
+                            NVIDIA Jetson ecosystem. Run high-speed inference and 24/7 safety monitoring on a dedicated
+                            hardware 'waakhond' that ensures your SDK remains bug-free and responsive.</p>
+                    </div>
+                    <div
+                        style="background: rgba(255,255,255,0.03); padding: 3rem; border-radius: 24px; border: 1px solid rgba(255,255,255,0.08);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--med-blue-light)" stroke-width="2"
+                            style="width: 32px; height: 32px; margin-bottom: 1.5rem;">
+                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        <h4 style="color: white; font-size: 1.3rem; margin-bottom: 1rem;">Open Access</h4>
+                        <h4 style="display:none">DUMMY</h4> <!-- for layout consistency -->
+                        <p style="color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.6;">MIT Licensed
+                            framework for independent medical tech research and study.</p>
+                    </div>
+                </div>
+
+                <!-- Main CTA -->
+                <div
+                    style="text-align: center; background: linear-gradient(135deg, #002554 0%, #004b87 100%); padding: 6rem 2rem; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 40px 100px rgba(0,0,0,0.4);">
+                    <h3 style="color: white; font-size: 2.2rem; margin-bottom: 1.5rem;">Join the Research</h3>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem; margin-bottom: 3.5rem;">
+                        The IINTS-AF SDK is now a complete ecosystem for transparent, explainable, and safe autonomous
+                        care. Download the latest version on PyPI or explore the source code on GitHub.
+                    </p>
+                    <a href="https://github.com/python35/IINTS-SDK" class="btn btn-primary" target="_blank"
+                        rel="noopener noreferrer"
+                        style="padding: 1.8rem 5rem; border-radius: 100px; font-weight: 700; font-size: 1.3rem; background: white; color: var(--med-blue-dark); border: none; box-shadow: 0 20px 40px rgba(0,0,0,0.3); display: inline-flex; align-items: center; gap: 1rem;">
+                        <svg height="24" width="24" viewBox="0 0 16 16" fill="currentColor"
+                            style="display: inline-block; vertical-align: middle;">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                            </path>
+                        </svg>
+                        Explore on GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Built for Developers & Researchers -->
+        <section style="background: #f8fafc; padding: 10rem 1rem; position: relative;">
+            <div class="container" style="max-width: 1100px; margin: 0 auto;">
+                <div style="text-align: center; margin-bottom: 6rem;">
+                    <span class="badge" style="background: var(--clinical-blue); color: white; margin-bottom: 2rem;">SDK
+                        Experience</span>
+                    <h2 style="font-size: 3rem; color: var(--med-blue-dark); margin-bottom: 2rem;">Built for Developers
+                        & Researchers</h2>
+                    <p
+                        style="font-size: 1.3rem; line-height: 1.7; color: var(--med-text-body); max-width: 800px; margin: 0 auto;">
+                        Getting started with medical AI research shouldn't take weeks. With IINTS-AF, it takes seconds.
+                    </p>
+                </div>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 3rem; justify-content: center; align-items: stretch;">
+                    <!-- Step 1 -->
+                    <div
+                        style="background: white; padding: 3rem; border-radius: 24px; box-shadow: var(--shadow-soft); border: 1px solid #eee; flex: 1 1 300px; display: flex; flex-direction: column;">
+                        <h3
+                            style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 1.5rem; min-height: 4.5rem; display: flex; align-items: center;">
+                            One-Command Install</h3>
+                        <div
+                            style="background: #1e293b; color: #cbd5e1; padding: 1.5rem; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-bottom: 1.5rem;">
+                            pip install iints-sdk-python35
+                        </div>
+                        <p style="color: var(--med-text-body); line-height: 1.6;">Instantly set up the complete
+                            environment including safety engines and simulators.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div
+                        style="background: white; padding: 3rem; border-radius: 24px; box-shadow: var(--shadow-soft); border: 1px solid #eee; flex: 1 1 300px; display: flex; flex-direction: column;">
+                        <h3
+                            style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 1.5rem; min-height: 4.5rem; display: flex; align-items: center;">
+                            Instant Data</h3>
+                        <div
+                            style="background: #1e293b; color: #cbd5e1; padding: 1.5rem; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-bottom: 1.5rem;">
+                            iints data fetch aide_t1d
+                        </div>
+                        <p style="color: var(--med-text-body); line-height: 1.6;">Built-in connectors for the world's
+                            leading T1D datasets.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div
+                        style="background: white; padding: 3rem; border-radius: 24px; box-shadow: var(--shadow-soft); border: 1px solid #eee; flex: 1 1 300px; display: flex; flex-direction: column;">
+                        <h3
+                            style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 1.5rem; min-height: 4.5rem; display: flex; align-items: center;">
+                            Deterministic Testing</h3>
+                        <div
+                            style="background: #1e293b; color: #cbd5e1; padding: 1.5rem; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-bottom: 1.5rem;">
+                            iints run --stress-test
+                        </div>
+                        <p style="color: var(--med-text-body); line-height: 1.6;">Run thousands of simulations to find
+                            edge-case bugs before they reach a patient.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Educational Mission (Center) -->
+        <section style="padding: 8rem 2rem; background: white; width: 100%;">
+            <div class="container" style="max-width: 900px; text-align: center; margin: 0 auto;">
+                <p style="font-size: 1.4rem; line-height: 1.8; color: var(--med-blue-dark);">
+                    "IINTS-AF represents a shift toward explainable autonomous care, where human safety logic
+                    serves as the final authority over artificial intelligence."
+                </p>
+            </div>
+        </section>
+
+        <!-- Technical Architecture Table -->
+        <section style="padding: 8rem 1rem; border-top: 1px solid #eee; background: white; width: 100%;">
+            <div class="container" style="max-width: 800px; margin: 0 auto;">
+                <h4 style="text-align: center; font-size: 1.8rem; color: var(--med-blue-dark); margin-bottom: 4rem;">
+                    Technical Architecture</h4>
+                <div style="overflow-x: auto;">
+                    <table
+                        style="width: 100%; border-collapse: collapse; background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-soft); border: 1px solid #f0f0f0;">
+                        <thead>
+                            <tr style="background: var(--med-blue-dark); color: white;">
+                                <th style="padding: 1.5rem; text-align: left; font-weight: 600; font-size: 1.1rem;">
+                                    Component</th>
+                                <th style="padding: 1.5rem; text-align: left; font-weight: 600; font-size: 1.1rem;">
+                                    Specification</th>
+                                <th style="padding: 1.5rem; text-align: left; font-weight: 600; font-size: 1.1rem;">
+                                    Status</th>
+                            </tr>
+                        </thead>
+                        <tbody style="color: var(--med-text-body); font-size: 1.05rem;">
+                            <tr style="border-bottom: 1px solid #f0f0f0;">
+                                <td style="padding: 1.4rem 1.5rem; font-weight: 600; color: var(--med-blue-dark);">SDK
+                                    Version</td>
+                                <td style="padding: 1.4rem 1.5rem;" id="sdk-version">v0.1.10 (Global Registry Update)
+                                </td>
+                                <td style="padding: 1.4rem 1.5rem; color: #2e7d32; font-weight: 600;">Stable Release
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #f0f0f0;">
+                                <td style="padding: 1.4rem 1.5rem; font-weight: 600; color: var(--med-blue-dark);">
+                                    Safety Engine</td>
+                                <td style="padding: 1.4rem 1.5rem;">Independent Supervisor (Deterministic)</td>
+                                <td style="padding: 1.4rem 1.5rem; color: #1976d2; font-weight: 600;">Active</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #f0f0f0;">
+                                <td style="padding: 1.4rem 1.5rem; font-weight: 600; color: var(--med-blue-dark);">Data
+                                    Engine</td>
+                                <td style="padding: 1.4rem 1.5rem;">Multi-Dataset CLI & Registry</td>
+                                <td style="padding: 1.4rem 1.5rem; color: #1976d2; font-weight: 600;">New Feature</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #f0f0f0;">
+                                <td style="padding: 1.4rem 1.5rem; font-weight: 600; color: var(--med-blue-dark);">Edge
+                                    Latency</td>
+                                <td style="padding: 1.4rem 1.5rem;">0.23 µs (Supervisory Overhead)</td>
+                                <td style="padding: 1.4rem 1.5rem; color: #7b1fa2; font-weight: 600;">Benchmarked</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1.4rem 1.5rem; font-weight: 600; color: var(--med-blue-dark);">
+                                    Edge Hardware</td>
+                                <td style="padding: 1.4rem 1.5rem;">NVIDIA Jetson Optimized</td>
+                                <td style="padding: 1.4rem 1.5rem; color: #c2185b; font-weight: 600;">Active</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <!-- Standard Footer -->
+        <div class="footer-content">
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>The Project</h4>
+                    <ul>
+                        <li><a href="hardware.html">Hardware Specs</a></li>
+                        <li><a href="intelligence.html">AI Sandbox</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="about.html">About Rune</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:rune.bobbaers@gmail.com">rune.bobbaers@gmail.com</a></li>
+                        <li><a href="https://github.com/python35/IINTS-SDK" target="_blank"
+                                rel="noopener noreferrer">GitHub</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span class="current-year">2025</span> IINTS & IINTS-AF.</p>
+                <img src="../img/iints-logo.png" alt="IINTS Logo"
+                    style="height: 70px; width: auto; margin-top: 1rem; margin-bottom: -15px; opacity: 0.8;">
+            </div>
+        </div>
+    </footer>
+    <script src="../js/app.js"></script>
+</body>
+
+</html>

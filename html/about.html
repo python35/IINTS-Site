@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Learn about the journey of Rune Bobbaers and the mission behind IINTS: making insulin delivery technology open and transparent.">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://cdn.contentful.com https://images.ctfassets.net; connect-src 'self' https://cdn.contentful.com https://docs.google.com https://pypi.org; media-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>About IINTS - The Journey</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Specific Styles for the new Visual Layout */
+        .story-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('../img/lezing4.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-top: 60px;
+            /* Offset fixed nav */
+            border-radius: 0;
+            margin-bottom: 4rem;
+        }
+
+        .story-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-hover);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="global-nav">
+        <nav>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="../index.html" class="nav-link logo"><img src="../img/iints-logo.png"
+                            alt="IINTS Logo" style="height: 80px; width: auto; vertical-align: middle;"></a></li>
+                <li class="nav-item"><a href="hardware.html" class="nav-link">The Hardware</a></li>
+                <li class="nav-item"><a href="intelligence.html" class="nav-link">The Intelligence</a></li>
+                <li class="nav-item"><a href="docs.html" class="nav-link">Documentation</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link"
+                        style="color: var(--clinical-blue); opacity: 1;">About</a></li>
+            </ul>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+    </header>
+
+    <main>
+        <!-- Full Width Visual Hero -->
+        <section class="story-hero">
+            <div class="container">
+                <span class="badge"
+                    style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: #fff; margin-bottom: 1rem;">The
+                    Creator</span>
+                <h1>Rune Bobbaers</h1>
+                <p style="font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">
+                    Student, Maker, Patient. Converting a lifelong condition into a technological mission.
+                </p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+
+                <!-- Personal Connection Quote (Retained) -->
+
+                <!-- Section 1: The Question That Changed Everything -->
+                <div class="grid"
+                    style="grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 6rem;">
+                    <div>
+                        <h2 class="section-title" style="text-align: left;">The Question That Changed Everything</h2>
+                        <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 1.5rem;">
+                            My name is Rune Bobbaers, and I've been living with Type 1 Diabetes since I was three.
+                            As long as I can remember, I've depended on insulin pumps and glucose sensors devices that
+                            literally keep me alive.
+                            But as I got older, I realized something that changed everything: I had no idea how these
+                            machines worked.
+                        </p>
+                        <p style="font-size: 1.1rem; line-height: 1.8; color: #555;">
+                            That question "how does my pump know what to do?" became the start of a journey.
+                            At first, I was just curious. I started taking things apart, sketching, experimenting, and
+                            teaching myself electronics and code.
+                            Over time, that curiosity turned into IINTS, a project that explores how we can make medical
+                            technology open, transparent, and understandable.
+                        </p>
+                    </div>
+                    <div>
+                        <img src="../img/baby.jpg"
+                            alt="Rune Bobbaers at a young age - the beginning of a lifelong journey with T1D"
+                            class="hover-scale"
+                            style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;">
+                    </div>
+                </div>
+
+                <!-- Section 2: Learning, Not Replacing -->
+                <div class="grid"
+                    style="grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 6rem;">
+                    <div style="order: 2;">
+                        <!-- Image Left, Text Right visual balance if logic allows, or just standard text/img -->
+                        <!-- Actually, let's keep it Text Left, Image Right to match user's structure, 
+                             OR use order:2 on the image to flip it?
+                             To flip (Image Left, Text Right): Put Image div first in code, OR use flex/grid order.
+                             The current grid is 1fr 1fr. 
+                             Let's do Image Left, Text Right for visual interest. 
+                        -->
+                        <h2 class="section-title" style="text-align: left;">Learning, Not Replacing</h2>
+                        <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 1.5rem;">
+                            IINTS is not about replacing medical devices. It's about learning from them.
+                            The goal is to create an open-source educational platform where students, engineers, and
+                            even patients can understand the logic behind insulin delivery, glucose prediction, and
+                            closed-loop systems safely, transparently, and collaboratively.
+                        </p>
+                        <p style="font-size: 1.1rem; line-height: 1.8; color: #555;">
+                            Today, I use tools like the Jetson Nano to simulate blood glucose data, train AI models, and
+                            experiment with the principles behind automated insulin delivery.
+                            The idea is simple: by making technology visible, we make it better and safer.
+                        </p>
+                    </div>
+                    <div style="order: 1;">
+                        <img src="../img/IINTS.jpg"
+                            alt="Close-up of the IINTS insulin pump prototype hardware showing RP2040 and OLED"
+                            class="hover-scale"
+                            style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;">
+                    </div>
+                </div>
+
+                <!-- Section 3: The Mission (Creative Update) -->
+                <div
+                    style="text-align: center; max-width: 800px; margin: 4rem auto 8rem auto; padding: 4rem 2rem; background: linear-gradient(145deg, #ffffff, #f0f4f8); border-radius: 24px; box-shadow: var(--shadow-soft);">
+                    <span class="badge badge-blue" style="margin-bottom: 2rem;">The Vision</span>
+                    <h2 class="section-title"
+                        style="font-size: 2.5rem; margin-bottom: 1.5rem; background: linear-gradient(45deg, var(--med-blue-dark), var(--med-blue-light)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                        Decoding the Future</h2>
+                    <p
+                        style="font-size: 1.3rem; color: #555; margin-bottom: 2.5rem; line-height: 1.7; font-weight: 500;">
+                        "We're not just building hardware; we're making the invisible visible. Bridging the gap between
+                        medical mystery and patient empowerment."
+                    </p>
+                    <a href="intelligence.html" class="btn btn-primary"
+                        style="padding: 16px 40px; border-radius: 100px; box-shadow: 0 10px 20px rgba(0, 75, 135, 0.2);">Empower
+                        the Mission</a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>The Project</h4>
+                    <ul>
+                        <li><a href="hardware.html">Hardware Specs</a></li>
+                        <li><a href="intelligence.html">AI Sandbox</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="about.html">About Rune</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:rune.bobbaers@gmail.com">rune.bobbaers@gmail.com</a></li>
+                        <li><a href="https://github.com/python35/IINTS-SDK" target="_blank"
+                                rel="noopener noreferrer">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span class="current-year">2025</span> IINTS & IINTS-AF. Open Science.</p>
+                <img src="../img/iints-logo.png" alt="IINTS Logo"
+                    style="height: 70px; width: auto; margin-top: 1rem; margin-bottom: -15px; opacity: 0.8;">
+            </div>
+        </div>
+    </footer>
+    <script src="../js/app.js"></script>
+</body>
+
+</html>

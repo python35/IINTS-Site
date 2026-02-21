@@ -1,0 +1,37 @@
+[
+    {
+        "id": 4,
+        "title": "Coming Soon: IINTS-AF Launch",
+        "date": "Jan 12, 2026",
+        "category": "Press Release",
+        "summary": "On March 27, 2026, we will shift from mechanical innovation to intelligent autonomy. IINTS-AF launches as an open-source gateway for independent adaptive insulin research.",
+        "image": "jetsonnano.jpg"
+    },
+    {
+        "id": 1,
+        "title": "Breaking the Black Box",
+        "date": "Jan 10, 2026",
+        "category": "Vision",
+        "summary": "Why I decided to reverse engineer commercial insulin pumps. When my life depends on a machine, I need to know how it thinks.",
+        "content": "<p><strong>Why I did it.</strong><br>Commercial pumps are amazing, but they are black boxes. We input carbs, they output insulin. But what happens in between?</p><p>This post explores the journey of opening up my first pump and realizing that the 'magic' inside was actually understandable engineering.</p>",
+        "image": "pico.png"
+    },
+    {
+        "id": 2,
+        "title": "Hardware vs. Software",
+        "date": "Jan 12, 2026",
+        "category": "Engineering",
+        "summary": "The lessons I learned transitioning from the mechanical precision of the Raspberry Pi Pico to the AI capabilities of the Jetson Nano.",
+        "content": "<p>Building the body (V1) was about reliability. Building the brain (AF) is about probability.</p><p>In this log, I discuss how I integrated the two systems using MQTT bridge technology.</p>",
+        "image": "stepper.png"
+    },
+    {
+        "id": 3,
+        "title": "The Ethics of AI in Healthcare",
+        "date": "Jan 15, 2026",
+        "category": "Philosophy",
+        "summary": "Why a 'Safety Supervisor' is essential in autonomous care. We can't let AI run wild on human biology.",
+        "content": "<p>AI is powerful, but it hallucinates. When it's writing a poem, that's funny. When it's dosing insulin, that's fatal.</p><p>That's why IINTS-AF introduces the concept of a deterministic Safety Supervisor.</p>",
+        "image": "ionet.jpg"
+    }
+]
