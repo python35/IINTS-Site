@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://iints.org/sitemap.xml
+Sitemap: https://python35.github.io/IINTS-Site/sitemap.xml
