@@ -98,11 +98,43 @@ const app = {
         const toggle = document.querySelector('.nav-toggle');
         const nav = document.querySelector('.global-nav');
 
-        if (toggle && nav) {
-            toggle.addEventListener('click', () => {
-                nav.classList.toggle('is-active');
+        if (!toggle || !nav) return;
+
+        // Create overlay element for backdrop blur on mobile
+        const overlay = document.createElement('div');
+        overlay.className = 'nav-overlay';
+        document.body.appendChild(overlay);
+
+        const openNav = () => {
+            nav.classList.add('is-active');
+            overlay.classList.add('is-visible');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeNav = () => {
+            nav.classList.remove('is-active');
+            overlay.classList.remove('is-visible');
+            document.body.style.overflow = '';
+        };
+
+        toggle.addEventListener('click', () => {
+            nav.classList.contains('is-active') ? closeNav() : openNav();
+        });
+
+        // Close when tapping outside
+        overlay.addEventListener('click', closeNav);
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav.classList.contains('is-active')) closeNav();
+        });
+
+        // Close when a nav link is clicked (smooth UX)
+        nav.querySelectorAll('.nav-link:not(.logo)').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) closeNav();
             });
-        }
+        });
     },
 
     initYearsCounter: () => {
