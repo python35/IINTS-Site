@@ -234,7 +234,7 @@ const app = {
                 id: ''
             },
 
-            local_path: '../js/blog-posts.json'
+            local_path: window.location.pathname.includes('/html/') ? '../js/blog-posts.json' : 'js/blog-posts.json'
         };
         // --------------------------
 

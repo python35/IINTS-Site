@@ -765,9 +765,9 @@ a:hover {
 }
 
 /* ================================================================
-   PREMIUM MOBILE NAVIGATION (768px and below)
+   PREMIUM MOBILE & TABLET NAVIGATION (1024px and below)
    ================================================================ */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
 
     /* Hide the traditional hamburger/side-nav elements */
     .nav-toggle,
@@ -779,17 +779,44 @@ a:hover {
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
-        padding: 0.75rem 1rem;
+        padding: 0.6rem 1rem;
         height: auto;
         position: fixed;
         top: 0;
         z-index: 1000;
         border-bottom: 1px solid rgba(0, 37, 84, 0.08);
+        display: flex;
+        justify-content: center;
+        width: 100%;
     }
 
+    /* Show only the logo in the top nav-list on mobile/tablet */
     .nav-list {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        position: static !important;
+        height: auto !important;
+    }
+
+    .nav-item {
         display: none !important;
-        /* Hide old list */
+        /* Hide other links */
+    }
+
+    .nav-item:first-child {
+        display: block !important;
+        /* Show logo item */
+    }
+
+    .nav-link.logo img {
+        height: 50px !important;
+        margin: 0;
     }
 
     /* New Bottom Mobile Nav */
@@ -1063,21 +1090,9 @@ a:hover {
 }
 
 /* ================================================================
-   MOBILE (≤768px) — Premium Redesign
+   MOBILE & TABLET ADJUSTMENTS (1024px and below)
    ================================================================ */
-@media (max-width: 768px) {
-
-    /* === NAV BAR === */
-    .global-nav {
-        padding: 0.6rem 1rem;
-        display: flex;
-        justify-content: center;
-    }
-
-    .nav-link.logo img {
-        height: 50px !important;
-        margin: 0;
-    }
+@media (max-width: 1024px) {
 
     /* === HERO === */
     .hero-section {
