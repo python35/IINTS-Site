@@ -234,7 +234,10 @@ const app = {
                 id: ''
             },
 
-            local_path: window.location.pathname.includes('/html/') ? '../js/blog-posts.json' : 'js/blog-posts.json'
+            // Dynamic pathing for both Local & GitHub Pages
+            local_path: window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html')
+                ? 'js/blog-posts.json'
+                : '../js/blog-posts.json'
         };
         // --------------------------
 
