@@ -71,7 +71,7 @@
                 <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.5rem; color: white;">What exactly is a
                     <span style="white-space: nowrap;">"Smart" Insulin Pump?</span>
                 </h1>
-                <p style="font-size: clamp(1.2rem, 3vw, 2rem); color: rgba(255,255,255,0.9); font-weight: 300;">
+                <p style="font-size: clamp(1.2rem, 3vw, 2rem); color: rgba(255,255,255,0.9); font-weight: 300; margin-bottom: 1.5rem;">
                     Demystifying the algorithms that drive autonomous care.</p>
             </div>
         </section>
@@ -135,8 +135,7 @@
                 <h2 style="font-size: 3rem; color: white; margin-bottom: 2.5rem;">IINTS-AF: The Research SDK</h2>
                 <p
                     style="font-size: 1.4rem; line-height: 1.8; color: rgba(255,255,255,0.9); font-weight: 300; max-width: 800px; margin: 0 auto;">
-                    IINTS-AF has evolved from a standalone experiment into a comprehensive <strong>Software Development
-                        Kit (SDK)</strong>.
+                    IINTS-AF is a comprehensive <strong>Software Development Kit (SDK)</strong>.
                     It provides an independent research framework that allows developers and academics to build, test,
                     and validate AI algorithms
                     within a safe, deterministic environment.
@@ -158,8 +157,16 @@
                         physiological data. The IINTS-AF SDK features a built-in Data Registry, allowing researchers to
                         instantly fetch and benchmark against world-class datasets, including the <strong>Jaeb Center
                             AIDE T1D</strong>, <strong>Tidepool Big Data Donation</strong>, and the <strong>OpenAPS Data
-                            Commons</strong>. We provide the bridge between raw clinical data and actionable AI safety.
+                            Commons</strong>. Every dataset in the registry is MDMP-certified — cryptographically fingerprinted, consent-verified, and traceable to its source. Before an algorithm ever sees training data, MDMP guarantees it hasn't changed and was authorized for AI use.
                     </p>
+
+                    <div style="margin-top: 2rem; margin-bottom: 2.5rem;">
+                        <h4 style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Data You Can Trust</h4>
+                        <p style="color: var(--med-text-body); font-size: 1.1rem; line-height: 1.6;">
+                            IINTS-AF uses MDMP (Medical & Machine Data Management Protocol) to certify every dataset used in simulation. MDMP provides cryptographic proof that training data is what it claims to be — unmodified, consented, and AI-ready. No black boxes in the data layer either.
+                        </p>
+                    </div>
+
                     <div style="border-left: 4px solid var(--med-blue-light); padding-left: 1.5rem;">
                         <span
                             style="font-size: 1.5rem; color: var(--med-blue-dark); font-weight: 500; font-style: italic; display: block;">
@@ -245,7 +252,7 @@
                             defense strategy:
                             <br><br>
                             <strong>Layer 1: Input Validator</strong> – A biological plausibility filter that
-                            scrutinizes sensor data. It prevents algorithm "hallucinations" caused by sensor artifacts
+                            scrutinizes sensor data. It prevents false readings caused by sensor artifacts
                             or noise.
                             <br><br>
                             <strong>Layer 2: Independent Supervisor</strong> – A deterministic safety layer that audits
@@ -361,7 +368,7 @@
                         <h4 style="color: white; font-size: 1.3rem; margin-bottom: 1rem;">Edge AI</h4>
                         <p style="color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.6;">Optimized for the
                             NVIDIA Jetson ecosystem. Run high-speed inference and 24/7 safety monitoring on a dedicated
-                            hardware 'waakhond' that ensures your SDK remains bug-free and responsive.</p>
+                            hardware watchdog that ensures your SDK remains bug-free and responsive.</p>
                     </div>
                     <div
                         style="background: rgba(255,255,255,0.03); padding: 3rem; border-radius: 24px; border: 1px solid rgba(255,255,255,0.08);">
@@ -422,7 +429,7 @@
                             One-Command Install</h3>
                         <div
                             style="background: #1e293b; color: #cbd5e1; padding: 1.5rem; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-bottom: 1.5rem;">
-                            pip install iints-sdk-python35
+                            pip install iints-af
                         </div>
                         <p style="color: var(--med-text-body); line-height: 1.6;">Instantly set up the complete
                             environment including safety engines and simulators.</p>
