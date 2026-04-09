@@ -13,7 +13,7 @@
     <link rel="canonical" href="https://python35.github.io/IINTS-Site/html/intelligence.html">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://python35.github.io/IINTS-Site/html/intelligence.html">
-    <meta property="og:title" content="IINTS-AF - The Artificial Intelligence Research Platform">
+    <meta property="og:title" content="IINTS-AF | The Artificial Intelligence Research Platform">
     <meta property="og:description"
         content="IINTS-AF opens the 'Black Box' of autonomous insulin delivery, validating AI algorithms safely with Digital Twins before they touch a real patient.">
     <meta property="og:image" content="https://python35.github.io/IINTS-Site/img/iints-logo.png">
@@ -21,7 +21,7 @@
         content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://cdn.contentful.com https://images.ctfassets.net; connect-src 'self' https://cdn.contentful.com https://docs.google.com https://pypi.org; media-src 'self';">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <title>IINTS-AF - The AI Research Platform | Autonomous Insulin Delivery</title>
+    <title>IINTS-AF | The AI Research Platform | Autonomous Insulin Delivery</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,8 +97,8 @@
                             Problem</h3>
                         <p
                             style="font-size: 1.15rem; line-height: 1.7; color: var(--med-text-body); margin-bottom: 2.5rem;">
-                            Major manufacturers often keep these algorithms hidden. While you see the outcome the
-                            insulin being delivered you often don't understand <strong>why</strong> the decision was
+                            Major manufacturers often keep these algorithms hidden. While you see the outcome, the
+                            insulin being delivered, you often don't understand <strong>why</strong> the decision was
                             made.
                         </p>
                         <ul style="list-style: none; padding: 0;">
@@ -157,13 +157,13 @@
                         physiological data. The IINTS-AF SDK features a built-in Data Registry, allowing researchers to
                         instantly fetch and benchmark against world-class datasets, including the <strong>Jaeb Center
                             AIDE T1D</strong>, <strong>Tidepool Big Data Donation</strong>, and the <strong>OpenAPS Data
-                            Commons</strong>. Every dataset in the registry is MDMP-certified — cryptographically fingerprinted, consent-verified, and traceable to its source. Before an algorithm ever sees training data, MDMP guarantees it hasn't changed and was authorized for AI use.
+                            Commons</strong>. Every dataset in the registry is MDMP-certified, cryptographically fingerprinted, consent-verified, and traceable to its source. Before an algorithm ever sees training data, MDMP guarantees it hasn't changed and was authorized for AI use.
                     </p>
 
                     <div style="margin-top: 2rem; margin-bottom: 2.5rem;">
                         <h4 style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">Data You Can Trust</h4>
                         <p style="color: var(--med-text-body); font-size: 1.1rem; line-height: 1.6;">
-                            IINTS-AF uses MDMP (Medical & Machine Data Management Protocol) to certify every dataset used in simulation. MDMP provides cryptographic proof that training data is what it claims to be — unmodified, consented, and AI-ready. No black boxes in the data layer either.
+                            IINTS-AF uses MDMP (Medical & Machine Data Management Protocol) to certify every dataset used in simulation. MDMP provides cryptographic proof that training data is what it claims to be: unmodified, consented, and AI-ready. No black boxes in the data layer either.
                         </p>
                     </div>
 
@@ -251,11 +251,11 @@
                             We do not believe in blind trust in AI. That is why the IINTS-AF SDK introduces a layered
                             defense strategy:
                             <br><br>
-                            <strong>Layer 1: Input Validator</strong> – A biological plausibility filter that
+                            <strong>Layer 1: Input Validator</strong>: A biological plausibility filter that
                             scrutinizes sensor data. It prevents false readings caused by sensor artifacts
                             or noise.
                             <br><br>
-                            <strong>Layer 2: Independent Supervisor</strong> – A deterministic safety layer that audits
+                            <strong>Layer 2: Independent Supervisor</strong>: A deterministic safety layer that audits
                             every AI decision against hard medical rules (IOB capping and hypoglycemia prevention)
                             before any action is taken.
                         </p>
@@ -367,8 +367,7 @@
                         </svg>
                         <h4 style="color: white; font-size: 1.3rem; margin-bottom: 1rem;">Edge AI</h4>
                         <p style="color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.6;">Optimized for the
-                            NVIDIA Jetson ecosystem. Run high-speed inference and 24/7 safety monitoring on a dedicated
-                            hardware watchdog that ensures your SDK remains bug-free and responsive.</p>
+                            NVIDIA Jetson ecosystem. Run high-speed inference and 24/7 safety monitoring. The Independent Supervisor runs as a dedicated edge process, isolated from the AI inference layer.</p>
                     </div>
                     <div
                         style="background: rgba(255,255,255,0.03); padding: 3rem; border-radius: 24px; border: 1px solid rgba(255,255,255,0.08);">
@@ -429,7 +428,7 @@
                             One-Command Install</h3>
                         <div
                             style="background: #1e293b; color: #cbd5e1; padding: 1.5rem; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-bottom: 1.5rem;">
-                            pip install iints-af
+                            pip install iints-sdk-python35
                         </div>
                         <p style="color: var(--med-text-body); line-height: 1.6;">Instantly set up the complete
                             environment including safety engines and simulators.</p>
@@ -457,7 +456,7 @@
                             Deterministic Testing</h3>
                         <div
                             style="background: #1e293b; color: #cbd5e1; padding: 1.5rem; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-bottom: 1.5rem;">
-                            iints run --stress-test
+                            iints patient start --scenario-profile sport_day
                         </div>
                         <p style="color: var(--med-text-body); line-height: 1.6;">Run thousands of simulations to find
                             edge-case bugs before they reach a patient.</p>
@@ -524,7 +523,7 @@
                             <tr>
                                 <td style="padding: 1.4rem 1.5rem; font-weight: 600; color: var(--med-blue-dark);">
                                     Edge Hardware</td>
-                                <td style="padding: 1.4rem 1.5rem;">NVIDIA Jetson Optimized</td>
+                                <td style="padding: 1.4rem 1.5rem;">Jetson Nano, Raspberry Pi 5 8GB, Arduino UNO Q</td>
                                 <td style="padding: 1.4rem 1.5rem; color: #c2185b; font-weight: 600;">Active</td>
                             </tr>
                         </tbody>
