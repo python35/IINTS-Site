@@ -30,7 +30,7 @@
         "title": "The Ethics of AI in Healthcare",
         "date": "Jan 15, 2026",
         "category": "Philosophy",
-        "summary": "Why a 'Safety Supervisor' is essential in autonomous care. We can't let AI run wild on human biology.",
+        "summary": "Why a 'Safety Supervisor' is essential in autonomous insulin delivery research. We can't let AI run wild on human biology.",
         "content": "<p>AI is powerful, but it hallucinates. When it's writing a poem, that's funny. When it's dosing insulin, that's fatal.</p><p>That's why IINTS-AF introduces the concept of a deterministic Safety Supervisor.</p>",
         "image": "ionet.jpg"
     }
