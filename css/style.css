@@ -276,7 +276,7 @@ a:hover {
     width: 100%;
     padding: 1rem 2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.85);
     /* Lighter nav for clinical feel */
