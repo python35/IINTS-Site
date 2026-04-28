@@ -416,11 +416,11 @@ a:hover {
 
 .hero-split {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 4rem;
-    max-width: 1440px;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 2rem;
+    max-width: 1600px;
     width: 100%;
-    padding: 2rem;
+    padding: 2rem 4rem;
     align-items: center;
 }
 
@@ -457,7 +457,18 @@ a:hover {
 .hero-visual {
     position: relative;
     width: 100%;
-    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-main-img {
+    width: 110%;
+    height: auto;
+    margin-left: -5%;
+    transform: translateX(50px);
+    /* Subtle shift to the right */
+    transition: width 0.3s ease, transform 0.3s ease;
 }
 
 .hero-carousel {
@@ -473,6 +484,224 @@ a:hover {
     position: relative;
     width: 100%;
     height: 100%;
+}
+
+/* --- Intelligence Hero Redesign --- */
+/* --- Featured Bar (EUCYS) --- */
+.featured-bar {
+    background: #fff;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(0, 37, 84, 0.05);
+    margin-top: 80px;
+    /* Offset for fixed nav */
+}
+
+.featured-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.featured-label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    /* Heavier weight */
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    /* More spacing */
+    color: var(--med-blue-dark);
+    /* Darker than grey */
+    opacity: 0.8;
+}
+
+.featured-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.featured-item img {
+    height: 36px;
+    width: auto;
+}
+
+.featured-item p {
+    font-size: 0.95rem;
+    color: #001a33;
+    /* Deepest navy for maximum readability */
+    font-weight: 600;
+    margin: 0;
+}
+
+/* --- Premium Intelligence Hero --- */
+.intelligence-hero-premium {
+    position: relative;
+    padding: 8rem 2rem 10rem;
+    /* Reduced top padding as featured bar provides offset */
+    background: var(--med-blue-dark);
+    overflow: hidden;
+    color: white;
+}
+
+.hero-mesh {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
+    background-size: 40px 40px;
+    opacity: 0.5;
+}
+
+.intelligence-hero-split {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-content-glass {
+    padding: 4.5rem;
+    /* Increased padding for better breathing room */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
+}
+
+.hero-title-premium {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.text-cyan {
+    color: #ffffff;
+    /* Replaced cyan with white */
+}
+
+.hero-desc-premium {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+}
+
+/* Data Flow Visual */
+.hero-visual-premium {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.data-flow-visual {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.data-flow-visual-image {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    min-height: 300px;
+    /* Added min-height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pancreas-premium-img {
+    width: 180%; /* Even larger as requested */
+    max-width: 1400px;
+    height: auto;
+    opacity: 1;
+    position: relative;
+    right: -10%;
+}
+
+/* Hide on responsive/mobile screens */
+@media (max-width: 992px) {
+    .hero-visual-premium {
+        display: none;
+    }
+    .intelligence-hero-split {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+@keyframes pulseImage {
+    from {
+        opacity: 0.15;
+        transform: scale(0.98);
+    }
+
+    to {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulseDot {
+    from {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    to {
+        transform: scale(1.3);
+        opacity: 1;
+        box-shadow: 0 0 12px #ffffff;
+    }
+}
+
+.pulse-ring-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 4s infinite;
+    pointer-events: none;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 1024px) {
+    .intelligence-hero-split {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-content-glass {
+        padding: 2rem;
+    }
+
+    .eucys-badge-premium {
+        margin: 0 auto 2rem;
+    }
 }
 
 .carousel-slide {
@@ -821,7 +1050,7 @@ a:hover {
     }
 
     .global-nav .nav-link.logo img {
-        height: 50px !important;
+        height: 65px !important;
         margin: 0 !important;
         transform: none !important;
         display: block !important;
@@ -1145,11 +1374,19 @@ a:hover {
 
     .hero-visual {
         min-height: 0;
+        overflow: visible;
+        display: flex;
+        justify-content: center;
     }
 
-    .hero-carousel {
-        border-radius: 12px;
-        box-shadow: 0 8px 32px rgba(0, 37, 84, 0.12);
+    .hero-main-img {
+        width: 130% !important;
+        position: relative;
+        left: 50%;
+        transform: translateX(-42%) !important;
+        /* Subtle shift to the right on mobile */
+        margin-left: 0 !important;
+        /* Reset margin */
     }
 
     .cta-group {
@@ -1317,7 +1554,12 @@ a:hover {
 
     /* === GENERAL SECTION PADDING === */
     section {
-        padding: 3.5rem 1.25rem !important;
+        padding: 4rem 1.25rem 3.5rem !important;
+    }
+
+    /* Target the first section of any page to ensure it clears the nav properly */
+    main>section:first-of-type {
+        padding-top: 10rem !important;
     }
 
     /* === FOOTER === */
@@ -1387,6 +1629,58 @@ a:hover {
         padding: 12px 24px;
         border-radius: 6px;
     }
+
+    /* === INTELLIGENCE PAGE RESPONSIVE === */
+    main>section.featured-bar:first-of-type {
+        margin-top: 65px !important;
+        /* Offset for fixed nav */
+        padding-top: 1.5rem !important;
+        /* Clear override of the 10rem rule */
+        padding-bottom: 1.5rem !important;
+    }
+
+    .featured-flex {
+        gap: 1rem;
+        flex-direction: column;
+    }
+
+    .featured-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+    }
+
+    .featured-item {
+        gap: 0.75rem;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .featured-item img {
+        height: 28px;
+    }
+
+    .featured-item p {
+        font-size: 0.8rem;
+        line-height: 1.4;
+        max-width: 280px;
+    }
+
+    .hero-content-glass {
+        padding: 2rem !important;
+    }
+
+    .hero-title-premium {
+        font-size: 2.2rem !important;
+    }
+
+    .hero-desc-premium {
+        font-size: 1.05rem !important;
+    }
+
+    .data-flow-visual {
+        transform: scale(0.8);
+        margin: 0 auto;
+    }
 }
 
 /* ================================================================
@@ -1415,7 +1709,7 @@ a:hover {
     }
 
     .nav-link.logo img {
-        height: 52px !important;
+        height: 65px !important;
     }
 
     .feature-card {
@@ -1541,7 +1835,67 @@ a:hover {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08) !important;
     border-color: var(--clinical-blue) !important;
 }
-/* Pancreas Hero Visual Styles */
+
+/* ================================================================
+   INTELLIGENCE PAGE - HERO SECTION
+================================================================ */
+.intelligence-hero-premium {
+    background-color: #002554;
+    padding: 8rem 1rem 6rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.intelligence-hero-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.hero-content-glass {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 3rem;
+    backdrop-filter: blur(10px);
+}
+
+.hero-title-premium {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.text-cyan {
+    color: #00c8ff;
+}
+
+.hero-desc-premium {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.8;
+}
+
+.hero-visual-premium {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.data-flow-visual-image {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .pancreas-premium-img {
     width: 180%;
     max-width: 1400px;
@@ -1551,6 +1905,14 @@ a:hover {
     right: -10%;
 }
 
+.hero-mesh {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(0, 200, 255, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Hide on responsive/mobile screens */
 @media (max-width: 992px) {
     .hero-visual-premium {
         display: none;
@@ -1558,5 +1920,8 @@ a:hover {
     .intelligence-hero-split {
         grid-template-columns: 1fr;
         text-align: center;
+    }
+    .hero-title-premium {
+        font-size: 2.2rem !important;
     }
 }
