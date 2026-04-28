@@ -463,12 +463,20 @@ a:hover {
 }
 
 .hero-main-img {
-    width: 110%;
+    width: 115%;
+    max-width: 900px;
     height: auto;
     margin-left: -5%;
-    transform: translateX(50px);
-    /* Subtle shift to the right */
-    transition: width 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
+    /* No border-radius or box-shadow for a borderless look */
+
+}
+
+@media (max-width: 1200px) {
+    .hero-main-img {
+        width: 100%;
+        margin-left: 0;
+    }
 }
 
 .hero-carousel {
@@ -1863,13 +1871,17 @@ a:hover {
     backdrop-filter: blur(10px);
 }
 
-.hero-title-premium {
+.page-intelligence .hero-title-premium {
     font-size: 3.5rem;
     font-weight: 800;
     color: #ffffff !important;
     margin-bottom: 1.5rem;
     line-height: 1.1;
     letter-spacing: -0.03em;
+}
+
+.page-intelligence .hero-title-premium .text-cyan {
+    color: #ffffff !important; /* Making the SDK part white too as requested */
 }
 
 .text-cyan {
@@ -1925,3 +1937,4 @@ a:hover {
         font-size: 2.2rem !important;
     }
 }
+
