@@ -22,7 +22,7 @@ const app = {
                 const data = await response.json();
                 const latestVersion = data.info.version;
                 // Update the text, keeping the context in parentheses if present, or just the version
-                versionEl.textContent = `v${latestVersion} (Long-Horizon Research Platform)`;
+                versionEl.textContent = `v${latestVersion} (Global Registry Update)`;
             }
         } catch (error) {
             console.warn('Failed to fetch SDK version from PyPI:', error);
