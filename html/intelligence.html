@@ -15,13 +15,14 @@
     <meta property="og:url" content="https://python35.github.io/IINTS-Site/html/intelligence.html">
     <meta property="og:title" content="IINTS-AF | The Artificial Intelligence Research Platform">
     <meta property="og:description"
-        content="IINTS-AF opens the 'Black Box' of autonomous insulin delivery, validating AI algorithms safely with Digital Twins before they touch a real patient.">
+        content="IINTS-AF opens the 'Black Box' of autonomous insulin delivery, evaluating and stress-testing AI algorithms safely with Digital Twins before they are considered near real patients.">
     <meta property="og:image" content="https://python35.github.io/IINTS-Site/img/iints-logo.png">
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://cdn.contentful.com https://images.ctfassets.net; connect-src 'self' https://cdn.contentful.com https://docs.google.com https://pypi.org; media-src 'self';">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>IINTS-AF | The AI Research Platform | Autonomous Insulin Delivery</title>
+    <link rel="icon" type="image/png" href="../img/iints-logo.png">
     <link rel="stylesheet" href="../css/style.css?v=3.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,7 +53,7 @@
     <main>
         <section class="featured-bar">
             <div class="container featured-flex">
-                <span class="featured-label">Recognized by:</span>
+                <span class="featured-label">Selected for:</span>
                 <div class="featured-item">
                     <img src="../img/eucys.svg" alt="EUCYS Logo" style="height: 36px; width: auto;">
                     <p>IINTS was selected to represent Belgium at the European Union Contest for Young Scientists.
@@ -81,13 +82,19 @@
         <!-- The Algorithm Analogy -->
         <section style="padding: 10rem 1rem; background: white; width: 100%;">
             <div class="container" style="max-width: 900px; text-align: center; margin: 0 auto;">
+                <div style="background: rgba(11, 79, 108, 0.05); border: 1px solid rgba(11, 79, 108, 0.15); padding: 1.5rem; border-radius: 16px; margin-bottom: 4rem; text-align: left; max-width: 800px; margin-left: auto; margin-right: auto; display: flex; gap: 1rem; align-items: center;">
+                    <i class="fas fa-info-circle" style="color: var(--clinical-blue); font-size: 1.5rem; flex-shrink: 0;"></i>
+                    <p style="font-size: 0.95rem; line-height: 1.5; color: var(--med-text-body); margin: 0;">
+                        <strong>Positioning Statement:</strong> IINTS-AF is not a medical device. It is an open research SDK for simulating, stress-testing, and explaining automated insulin delivery logic before such logic is ever considered near real patients.
+                    </p>
+                </div>
                 <img src="../img/iints-sdk-logo.png" alt="IINTS-AF SDK Logo"
                     style="max-width: 150px; margin-bottom: 2rem; display: block; margin-left: auto; margin-right: auto;">
                 <h2 style="font-size: 2.5rem; color: var(--med-blue-dark); margin-bottom: 3rem;">Understanding the
                     "Recipe"</h2>
                 <p style="font-size: 1.25rem; line-height: 1.8; color: var(--med-text-body); margin-bottom: 4rem;">
-                    An algorithm is simply a <strong>recipe</strong> a set of rules. In a standard pump, you set the
-                    rules <span style="white-space: nowrap;">(e.g., "delivered 2 units for this meal")</span>.
+                    An algorithm is simply a <strong>recipe</strong>: a set of rules. In a standard pump, you set the
+                    rules <span style="white-space: nowrap;">(e.g., "deliver 2 units for this meal")</span>.
                     In a smart pump, the computer attempts to determine the rules itself based on your glucose levels.
                 </p>
 
@@ -99,7 +106,7 @@
                             Problem</h3>
                         <p
                             style="font-size: 1.15rem; line-height: 1.7; color: var(--med-text-body); margin-bottom: 2.5rem;">
-                            Major manufacturers often keep these algorithms hidden. While you see the outcome, the
+                            Commercial pump algorithms are usually proprietary. While you see the outcome, the
                             insulin being delivered, you often don't understand <strong>why</strong> the decision was
                             made.
                         </p>
@@ -139,7 +146,7 @@
                     style="font-size: 1.4rem; line-height: 1.8; color: rgba(255,255,255,0.9); font-weight: 300; max-width: 800px; margin: 0 auto;">
                     IINTS-AF is a comprehensive <strong>Software Development Kit (SDK)</strong>.
                     It provides an independent research framework that allows developers and academics to build, test,
-                    and validate AI algorithms
+                    and evaluate AI algorithms
                     within a safe, deterministic environment.
                 </p>
             </div>
@@ -155,13 +162,13 @@
                     <h2 style="font-size: 3rem; color: var(--med-blue-dark); margin-bottom: 2rem;">Global Data Access &
                         Integration</h2>
                     <p style="font-size: 1.3rem; line-height: 1.7; color: var(--med-text-body); margin-bottom: 2.5rem;">
-                        Before an algorithm ever controls a real pump, it must be validated against diverse, real-world
+                        Before an algorithm ever controls a real pump, it must be evaluated against diverse, real-world
                         physiological data. The IINTS-AF SDK features a built-in Data Registry, allowing researchers to
-                        instantly fetch and benchmark against world-class datasets, including the <strong>Jaeb Center
+                        prepare, import, or benchmark supported datasets when researchers have access, including the <strong>Jaeb Center
                             AIDE T1D</strong>, <strong>Tidepool Big Data Donation</strong>, and the <strong>OpenAPS Data
-                            Commons</strong>. Every dataset in the registry is MDMP-certified, cryptographically
-                        fingerprinted, consent-verified, and traceable to its source. Before an algorithm ever sees
-                        training data, MDMP guarantees it hasn't changed and was authorized for AI use.
+                            Commons</strong>. Every dataset in the registry is MDMP-certified, provenance-tracked, cryptographically
+                        fingerprinted, and license/consent metadata is recorded when available, and traceable to its source. Before an algorithm ever sees
+                        training data, MDMP guarantees its integrity and source verification.
                     </p>
 
                     <div style="margin-top: 2rem; margin-bottom: 2.5rem;">
@@ -171,7 +178,7 @@
                         <p style="color: var(--med-text-body); font-size: 1.1rem; line-height: 1.6;">
                             IINTS-AF uses MDMP (Medical & Machine Data Management Protocol) to certify every dataset
                             used in simulation. MDMP provides cryptographic proof that training data is what it claims
-                            to be: unmodified, consented, and AI-ready. No black boxes in the data layer either.
+                            to be: unmodified, provenance-tracked, and license/consent metadata is recorded when available. No black boxes in the data layer either.
                         </p>
                     </div>
 
@@ -202,7 +209,7 @@
                         </svg>
                         <p
                             style="margin-top: 2rem; text-align: center; color: #999; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">
-                            Ohio T1DM Physiological Sandbox</p>
+                            OhioT1DM-Informed Research Sandbox</p>
                     </div>
                 </div>
             </div>
@@ -278,7 +285,7 @@
                                 <div>
                                     <h4
                                         style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
-                                        Validation</h4>
+                                        Plausibility Check</h4>
                                     <p style="color: var(--med-text-body); font-size: 1.1rem; line-height: 1.6;">The
                                         <strong>InputValidator</strong> filters noise and artifacts from the Ohio T1DM
                                         CGM data, ensuring only physiologically plausible values reach the controller.
@@ -386,7 +393,7 @@
                         </svg>
                         <h4 style="color: white; font-size: 1.3rem; margin-bottom: 1rem;">Open Access</h4>
                         <h4 style="display:none">DUMMY</h4> <!-- for layout consistency -->
-                        <p style="color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.6;">MIT Licensed
+                        <p style="color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.6;">Apache-2.0 licensed, with legacy MIT notices where applicable,
                             framework for independent medical tech research and study.</p>
                     </div>
                 </div>
@@ -396,8 +403,7 @@
                     style="text-align: center; background: linear-gradient(135deg, #002554 0%, #004b87 100%); padding: 6rem 2rem; border-radius: 40px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 40px 100px rgba(0,0,0,0.4);">
                     <h3 style="color: white; font-size: 2.2rem; margin-bottom: 1.5rem;">Join the Research</h3>
                     <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem; margin-bottom: 3.5rem;">
-                        The IINTS-AF SDK is now a complete ecosystem for transparent, explainable, and safe autonomous
-                        care. Download the latest version on PyPI or explore the source code on GitHub.
+                        The IINTS-AF SDK is now a complete ecosystem for transparent, explainable, and safe research into autonomous insulin delivery. Download the latest version on PyPI or explore the source code on GitHub.
                     </p>
                     <a href="https://github.com/python35/IINTS-SDK" class="btn btn-primary" target="_blank"
                         rel="noopener noreferrer"
@@ -528,7 +534,7 @@
                             <tr style="border-bottom: 1px solid #f0f0f0;">
                                 <td style="padding: 1.4rem 1.5rem; font-weight: 600; color: var(--med-blue-dark);">Edge
                                     Latency</td>
-                                <td style="padding: 1.4rem 1.5rem;">0.23 µs (Supervisory Overhead)</td>
+                                <td style="padding: 1.4rem 1.5rem;">sub-millisecond (Supervisory Overhead in benchmark runs)</td>
                                 <td style="padding: 1.4rem 1.5rem; color: #7b1fa2; font-weight: 600;">Benchmarked</td>
                             </tr>
                             <tr>
