@@ -12,7 +12,7 @@ const app = {
     },
 
     initSDKVersion: async () => {
-        const versionEl = document.getElementById('sdk-version');
+        const versionEl = document.getElementById('sdk-version') || document.getElementById('sdk-version-badge');
         if (!versionEl) return;
 
         try {
@@ -21,12 +21,10 @@ const app = {
             if (response.ok) {
                 const data = await response.json();
                 const latestVersion = data.info.version;
-                // Update the text, keeping the context in parentheses if present, or just the version
-                versionEl.textContent = `v${latestVersion} (Global Registry Update)`;
+                versionEl.textContent = `v${latestVersion}`;
             }
         } catch (error) {
             console.warn('Failed to fetch SDK version from PyPI:', error);
-            // Fallback is already in HTML, so no action needed on error
         }
     },
 

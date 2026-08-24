@@ -10,9 +10,9 @@
         content="IINTS-AF, insulin delivery AI, open-source diabetes AI, LSTM insulin algorithm, digital twin diabetes, autonomous insulin pump AI, IINTS intelligence, explainable AI diabetes">
     <meta name="author" content="Rune Bobbaers">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://python35.github.io/IINTS-Site/html/intelligence.html">
+    <link rel="canonical" href="https://python35.github.io/IINTS-Site/html/software.html">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://python35.github.io/IINTS-Site/html/intelligence.html">
+    <meta property="og:url" content="https://python35.github.io/IINTS-Site/html/software.html">
     <meta property="og:title" content="IINTS-AF | The Artificial Intelligence Research Platform">
     <meta property="og:description"
         content="IINTS-AF opens the 'Black Box' of autonomous insulin delivery, evaluating and stress-testing AI algorithms safely with Digital Twins before they are considered near real patients.">
@@ -38,8 +38,8 @@
             <ul class="nav-list">
                 <li class="nav-item"><a href="../index.html" class="nav-link logo"><img src="../img/iints-logo.png" alt="IINTS Logo" style="height: 65px; width: auto; vertical-align: middle;"></a></li>
                 <li class="nav-item"><a href="hardware.html" class="nav-link">The Hardware</a></li>
-                <li class="nav-item"><a href="intelligence.html" class="nav-link"
-                        style="color: var(--clinical-blue); opacity: 1;">The Intelligence</a></li>
+                <li class="nav-item"><a href="software.html" class="nav-link"
+                        style="color: var(--clinical-blue); opacity: 1;">Software & Simulation</a></li>
                 <li class="nav-item"><a href="https://python35.github.io/IINTS-SDK/" class="nav-link" target="_blank"
                         rel="noopener noreferrer">Documentation</a></li>
                 <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
@@ -79,6 +79,12 @@
             <div class="hero-mesh"></div>
         </section>
 
+        <!-- Warning Banner -->
+        <section style="background: #fff3cd; padding: 1rem; border-bottom: 1px solid #ffeeba; text-align: center;">
+            <p style="color: #856404; font-weight: bold; margin: 0; font-size: 1.1rem;">
+                Research and education only — not a medical device.
+            </p>
+        </section>
         <!-- The Algorithm Analogy -->
         <section style="padding: 10rem 1rem; background: white; width: 100%;">
             <div class="container" style="max-width: 900px; text-align: center; margin: 0 auto;">
@@ -90,7 +96,7 @@
                 <p style="font-size: 1.25rem; line-height: 1.8; color: var(--med-text-body); margin-bottom: 4rem;">
                     An algorithm is simply a <strong>recipe</strong>: a set of rules. In a standard pump, you set the
                     rules <span style="white-space: nowrap;">(e.g., "deliver 2 units for this meal")</span>.
-                    In a smart pump, the computer attempts to determine the rules itself based on your glucose levels.
+                    An automated insulin-delivery controller combines glucose data, trends, insulin-on-board and configured parameters to calculate a candidate action.
                 </p>
 
                 <!-- The Problem: The Black Box -->
@@ -142,7 +148,7 @@
                     IINTS-AF is a comprehensive <strong>Software Development Kit (SDK)</strong>.
                     It provides an independent research framework that allows developers and academics to build, test,
                     and evaluate AI algorithms
-                    within a safe, deterministic environment.
+                    within a controlled, seeded and reproducible research environment.
                 </p>
             </div>
         </section>
@@ -161,19 +167,16 @@
                         physiological data. The IINTS-AF SDK features a built-in Data Registry, allowing researchers to
                         prepare, import, or benchmark supported datasets when researchers have access, including the <strong>Jaeb Center
                             AIDE T1D</strong>, <strong>Tidepool Big Data Donation</strong>, and the <strong>OpenAPS Data
-                            Commons</strong>. Every dataset in the registry is MDMP-certified, provenance-tracked, cryptographically
-                        fingerprinted, and license/consent metadata is recorded when available, and traceable to its source. Before an algorithm ever sees
-                        training data, MDMP guarantees its integrity and source verification.
+                            Commons</strong>. Registered datasets include access, citation and provenance metadata. Local files can be validated through MDMP.
                     </p>
 
                     <div style="margin-top: 2rem; margin-bottom: 2.5rem;">
                         <h4
                             style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
-                            Data You Can Trust</h4>
+                            Data Checks You Can Audit</h4>
                         <p style="color: var(--med-text-body); font-size: 1.1rem; line-height: 1.6;">
                             IINTS-AF uses MDMP (Medical & Machine Data Management Protocol) to certify every dataset
-                            used in simulation. MDMP provides cryptographic proof that training data is what it claims
-                            to be: unmodified, provenance-tracked, and license/consent metadata is recorded when available. No black boxes in the data layer either.
+                            used in simulation. MDMP records contract checks, fingerprints and optional signatures to improve traceability.
                         </p>
                     </div>
 
@@ -255,19 +258,12 @@
 
                         <h3
                             style="color: var(--med-blue-dark); font-size: 1.8rem; margin-bottom: 1rem; margin-top: 2rem;">
-                            Dual-Guard Security Architecture</h3>
+                            Two-layer research safety architecture</h3>
                         <p
                             style="font-size: 1.15rem; line-height: 1.7; color: var(--med-text-body); margin-bottom: 3rem;">
                             We do not believe in blind trust in AI. That is why the IINTS-AF SDK introduces a layered
                             defense strategy:
                             <br><br>
-                            <strong>Layer 1: Input Validator</strong>: A biological plausibility filter that
-                            scrutinizes sensor data. It prevents false readings caused by sensor artifacts
-                            or noise.
-                            <br><br>
-                            <strong>Layer 2: Independent Supervisor</strong>: A deterministic safety layer that audits
-                            every AI decision against hard medical rules (IOB capping and hypoglycemia prevention)
-                            before any action is taken.
                         </p>
 
                         <!-- Vertical Decision Path -->
@@ -280,10 +276,8 @@
                                 <div>
                                     <h4
                                         style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
-                                        Plausibility Check</h4>
-                                    <p style="color: var(--med-text-body); font-size: 1.1rem; line-height: 1.6;">The
-                                        <strong>InputValidator</strong> filters noise and artifacts from the Ohio T1DM
-                                        CGM data, ensuring only physiologically plausible values reach the controller.
+                                        Input validation</h4>
+                                    <p style="color: var(--med-text-body); font-size: 1.1rem; line-height: 1.6;">Incoming values are checked for numeric validity, configured glucose bounds and implausible rates of change. Invalid readings are rejected rather than silently corrected.
                                     </p>
                                 </div>
                             </div>
@@ -296,26 +290,9 @@
                                 <div>
                                     <h4
                                         style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
-                                        Intelligence</h4>
-                                    <p style="color: var(--med-text-body); font-size: 1.1rem; line-height: 1.6;">An
-                                        <strong>LSTM Neural Network</strong> identifies hidden insulin sensitivity
-                                        patterns to predict future glucose trends.
+                                        Independent supervision</h4>
+                                    <p style="color: var(--med-text-body); font-size: 1.1rem; line-height: 1.6;">Before a candidate insulin action affects the simulated patient, a separate deterministic component applies configured limits for glucose, trends, insulin-on-board, bolus size and recent insulin delivery.<br><br>These constraints support research experiments; they are not personalized clinical rules or proof of medical safety.
                                     </p>
-                                </div>
-                            </div>
-
-                            <!-- Step 3 -->
-                            <div style="display: flex; gap: 2rem; position: relative;" class="hover-scale-subtle">
-                                <div
-                                    style="flex-shrink: 0; width: 48px; height: 48px; background: var(--clinical-blue); color: white; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; box-shadow: 0 8px 16px rgba(0,102,204,0.25);">
-                                    03</div>
-                                <div>
-                                    <h4
-                                        style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
-                                        Supervision</h4>
-                                    <p style="color: var(--med-text-body); font-size: 1.1rem; line-height: 1.6;">
-                                        The Independent Supervisor audits every simulated dose against hard safety rules
-                                        before it is applied in the simulation.</p>
                                 </div>
                             </div>
                         </div>
@@ -364,8 +341,7 @@
                             <path d="M12 2v20m10-10H2" />
                         </svg>
                         <h4 style="color: white; font-size: 1.3rem; margin-bottom: 1rem;">Simulation</h4>
-                        <p style="color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.6;">High-fidelity
-                            in-silico testing using the Ohio T1DM physiological dataset.</p>
+                        <p style="color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.6;">Processed OhioT1DM data can support forecast benchmarking and calibration audits when access conditions permit.</p>
                     </div>
                     <div
                         style="background: rgba(255,255,255,0.03); padding: 3rem; border-radius: 24px; border: 1px solid rgba(255,255,255,0.08);">
@@ -463,13 +439,12 @@
                         style="background: white; padding: 3rem; border-radius: 24px; box-shadow: var(--shadow-soft); border: 1px solid #eee; flex: 1 1 300px; display: flex; flex-direction: column;">
                         <h3
                             style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 1.5rem; min-height: 4.5rem; display: flex; align-items: center;">
-                            Deterministic Testing</h3>
+                            Research Metrics</h3>
                         <div
                             style="background: #1e293b; color: #cbd5e1; padding: 1.5rem; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-bottom: 1.5rem; min-height: 6rem; display: flex; align-items: center;">
-                            iints patient start --scenario-profile sport_day
+                            iints evaluate \<br>&nbsp;&nbsp;--algo algorithms/example_algorithm.py \<br>&nbsp;&nbsp;--population 1000 \<br>&nbsp;&nbsp;--seed 42
                         </div>
-                        <p style="color: var(--med-text-body); line-height: 1.6;">Run thousands of simulations to find
-                            edge-case bugs before they reach a patient.</p>
+                        <p style="color: var(--med-text-body); line-height: 1.6;">Stress-test an algorithm across virtual patients and report aggregate research metrics.</p>
                     </div>
                 </div>
             </div>
@@ -486,60 +461,66 @@
             </div>
         </section>
 
-        <!-- Technical Architecture Table -->
+        <!-- Research Status -->
         <section style="padding: 8rem 1rem; border-top: 1px solid #eee; background: white; width: 100%;">
-            <div class="container" style="max-width: 800px; margin: 0 auto;">
-                <h4 style="text-align: center; font-size: 1.8rem; color: var(--med-blue-dark); margin-bottom: 4rem;">
-                    Technical Architecture</h4>
-                <div style="overflow-x: auto;">
-                    <table
-                        style="width: 100%; border-collapse: collapse; background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-soft); border: 1px solid #f0f0f0;">
-                        <thead>
-                            <tr style="background: var(--med-blue-dark); color: white;">
-                                <th style="padding: 1.5rem; text-align: left; font-weight: 600; font-size: 1.1rem;">
-                                    Component</th>
-                                <th style="padding: 1.5rem; text-align: left; font-weight: 600; font-size: 1.1rem;">
-                                    Specification</th>
-                                <th style="padding: 1.5rem; text-align: left; font-weight: 600; font-size: 1.1rem;">
-                                    Status</th>
-                            </tr>
-                        </thead>
-                        <tbody style="color: var(--med-text-body); font-size: 1.05rem;">
-                            <tr style="border-bottom: 1px solid #f0f0f0;">
-                                <td style="padding: 1.4rem 1.5rem; font-weight: 600; color: var(--med-blue-dark);">SDK
-                                    Version</td>
-                                <td style="padding: 1.4rem 1.5rem;" id="sdk-version">v0.1.10 (Long-Horizon Research
-                                    Platform)
-                                </td>
-                                <td style="padding: 1.4rem 1.5rem; color: #2e7d32; font-weight: 600;">Stable Release
-                                </td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #f0f0f0;">
-                                <td style="padding: 1.4rem 1.5rem; font-weight: 600; color: var(--med-blue-dark);">
-                                    Safety Engine</td>
-                                <td style="padding: 1.4rem 1.5rem;">Independent Supervisor (Deterministic)</td>
-                                <td style="padding: 1.4rem 1.5rem; color: #1976d2; font-weight: 600;">Active</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #f0f0f0;">
-                                <td style="padding: 1.4rem 1.5rem; font-weight: 600; color: var(--med-blue-dark);">Data
-                                    Engine</td>
-                                <td style="padding: 1.4rem 1.5rem;">Multi-Dataset CLI & Registry</td>
-                                <td style="padding: 1.4rem 1.5rem; color: #1976d2; font-weight: 600;">New Feature</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #f0f0f0;">
-                                <td style="padding: 1.4rem 1.5rem; font-weight: 600; color: var(--med-blue-dark);">Edge
-                                    Latency</td>
-                                <td style="padding: 1.4rem 1.5rem;">sub-millisecond (Supervisory Overhead in benchmark runs)</td>
-                                <td style="padding: 1.4rem 1.5rem; color: #7b1fa2; font-weight: 600;">Benchmarked</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 1.4rem 1.5rem; font-weight: 600; color: var(--med-blue-dark);">
-                                    Edge Hardware</td>
-                                <td style="padding: 1.4rem 1.5rem;">Jetson Nano, Raspberry Pi 5 8GB, Arduino UNO Q</td>
-                                <td style="padding: 1.4rem 1.5rem; color: #c2185b; font-weight: 600;">Active</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="container" style="max-width: 900px; margin: 0 auto;">
+                <h2 style="text-align: center; font-size: 2.2rem; color: var(--med-blue-dark); margin-bottom: 3rem;">Project Status & Downloads</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+                    <!-- Downloads -->
+                    <div style="background: #f8fafc; padding: 2rem; border-radius: 16px; border: 1px solid #e2e8f0;">
+                        <h3 style="color: var(--med-blue-dark); font-size: 1.4rem; margin-bottom: 1.5rem;"><i class="fas fa-download" style="margin-right: 0.5rem; color: var(--clinical-blue);"></i>Downloads</h3>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <strong style="display: block; color: var(--med-text-body); margin-bottom: 0.5rem;">Core SDK (Python)</strong>
+                            <a href="https://github.com/python35/IINTS-SDK/releases/latest" target="_blank" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem; border-radius: 8px;">Latest Release</a>
+                            <span id="sdk-version-badge" style="margin-left: 0.5rem; font-family: monospace; color: #64748b; font-weight: bold;">loading...</span>
+                        </div>
+                        
+                        <div>
+                            <strong style="display: block; color: var(--med-text-body); margin-bottom: 0.5rem;">Desktop Interface (GUI)</strong>
+                            <a href="https://github.com/python35/IINTS-SDK/releases/tag/tauri-beta-latest" target="_blank" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem; border-radius: 8px; background: white; border: 1px solid #cbd5e1; color: var(--med-blue-dark);">Desktop Beta</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Datasets -->
+                    <div style="background: #f8fafc; padding: 2rem; border-radius: 16px; border: 1px solid #e2e8f0;">
+                        <h3 style="color: var(--med-blue-dark); font-size: 1.4rem; margin-bottom: 1.5rem;"><i class="fas fa-database" style="margin-right: 0.5rem; color: var(--clinical-blue);"></i>Dataset Access</h3>
+                        <p style="color: var(--med-text-body); font-size: 1rem; line-height: 1.6;">
+                            Supported datasets have different access requirements:
+                        </p>
+                        <ul style="color: var(--med-text-body); font-size: 0.95rem; line-height: 1.6; margin-top: 1rem; padding-left: 1.2rem;">
+                            <li style="margin-bottom: 0.5rem;"><strong>Publicly available:</strong> Downloadable directly via the CLI registry.</li>
+                            <li><strong>Restricted access:</strong> Requires manual download and approval (e.g., OhioT1DM) before MDMP validation.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature Status -->
+                <div style="display: flex; flex-direction: column; gap: 2rem;">
+                    <!-- Available Now -->
+                    <div style="border-left: 4px solid #22c55e; padding-left: 1.5rem;">
+                        <h3 style="color: var(--med-blue-dark); font-size: 1.3rem; margin-bottom: 0.5rem;">Available Now</h3>
+                        <p style="color: var(--med-text-body); font-size: 1rem; line-height: 1.5;">
+                            Independent Supervisor (Deterministic safety limits), Virtual Patient Simulator (Basal/Bolus dynamics), MDMP Data validation CLI.
+                        </p>
+                    </div>
+                    
+                    <!-- Experimental -->
+                    <div style="border-left: 4px solid #f59e0b; padding-left: 1.5rem;">
+                        <h3 style="color: var(--med-blue-dark); font-size: 1.3rem; margin-bottom: 0.5rem;">Experimental</h3>
+                        <p style="color: var(--med-text-body); font-size: 1rem; line-height: 1.5;">
+                            optional LSTM Glucose Forecasting (Requires manual dataset integration), Edge Inference on Raspberry Pi 5 / Jetson Nano.
+                        </p>
+                    </div>
+                    
+                    <!-- Future Research -->
+                    <div style="border-left: 4px solid #3b82f6; padding-left: 1.5rem;">
+                        <h3 style="color: var(--med-blue-dark); font-size: 1.3rem; margin-bottom: 0.5rem;">Future Research</h3>
+                        <p style="color: var(--med-text-body); font-size: 1rem; line-height: 1.5;">
+                            Multi-hormone simulation extensions, Reinforcement Learning controller integration.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -553,7 +534,7 @@
                     <h4>The Project</h4>
                     <ul>
                         <li><a href="hardware.html">Hardware Specs</a></li>
-                        <li><a href="intelligence.html">AI Sandbox</a></li>
+                        <li><a href="software.html">AI Sandbox</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -591,7 +572,7 @@
             <i class="fas fa-microchip"></i>
             <span>Hardware</span>
         </a>
-        <a href="intelligence.html" class="mobile-nav-item active">
+        <a href="software.html" class="mobile-nav-item active">
             <i class="fas fa-brain"></i>
             <span>AI</span>
         </a>
