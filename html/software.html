@@ -408,7 +408,8 @@
                             style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 1.5rem; min-height: 4.5rem; display: flex; align-items: center;">
                             One-Command Install</h3>
                         <div
-                            style="background: #1e293b; color: #cbd5e1; padding: 1.5rem; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-bottom: 1.5rem; min-height: 6rem; display: flex; align-items: center;">
+                            style="position: relative; background: #1e293b; color: #cbd5e1; padding: 1.5rem; padding-right: 3rem; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-bottom: 1.5rem; height: 6rem; display: flex; align-items: center; overflow-x: auto; white-space: nowrap;">
+                            <button onclick="navigator.clipboard.writeText('pip install iints-sdk-python35')" style="position: absolute; top: 50%; transform: translateY(-50%); right: 0.5rem; background: rgba(255,255,255,0.1); border: none; color: white; padding: 0.5rem; border-radius: 6px; cursor: pointer;" title="Copy to clipboard"><i class="fas fa-copy"></i></button>
                             pip install iints-sdk-python35
                         </div>
                         <p style="color: var(--med-text-body); line-height: 1.6;">Instantly set up the complete
@@ -422,7 +423,8 @@
                             style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 1.5rem; min-height: 4.5rem; display: flex; align-items: center;">
                             Instant Data</h3>
                         <div
-                            style="background: #1e293b; color: #cbd5e1; padding: 1.5rem; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-bottom: 1.5rem; min-height: 6rem; display: flex; align-items: center;">
+                            style="position: relative; background: #1e293b; color: #cbd5e1; padding: 1.5rem; padding-right: 3rem; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-bottom: 1.5rem; height: 6rem; display: flex; align-items: center; overflow-x: auto; white-space: nowrap;">
+                            <button onclick="navigator.clipboard.writeText('iints data fetch aide_t1d')" style="position: absolute; top: 50%; transform: translateY(-50%); right: 0.5rem; background: rgba(255,255,255,0.1); border: none; color: white; padding: 0.5rem; border-radius: 6px; cursor: pointer;" title="Copy to clipboard"><i class="fas fa-copy"></i></button>
                             iints data fetch aide_t1d
                         </div>
                         <p style="color: var(--med-text-body); line-height: 1.6;">Built-in connectors for the world's
@@ -436,8 +438,9 @@
                             style="color: var(--med-blue-dark); font-size: 1.5rem; margin-bottom: 1.5rem; min-height: 4.5rem; display: flex; align-items: center;">
                             Research Metrics</h3>
                         <div
-                            style="background: #1e293b; color: #cbd5e1; padding: 1.5rem; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-bottom: 1.5rem; min-height: 6rem; display: flex; align-items: center;">
-                            iints evaluate \<br>&nbsp;&nbsp;--algo algorithms/example_algorithm.py \<br>&nbsp;&nbsp;--population 1000 \<br>&nbsp;&nbsp;--seed 42
+                            style="position: relative; background: #1e293b; color: #cbd5e1; padding: 1.5rem; padding-right: 3rem; border-radius: 12px; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-bottom: 1.5rem; height: 6rem; display: flex; align-items: center; overflow-x: auto; white-space: nowrap;">
+                            <button onclick="navigator.clipboard.writeText('iints evaluate --algo algorithms/example_algorithm.py --population 1000 --seed 42')" style="position: absolute; top: 50%; transform: translateY(-50%); right: 0.5rem; background: rgba(255,255,255,0.1); border: none; color: white; padding: 0.5rem; border-radius: 6px; cursor: pointer;" title="Copy to clipboard"><i class="fas fa-copy"></i></button>
+                            iints evaluate --algo algorithms/example_algorithm.py --population 1000 --seed 42
                         </div>
                         <p style="color: var(--med-text-body); line-height: 1.6;">Stress-test an algorithm across virtual patients and report aggregate research metrics.</p>
                     </div>
@@ -456,65 +459,24 @@
             </div>
         </section>
 
-        <!-- Research Status -->
+        <!-- Downloads -->
         <section style="padding: 8rem 1rem; border-top: 1px solid #eee; background: white; width: 100%;">
-            <div class="container" style="max-width: 900px; margin: 0 auto;">
-                <h2 style="text-align: center; font-size: 2.2rem; color: var(--med-blue-dark); margin-bottom: 3rem;">Project Status & Downloads</h2>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
-                    <!-- Downloads -->
-                    <div style="background: #f8fafc; padding: 2rem; border-radius: 16px; border: 1px solid #e2e8f0;">
-                        <h3 style="color: var(--med-blue-dark); font-size: 1.4rem; margin-bottom: 1.5rem;"><i class="fas fa-download" style="margin-right: 0.5rem; color: var(--clinical-blue);"></i>Downloads</h3>
-                        
-                        <div style="margin-bottom: 1.5rem;">
-                            <strong style="display: block; color: var(--med-text-body); margin-bottom: 0.5rem;">Core SDK (Python)</strong>
-                            <a href="https://github.com/python35/IINTS-SDK/releases/latest" target="_blank" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem; border-radius: 8px;">Latest Release</a>
-                            <span id="sdk-version-badge" style="margin-left: 0.5rem; font-family: monospace; color: #64748b; font-weight: bold;">loading...</span>
-                        </div>
-                        
-                        <div>
-                            <strong style="display: block; color: var(--med-text-body); margin-bottom: 0.5rem;">Desktop Interface (GUI)</strong>
-                            <a href="https://github.com/python35/IINTS-SDK/releases/tag/tauri-beta-latest" target="_blank" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem; border-radius: 8px; background: white; border: 1px solid #cbd5e1; color: var(--med-blue-dark);">Desktop Beta</a>
-                        </div>
+            <div class="container" style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h2 style="font-size: 2.2rem; color: var(--med-blue-dark); margin-bottom: 2rem;">Downloads</h2>
+                <p style="font-size: 1.1rem; color: var(--med-text-body); margin-bottom: 3rem;">
+                    Get started with the IINTS-AF research platform. 
+                </p>
+                <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+                    <div style="background: #f8fafc; padding: 2rem; border-radius: 16px; border: 1px solid #e2e8f0; flex: 1; min-width: 250px;">
+                        <h3 style="color: var(--med-blue-dark); font-size: 1.3rem; margin-bottom: 1rem;">Core SDK</h3>
+                        <p style="color: var(--med-text-body); font-size: 0.95rem; margin-bottom: 1.5rem;">Python framework for algorithmic research and simulation.</p>
+                        <a href="https://github.com/python35/IINTS-SDK/releases/latest" target="_blank" class="btn btn-primary" style="display: inline-block; padding: 0.8rem 1.5rem; border-radius: 8px;">Download SDK</a>
+                        <div style="margin-top: 1rem;"><span id="sdk-version-badge" style="font-family: monospace; color: #64748b; font-weight: bold;">loading...</span></div>
                     </div>
-                    
-                    <!-- Datasets -->
-                    <div style="background: #f8fafc; padding: 2rem; border-radius: 16px; border: 1px solid #e2e8f0;">
-                        <h3 style="color: var(--med-blue-dark); font-size: 1.4rem; margin-bottom: 1.5rem;"><i class="fas fa-database" style="margin-right: 0.5rem; color: var(--clinical-blue);"></i>Dataset Access</h3>
-                        <p style="color: var(--med-text-body); font-size: 1rem; line-height: 1.6;">
-                            Supported datasets have different access requirements:
-                        </p>
-                        <ul style="color: var(--med-text-body); font-size: 0.95rem; line-height: 1.6; margin-top: 1rem; padding-left: 1.2rem;">
-                            <li style="margin-bottom: 0.5rem;"><strong>Publicly available:</strong> Downloadable directly via the CLI registry.</li>
-                            <li><strong>Restricted access:</strong> Requires manual download and approval (e.g., OhioT1DM) before MDMP validation.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Feature Status -->
-                <div style="display: flex; flex-direction: column; gap: 2rem;">
-                    <!-- Available Now -->
-                    <div style="border-left: 4px solid #22c55e; padding-left: 1.5rem;">
-                        <h3 style="color: var(--med-blue-dark); font-size: 1.3rem; margin-bottom: 0.5rem;">Available Now</h3>
-                        <p style="color: var(--med-text-body); font-size: 1rem; line-height: 1.5;">
-                            Independent Supervisor (Deterministic safety limits), Virtual Patient Simulator (Basal/Bolus dynamics), MDMP Data validation CLI.
-                        </p>
-                    </div>
-                    
-                    <!-- Experimental -->
-                    <div style="border-left: 4px solid #f59e0b; padding-left: 1.5rem;">
-                        <h3 style="color: var(--med-blue-dark); font-size: 1.3rem; margin-bottom: 0.5rem;">Experimental</h3>
-                        <p style="color: var(--med-text-body); font-size: 1rem; line-height: 1.5;">
-                            optional LSTM Glucose Forecasting (Requires manual dataset integration), Edge Inference on Raspberry Pi 5 / Jetson Nano.
-                        </p>
-                    </div>
-                    
-                    <!-- Future Research -->
-                    <div style="border-left: 4px solid #3b82f6; padding-left: 1.5rem;">
-                        <h3 style="color: var(--med-blue-dark); font-size: 1.3rem; margin-bottom: 0.5rem;">Future Research</h3>
-                        <p style="color: var(--med-text-body); font-size: 1rem; line-height: 1.5;">
-                            Multi-hormone simulation extensions, Reinforcement Learning controller integration.
-                        </p>
+                    <div style="background: #f8fafc; padding: 2rem; border-radius: 16px; border: 1px solid #e2e8f0; flex: 1; min-width: 250px;">
+                        <h3 style="color: var(--med-blue-dark); font-size: 1.3rem; margin-bottom: 1rem;">Desktop App</h3>
+                        <p style="color: var(--med-text-body); font-size: 0.95rem; margin-bottom: 1.5rem;">GUI for visual simulation and dataset management.</p>
+                        <a href="https://github.com/python35/IINTS-SDK/releases/tag/tauri-beta-latest" target="_blank" class="btn btn-secondary" style="display: inline-block; padding: 0.8rem 1.5rem; border-radius: 8px; background: white; border: 1px solid #cbd5e1; color: var(--med-blue-dark);">Download Beta</a>
                     </div>
                 </div>
             </div>
