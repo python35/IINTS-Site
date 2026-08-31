@@ -5,23 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Technical specifications of the IINTS open-source insulin pump hardware. Built on RP2040 (Raspberry Pi Pico) with a modular 3D-printed design for research and education.">
+        content="Technical specifications of the IINTS MK.2 open-source insulin-pump research platform. Built on Raspberry Pi Pico (RP2040) with a custom PCB, linear stepper motor, and ST7789 display.">
     <meta name="keywords"
-        content="IINTS hardware, open-source insulin pump, RP2040, Raspberry Pi Pico, insulin pump specs, DIY insulin pump, IINTS V1, 3D printed insulin pump">
+        content="IINTS hardware, open-source insulin pump, RP2040, Raspberry Pi Pico, insulin pump specs, DIY insulin pump, IINTS MK.2, 3D printed insulin pump, DRV8833, ST7789">
     <meta name="author" content="Rune Bobbaers">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://python35.github.io/IINTS-Site/html/hardware.html">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://python35.github.io/IINTS-Site/html/hardware.html">
-    <meta property="og:title" content="IINTS V1 - Open-Source Insulin Pump Hardware Specifications">
+    <meta property="og:title" content="IINTS MK.2 - Open-Source Insulin Pump Hardware Specifications">
     <meta property="og:description"
-        content="Technical specs of the IINTS open-source insulin pump: RP2040 microcontroller, 3D-printed chassis, MicroPython, OLED interface. Built for research transparency.">
+        content="Technical specs of the IINTS MK.2: Raspberry Pi Pico (RP2040) mounted on a custom PCB, linear stepper motor with lead screw, ST7789 display. Built for research transparency.">
     <meta property="og:image" content="https://python35.github.io/IINTS-Site/img/iints-logo.png">
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://cdn.contentful.com https://images.ctfassets.net; connect-src 'self' https://cdn.contentful.com https://docs.google.com https://pypi.org; media-src 'self';">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <title>IINTS V1 - Hardware Specifications | Open-Source Insulin Pump</title>
+    <title>IINTS MK.2 - Hardware Specifications | Open-Source Insulin Pump</title>
     <link rel="icon" type="image/png" href="../img/iints-logo.png">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,7 @@
         <nav>
             <ul class="nav-list">
                 <li class="nav-item"><a href="../index.html" class="nav-link logo"><img src="../img/iints-logo.png"
-                            alt="IINTS Logo" style="height: 80px; width: auto; vertical-align: middle;"></a></li>
+                            alt="IINTS Logo" style="height: 65px; width: auto; vertical-align: middle;"></a></li>
                 <li class="nav-item"><a href="hardware.html" class="nav-link"
                         style="color: var(--clinical-blue); opacity: 1;">The Hardware</a></li>
                 <li class="nav-item"><a href="software.html" class="nav-link">Software & Simulation</a></li>
@@ -52,151 +52,295 @@
     </header>
 
     <main>
-        <section class="content-section" style="background-color: var(--med-grey-bg); padding-top: 8rem;">
-            <span class="badge badge-blue">Foundation</span>
-            <h1 class="section-title">IINTS: Open-Source Insulin Management</h1>
-            <p class="section-subtitle">The foundations of affordable and accessible insulin delivery.</p>
-
-            <div class="grid"
-                style="grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; text-align: left; margin-top: 4rem;">
+        <!-- 1. Hero Section (Clean & Balanced Split) -->
+        <section class="hw-hero">
+            <div class="hw-hero-split">
                 <div>
-                    <!-- Keep existing image -->
-                    <img src="../img/rp2040.png"
-                        alt="IINTS Internal Hardware - RP2040 Microcontroller and Custom Circuitry" width="600"
-                        height="400"
-                        style="width: 100%; height: auto; border-radius: 12px; box-shadow: var(--shadow-hover);">
+                    <span class="hw-eyebrow">IINTS MK.2</span>
+                    <h1 class="hw-hero-title">Hardware Designed to Be Understood</h1>
+                    <p class="hw-hero-desc">
+                        The IINTS MK.2 is an open-source insulin pump prototype built to show how the mechanics, electronics, and interface work from the inside out.
+                    </p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="#design-approach" class="btn btn-primary">Explore the Hardware</a>
+                        <a href="https://github.com/python35/IINTS/tree/mk2" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                            View on GitHub
+                        </a>
+                    </div>
                 </div>
                 <div>
-                    <h2 style="font-size: 1.8rem; font-weight: 700; color: var(--med-blue-dark); margin-bottom: 1rem;">
-                        User-Centric Interface & Control</h2>
-                    <p style="margin-bottom: 1.5rem; line-height: 1.7; color: var(--med-text-body);">
-                        Built on the <strong>Raspberry Pi Pico (RP2040)</strong> architecture, IINTS combines hardware
-                        reliability
-                        with an accessible interface. The system features an OLED/TFT display and physical controls,
-                        allowing user settings and dosages to be managed directly and transparently via MicroPython
-                        configurations.
-                    </p>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check"
-                                style="color: var(--dashboard-green); margin-right: 10px;"></i> RP2040 Architecture</li>
-                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check"
-                                style="color: var(--dashboard-green); margin-right: 10px;"></i> MicroPython Config</li>
-                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-check"
-                                style="color: var(--dashboard-green); margin-right: 10px;"></i>
-                            OLED/TFT Interface</li>
-                    </ul>
+                    <img src="../img/mk2/productfoto.jpeg" alt="IINTS MK.2 Full Hardware Assembly" class="hw-hero-img">
                 </div>
             </div>
         </section>
 
-        <section class="content-section">
-            <h2 class="section-title">Technical Specifications</h2>
+        <!-- 2. Design Approach Section (Vision & Philosophy) -->
+        <section id="design-approach" class="hw-section hw-section--grey">
+            <div class="hw-container">
+                <div class="hw-section-header">
+                    <span class="hw-eyebrow">Design Approach</span>
+                    <h2 class="hw-section-title">Built to Be Understood</h2>
+                    <p class="hw-section-lead" style="margin-bottom: 1.25rem;">
+                        Medical technology often asks people to trust systems they cannot inspect or fully understand. IINTS MK.2 takes a different approach by making its hardware, software, and design decisions visible, open to exploration, questions, and improvement.
+                    </p>
+                    <p class="hw-section-lead">
+                        At the same time, its interface is shaped around clarity, predictability, and different ways of processing information.
+                    </p>
+                </div>
 
-            <div style="max-width: 800px; margin: 0 auto 4rem auto;">
-                <h3 style="margin-bottom: 2rem; color: #666; text-align: center;">Fabrication Process</h3>
-                <div class="hero-carousel"
-                    style="aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-soft);">
-                    <div class="carousel-container">
-                        <div class="carousel-slide active">
-                            <video autoplay muted loop playsinline
-                                style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                <source src="../img/videomakencase.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="carousel-slide">
-                            <video autoplay muted loop playsinline
-                                style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                <source src="../img/videomakencase2.mp4" type="video/mp4">
-                            </video>
-                        </div>
+                <div class="hw-vision-grid">
+                    <div class="hw-vision-card">
+                        <h3 class="hw-vision-card__title">Transparent by Design</h3>
+                        <p class="hw-vision-card__text">
+                            Components, connections, and mechanisms remain visible and documented, making it easier to understand how the prototype operates.
+                        </p>
+                    </div>
+
+                    <div class="hw-vision-card">
+                        <h3 class="hw-vision-card__title">Cognitive Accessibility</h3>
+                        <p class="hw-vision-card__text">
+                            The interface explores predictable navigation, clear information hierarchy, and the reduction of unnecessary complexity, without assuming that everyone interacts with technology in the same way.
+                        </p>
+                    </div>
+
+                    <div class="hw-vision-card">
+                        <h3 class="hw-vision-card__title">Open for Exploration</h3>
+                        <p class="hw-vision-card__text">
+                            Hardware files, software, and design decisions are shared openly to support learning, inspection, and constructive feedback.
+                        </p>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="grid" style="margin-top: 3rem;">
+        <!-- 3. Full-Width Dark Navy Statement Bar -->
+        <section class="hw-statement-bar">
+            <div class="hw-container" style="text-align: center; max-width: 900px;">
+                <span class="hw-eyebrow" style="color: #60a5fa; margin-bottom: 1.25rem;">Physical Transparency</span>
+                <h2 class="hw-statement-title">
+                    From Closed Enclosures to Open Research
+                </h2>
+                <p class="hw-statement-text">
+                    Commercial medical devices are sealed systems where internal mechanics and circuits remain hidden. IINTS MK.2 makes every component, PCB connection, and actuator inspectable, creating an open foundation to study, question, and improve.
+                </p>
+            </div>
+        </section>
 
-                <!-- Modular Physical Design (Replaces Stepper Motor) -->
-                <div class="feature-card">
-                    <i class="fas fa-layer-group"
-                        style="font-size: 2rem; color: var(--clinical-blue); margin-bottom: 1rem;"></i>
-                    <h3 class="feature-card-title">Modular Physical Design</h3>
-                    <p class="feature-card-description">
-                        Built for reproducibility and adaptability. The hardware architecture utilizes
-                        <strong>3D-printed
-                            components</strong> and standard parts, allowing researchers to easily modify the chassis
-                        for specific experimental needs.
+        <!-- 4. Architecture / Subsystems Section (Technical Implementation) -->
+        <section id="architecture" class="hw-section hw-section--white">
+            <div class="hw-container">
+                <div class="hw-section-header">
+                    <span class="hw-eyebrow">Architecture</span>
+                    <h2 class="hw-section-title">Four Inspectable Subsystems</h2>
+                    <p class="hw-section-lead">
+                        IINTS MK.2 brings its electronics and mechanical components together in four inspectable subsystems. This modular structure makes the prototype easier to understand, assemble, modify, and reproduce for research and education.
                     </p>
                 </div>
 
-                <!-- Clinical Calculation Models -->
-                <div class="feature-card">
-                    <i class="fas fa-calculator"
-                        style="font-size: 2rem; color: var(--clinical-blue); margin-bottom: 1rem;"></i>
-                    <h3 class="feature-card-title">Clinical Calculation Models</h3>
-                    <p class="feature-card-description">
-                        IINTS integrates essential physiological parameters for personalized treatment. The framework
-                        facilitates precise calculations based on:
+                <div class="hw-subsystems-grid">
+                    <!-- 1. Processing & Custom Carrier PCB -->
+                    <div class="hw-subsystem-card">
+                        <span class="hw-subsystem-card__tag">Subsystem 01</span>
+                        <h3 class="hw-subsystem-card__title">Processing &amp; Carrier PCB</h3>
+                        <p class="hw-subsystem-card__desc">
+                            A Raspberry Pi Pico provides the main processing platform. The custom carrier PCB brings together the motor driver, display connections, physical controls, and power connections in one inspectable assembly.
+                        </p>
+                        <ul class="hw-subsystem-card__specs">
+                            <li>Raspberry Pi Pico (RP2040 Dual-Core @ 133 MHz)</li>
+                            <li>Custom two-layer carrier PCB</li>
+                            <li>Dedicated modular connectors for each subsystem</li>
+                        </ul>
+                    </div>
+
+                    <!-- 2. Controlled Actuation -->
+                    <div class="hw-subsystem-card">
+                        <span class="hw-subsystem-card__tag">Subsystem 02</span>
+                        <h3 class="hw-subsystem-card__title">Controlled Actuation</h3>
+                        <p class="hw-subsystem-card__desc">
+                            A compact linear stepper motor uses a threaded lead screw to move the reservoir plunger in controlled increments. Its position within the enclosure is maintained by a custom 3D-printed alignment structure.
+                        </p>
+                        <ul class="hw-subsystem-card__specs">
+                            <li>Linear stepper motor with threaded lead screw</li>
+                            <li>DRV8833 dual H-bridge motor driver</li>
+                            <li>Step-based software control with alignment cradle</li>
+                        </ul>
+                    </div>
+
+                    <!-- 3. Display & Physical Interface -->
+                    <div class="hw-subsystem-card">
+                        <span class="hw-subsystem-card__tag">Subsystem 03</span>
+                        <h3 class="hw-subsystem-card__title">Display &amp; Physical Interface</h3>
+                        <p class="hw-subsystem-card__desc">
+                            A 240 × 240 px colour display is combined with three physical buttons. The interface explores predictable navigation, clear visual hierarchy, and reduced interaction complexity.
+                        </p>
+                        <ul class="hw-subsystem-card__specs">
+                            <li>240 × 240 px ST7789 TFT display panel</li>
+                            <li>Consistent three-button navigation</li>
+                            <li>Clear visual hierarchy and structured feedback</li>
+                        </ul>
+                    </div>
+
+                    <!-- 4. Power & Enclosure -->
+                    <div class="hw-subsystem-card">
+                        <span class="hw-subsystem-card__tag">Subsystem 04</span>
+                        <h3 class="hw-subsystem-card__title">Power &amp; Enclosure</h3>
+                        <p class="hw-subsystem-card__desc">
+                            A rechargeable lithium-polymer battery supplies the prototype through a dedicated power connection. The components are housed in a modular 3D-printed enclosure designed to support assembly, inspection, and further experimentation.
+                        </p>
+                        <ul class="hw-subsystem-card__specs">
+                            <li>3.7 V rechargeable lithium-polymer battery (~1,800 mAh)</li>
+                            <li>Dedicated two-pin power connector</li>
+                            <li>Modular 3D-printed chassis and mounting brackets</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Prototype Gallery / Photo Collage -->
+        <section id="gallery" class="hw-section hw-section--grey">
+            <div class="hw-container">
+                <div class="hw-section-header">
+                    <span class="hw-eyebrow">Prototype Gallery</span>
+                    <h2 class="hw-section-title">Physical Prototype in Detail</h2>
+                    <p class="hw-section-lead">
+                        A visual overview of the 3D-printed chassis, display interface, and linear actuation system. Click any photo to enlarge.
                     </p>
-                    <ul style="font-size: 0.9rem; color: var(--med-text-body); padding-left: 1.2rem; line-height: 1.6;">
-                        <li><strong>ICR</strong>: Insulin-to-Carb Ratio</li>
-                        <li><strong>ISF</strong>: Insulin Sensitivity Factor</li>
-                        <li><strong>TDD</strong>: Total Daily Dose</li>
-                    </ul>
                 </div>
 
-                <!-- Safety & Open Source -->
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"
-                        style="font-size: 2rem; color: var(--clinical-blue); margin-bottom: 1rem;"></i>
-                    <h3 class="feature-card-title">Safety & Open-Source Evaluation</h3>
-                    <p class="feature-card-description">
-                        Safety is at the core of the design. IINTS incorporates fundamental <strong>fail-safes</strong>
-                        to minimize operational risks.
-                        As a fully <strong>open-source project (Apache-2.0 licensed, with legacy MIT notices where applicable)</strong>, IINTS invites global
-                        collaboration and transparent evaluation.
+                <div class="hw-collage-container">
+                    <div class="hw-photo-collage">
+                        <!-- Top Wide Photo: Full Assembly -->
+                        <div class="hw-collage-item hw-collage-item--top gallery-item" title="Click to enlarge">
+                            <img src="../img/mk2/productfoto.jpeg" alt="IINTS MK.2 Full Hardware Assembly" class="hw-collage-img">
+                        </div>
+
+                        <!-- Bottom Left: Display & Controls -->
+                        <div class="hw-collage-item hw-collage-item--bottom-left gallery-item" title="Click to enlarge">
+                            <img src="../img/mk2/product afbeelding 2.png" alt="IINTS MK.2 Display and Controls" class="hw-collage-img">
+                        </div>
+
+                        <!-- Bottom Right: Actuator & Reservoir -->
+                        <div class="hw-collage-item hw-collage-item--bottom-right gallery-item" title="Click to enlarge">
+                            <img src="../img/mk2/product foto 3.png" alt="IINTS MK.2 Actuation and Syringe Mechanism" class="hw-collage-img">
+                        </div>
+                    </div>
+                    <p class="hw-collage-note">Photographs of the physical IINTS MK.2 prototype, enhanced using AI tools.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Open Development Section -->
+        <section class="hw-section hw-section--white">
+            <div class="hw-container">
+                <div class="hw-section-header">
+                    <span class="hw-eyebrow">Open Development</span>
+                    <h2 class="hw-section-title">Inspect, Reproduce, Improve</h2>
+                    <p class="hw-section-lead">
+                        The project is documented openly so that its architecture and design decisions can be examined, reproduced, and discussed.
                     </p>
-                    <a href="https://github.com/python35/IINTS" class="btn btn-secondary" target="_blank"
-                        rel="noopener noreferrer" style="margin-top: 1rem; width: 100%; text-align: center;">View
-                        Repository</a>
                 </div>
 
-                <!-- IINTS-AF Section (Merged) -->
+                <div class="hw-vision-grid">
+                    <div class="hw-vision-card">
+                        <h3 class="hw-vision-card__title">PCB Design &amp; Schematics</h3>
+                        <p class="hw-vision-card__text">
+                            Design files and schematics for the custom carrier board are being documented for inspection and reproducible fabrication.
+                        </p>
+                    </div>
+
+                    <div class="hw-vision-card">
+                        <h3 class="hw-vision-card__title">3D-Printed Mechanics</h3>
+                        <p class="hw-vision-card__text">
+                            Printable models for the motor cradle, syringe alignment cradle, and modular enclosure.
+                        </p>
+                    </div>
+
+                    <div class="hw-vision-card">
+                        <h3 class="hw-vision-card__title">MicroPython Firmware</h3>
+                        <p class="hw-vision-card__text">
+                            Open-source embedded code managing step actuation, display rendering, and button state machines.
+                        </p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 3.5rem;">
+                    <a href="https://github.com/python35/IINTS/tree/mk2" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        Explore Repository on GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Project Status & Disclaimer Section -->
+        <section class="hw-section hw-section--grey">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <span class="hw-eyebrow">Project Status</span>
+                <h2 class="hw-section-title">An Evolving Research Prototype</h2>
+                <p class="hw-section-lead" style="margin-bottom: 2.5rem;">
+                    IINTS MK.2 is still evolving through experimentation, feedback, and practical testing. Its current design represents a direction for further research rather than a finished or clinically validated solution.
+                </p>
+
+                <div class="hw-disclaimer-box">
+                    <p>
+                        IINTS MK.2 is an educational research prototype and is not a certified medical device or intended for therapeutic insulin delivery.
+                    </p>
+                </div>
             </div>
         </section>
     </main>
 
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-links">
-                <div class="footer-column">
-                    <h4>The Project</h4>
-                    <ul>
-                        <li><a href="hardware.html">Hardware Specs</a></li>
-                        <li><a href="software.html">AI Sandbox</a></li>
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <img src="../img/iints-logo.png" alt="IINTS Logo" class="footer-logo">
+                    <p class="footer-tagline">
+                        Open-source research platform exploring inspectable hardware architectures and simulation for automated insulin delivery.
+                    </p>
+                    <span class="footer-badge">Educational Research Prototype</span>
+                </div>
 
-                    </ul>
-                </div>
-                <!-- ... standardized footer content ... -->
-                <div class="footer-column">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="https://python35.github.io/IINTS-SDK/" target="_blank" rel="noopener noreferrer">Documentation</a></li>
-                        <li><a href="about.html">About Rune</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><a href="mailto:rune.bobbaers@gmail.com">rune.bobbaers@gmail.com</a></li>
-                        <li><a href="https://github.com/python35/IINTS-SDK" target="_blank"
-                                rel="noopener noreferrer">GitHub</a></li>
-                    </ul>
+                <div class="footer-links-grid">
+                    <div class="footer-column">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="hardware.html">The Hardware (MK.2)</a></li>
+                            <li><a href="software.html">Software &amp; Simulation</a></li>
+                            <li><a href="about.html">About the Research</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Open Source</h4>
+                        <ul>
+                            <li><a href="https://python35.github.io/IINTS-SDK/" target="_blank" rel="noopener noreferrer">SDK Documentation</a></li>
+                            <li><a href="https://github.com/python35/IINTS/tree/mk2" target="_blank" rel="noopener noreferrer">Hardware Repository</a></li>
+                            <li><a href="https://github.com/python35/IINTS-SDK" target="_blank" rel="noopener noreferrer">IINTS-AF on GitHub</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li>
+                                <a href="mailto:rune.bobbaers@gmail.com">
+                                    <i class="fas fa-envelope" style="color: var(--med-blue-light);"></i> Email
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/rune-bobbaers-ba49aa293/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-linkedin" style="color: var(--med-blue-light);"></i> LinkedIn
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+
             <div class="footer-bottom">
-                <p>&copy; <span class="current-year">2025</span> IINTS & IINTS-AF. Open Science.</p>
-                <img src="../img/iints-logo.png" alt="IINTS Logo"
-                    style="height: 70px; width: auto; margin-top: 1rem; margin-bottom: -15px; opacity: 0.8;">
+                <p>&copy; <span class="current-year">2026</span> IINTS &amp; IINTS-AF. Open Science.</p>
+                <p>Educational research prototype &bull; Not for clinical or therapeutic use.</p>
             </div>
         </div>
     </footer>
