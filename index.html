@@ -28,7 +28,7 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>IINTS &amp; IINTS-AF | Medical Technology Research</title>
     <link rel="icon" type="image/png" href="img/iints-logo.png">
-    <link rel="stylesheet" href="css/style.css?v=3.1">
+    <link rel="stylesheet" href="css/style.css?v=4.5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -78,6 +78,38 @@
             </div>
         </section>
 
+        <!-- Sticky Pinned Value Stream (Scroll-Locked Exploration) -->
+        <section class="text-stream-pinned-section" id="pinned-stream">
+            <div class="text-stream-sticky-viewport">
+                <!-- Vertical Progress Meter on right edge -->
+                <div class="text-stream-progress-track" aria-hidden="true">
+                    <div class="text-stream-progress-bar"></div>
+                </div>
+
+                <div class="obsidian-text-stream" data-prefix="IINTS is" data-items='["Patient-First", "Open Source", "Inspectable", "Explainable", "Transparent", "Research"]'>
+                    <div class="obsidian-text-stream__prefix">
+                        <p class="obsidian-text-stream__prefix-text">IINTS is</p>
+                    </div>
+                    <div class="obsidian-text-stream__viewport">
+                        <div class="obsidian-text-stream__track">
+                            <div class="obsidian-text-stream__copy">
+                                <div class="obsidian-text-stream__item">Patient-First</div>
+                                <div class="obsidian-text-stream__item">Open Source</div>
+                                <div class="obsidian-text-stream__item">Inspectable</div>
+                                <div class="obsidian-text-stream__item">Explainable</div>
+                                <div class="obsidian-text-stream__item">Transparent</div>
+                                <div class="obsidian-text-stream__item">Research</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-stream-scroll-lock-hint">
+                    <span class="hint-text">Scroll to explore</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </section>
 
         <!-- "Patient-First" Innovation Section -->
         <section class="patient-first-section">
@@ -114,14 +146,14 @@
 
                 <div class="feature-card">
                     <div class="icon-circle"
-                        style="background: rgba(32, 191, 85, 0.1); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
-                        <i class="fas fa-brain" style="color: #20BF55; font-size: 1.2rem;"></i>
+                        style="background: rgba(0, 171, 214, 0.1); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <i class="fas fa-brain" style="color: var(--clinical-blue); font-size: 1.2rem;"></i>
                     </div>
                     <h3 class="feature-card-title">IINTS-AF (The Brain)</h3>
                     <p class="feature-card-description">
                         An open research SDK for simulating, stress-testing, and explaining automated insulin delivery logic before it is considered near real patients.
                     </p>
-                    <a href="html/software.html" style="font-weight: 600; color: #20BF55;">View Sandbox &rarr;</a>
+                    <a href="html/software.html" style="font-weight: 600; color: var(--clinical-blue);">View Sandbox &rarr;</a>
                 </div>
 
                 <div class="feature-card">
@@ -140,71 +172,90 @@
             </div>
         </section>
 
-        <!-- Innovation Timeline (Medtronic Style) -->
-        <section class="timeline-section">
-            <h2 class="section-title">Innovation Timeline</h2>
-            <p class="section-subtitle"> The path to autonomous insulin delivery research: From mechanical prototype to evaluated intelligence.</p>
-
-            <div class="timeline">
-                <!-- May 2024 -->
-                <div class="timeline-item">
-                    <span class="timeline-date">May 2024</span>
-                    <h3 class="timeline-title">The Birth of IINTS</h3>
-                    <p class="timeline-desc">
-                        Launch of the first functional prototype based on Raspberry Pi Pico.
-                        Focused on demystifying the fundamental mechanics of insulin delivery.
+        <!-- Interactive Clinical Radial Q&A Section -->
+        <section class="qna-radial-section" id="qna">
+            <div class="container">
+                <div class="qna-section-header">
+                    <span class="badge badge-blue" style="margin-bottom: 0.75rem;">Research Insights</span>
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                    <p class="section-subtitle">
+                        Select a topic from the radial menu to inspect safety boundaries, open hardware specifications, and physiological simulation.
                     </p>
                 </div>
 
-                <!-- July - Dec 2024 -->
-                <div class="timeline-item">
-                    <span class="timeline-date">July - Dec 2024</span>
-                    <h3 class="timeline-title">Mechanical Precision</h3>
-                    <p class="timeline-desc">
-                        Introduction of the user interface and implementation of <strong>microstepping</strong>.
-                        Increased dosage accuracy to a clinically relevant level.
-                    </p>
-                </div>
+                <div class="qna-radial-grid is-collapsed" id="qna-radial-grid">
+                    <!-- Left: Radial Circle Menu (Collapsed by Default) -->
+                    <div class="qna-circle-column">
+                        <div class="qna-radial-wrapper is-collapsed" id="qna-radial-wrapper">
+                            <!-- Orbit Guide Ring -->
+                            <div class="qna-orbit-track" aria-hidden="true"></div>
 
-                <!-- April - May 2025 -->
-                <div class="timeline-item">
-                    <span class="timeline-date">April - May 2025</span>
-                    <h3 class="timeline-title">National Recognition</h3>
-                    <p class="timeline-desc">
-                        Awarded <em>"Most Technically Complex Project"</em> at Coolest Projects Belgium
-                        and named <em>"Student in the Spotlight"</em>.
-                    </p>
-                </div>
+                            <!-- Center Hub Button -->
+                            <button class="qna-hub-btn" id="qna-hub-btn" aria-label="Open Q&amp;A radial menu" title="Open Radial Menu">
+                                <i class="fas fa-question hub-icon hub-icon-default"></i>
+                                <i class="fas fa-xmark hub-icon hub-icon-active"></i>
+                            </button>
 
-                <!-- July - Oct 2025 -->
-                <div class="timeline-item">
-                    <span class="timeline-date">July - Oct 2025</span>
-                    <h3 class="timeline-title">International Presentation</h3>
-                    <p class="timeline-desc">
-                        Presented at
-                        <strong>CIONET</strong> and <strong>HackYeah</strong> (Krakow).
-                    </p>
-                </div>
+                            <!-- 6 Radial Satellites (Interactive Q&A Buttons) -->
+                            <div class="qna-satellites" id="qna-satellites">
+                                <!-- 0: Safety (Top: -90deg) -->
+                                <button class="qna-satellite-btn" data-index="0" style="--angle: -90deg; --i: 0;" aria-label="Safety &amp; Clinical Scope">
+                                    <span class="qna-satellite-circle"><i class="fas fa-shield-halved"></i></span>
+                                    <span class="qna-satellite-label">Safety</span>
+                                </button>
+                                <!-- 1: Mission (Top-Right: -30deg) -->
+                                <button class="qna-satellite-btn" data-index="1" style="--angle: -30deg; --i: 1;" aria-label="Mission &amp; Purpose">
+                                    <span class="qna-satellite-circle"><i class="fas fa-compass"></i></span>
+                                    <span class="qna-satellite-label">Mission</span>
+                                </button>
+                                <!-- 2: Digital Twin (Bottom-Right: 30deg) -->
+                                <button class="qna-satellite-btn" data-index="2" style="--angle: 30deg; --i: 2;" aria-label="Digital Twin &amp; Simulation">
+                                    <span class="qna-satellite-circle"><i class="fas fa-flask"></i></span>
+                                    <span class="qna-satellite-label">Digital Twin</span>
+                                </button>
+                                <!-- 3: AI Safety (Bottom: 90deg) -->
+                                <button class="qna-satellite-btn" data-index="3" style="--angle: 90deg; --i: 3;" aria-label="AI Safety &amp; Guardrails">
+                                    <span class="qna-satellite-circle"><i class="fas fa-brain"></i></span>
+                                    <span class="qna-satellite-label">AI Safety</span>
+                                </button>
+                                <!-- 4: Hardware (Bottom-Left: 150deg) -->
+                                <button class="qna-satellite-btn" data-index="4" style="--angle: 150deg; --i: 4;" aria-label="Hardware Architecture">
+                                    <span class="qna-satellite-circle"><i class="fas fa-microchip"></i></span>
+                                    <span class="qna-satellite-label">Hardware</span>
+                                </button>
+                                <!-- 5: Open Science (Top-Left: 210deg) -->
+                                <button class="qna-satellite-btn" data-index="5" style="--angle: 210deg; --i: 5;" aria-label="Open Science &amp; Reproducibility">
+                                    <span class="qna-satellite-circle"><i class="fas fa-book-open"></i></span>
+                                    <span class="qna-satellite-label">Open Science</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
-                <!-- Jan 2026 -->
-                <div class="timeline-item">
-                    <span class="timeline-date">Jan 2026</span>
-                    <h3 class="timeline-title">Transition to Intelligence</h3>
-                    <p class="timeline-desc">
-                        Shift from hardware-focused V1 to the AI-driven research platform:
-                        <strong>IINTS-AF</strong>.
-                    </p>
-                </div>
+                    <!-- Right: Clinical Answer Card with Fluid Reveal -->
+                    <div class="qna-card-column">
+                        <div class="qna-display-card" id="qna-display-card">
+                            <!-- Initial Prompt Placeholder -->
+                            <div class="qna-placeholder" id="qna-placeholder">
+                                <div class="qna-placeholder-icon">
+                                    <i class="fas fa-circle-question"></i>
+                                </div>
+                                <p class="qna-placeholder-text">
+                                    Select any topic from the circle menu to inspect research insights.
+                                </p>
+                            </div>
 
-                <!-- Launch -->
-                <div class="timeline-item launch-item">
-                    <span class="timeline-date">March 27, 2026</span>
-                    <h3 class="timeline-title">Launch of IINTS-AF</h3>
-                    <p class="timeline-desc">
-                        Official release of the <strong>Adaptive Framework</strong>.
-                        An open-source gateway for independent evaluation of AI-driven diabetes research via Digital Twin
-                        technology.
-                    </p>
+                            <!-- Dynamic Explanation (Smoothly Appears on Click) -->
+                            <div class="qna-card-content" id="qna-card-content" style="display: none;">
+                                <div class="qna-card-meta">
+                                    <span class="qna-topic-pill" id="qna-topic-pill"></span>
+                                    <span class="qna-index-indicator" id="qna-index-indicator"></span>
+                                </div>
+                                <h3 class="qna-card-title" id="qna-card-title"></h3>
+                                <p class="qna-card-body" id="qna-card-body"></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -290,7 +341,7 @@
         </a>
     </nav>
 
-    <script src="js/app.js?v=3.1"></script>
+    <script src="js/app.js?v=4.5"></script>
 </body>
 
 </html>

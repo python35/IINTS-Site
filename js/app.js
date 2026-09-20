@@ -11,6 +11,12 @@ const app = {
         app.initSDKVersion(); // Auto-update SDK version
         app.initSpecsCarousel(); // Hardware specifications carousel
         app.initHardwareGallery(); // Hardware gallery carousel
+        app.initFolderPreview(); // Interactive 3D folder previews
+        app.initTextStream(); // Interactive vertical text stream
+        app.initTextStreamPinned(); // Sticky pinned text stream sequence
+        app.initTextFillAnimation(); // Obsidian UI text fill animation
+        app.initRadialQnA(); // Interactive Clinical Radial Q&A
+        app.initEmailCopy(); // Copy email to clipboard in footer
     },
 
     initSDKVersion: async () => {
@@ -624,6 +630,541 @@ const app = {
         }, { passive: true });
 
         showSlide(0);
+    },
+
+    // 3D Folder Preview Interactive Logic
+    initFolderPreview: () => {
+        const folders = document.querySelectorAll('.folder-preview');
+        if (!folders.length) return;
+
+        folders.forEach(folder => {
+            const thumbs = folder.querySelectorAll('.folder-preview__thumb');
+            const count = thumbs.length;
+
+            // Automatically calculate circular arc coordinates if not manually set via CSS
+            if (count > 0 && !folder.classList.contains('folder-preview--cards')) {
+                const isLg = folder.classList.contains('folder-preview--lg');
+                const isSm = folder.classList.contains('folder-preview--sm');
+                const defaultRadius = isLg ? 115 : (isSm ? 65 : 90);
+                const radius = parseFloat(folder.dataset.radius) || defaultRadius;
+
+                thumbs.forEach((thumb, i) => {
+                    // Staggered arc across the top semi-circle
+                    const startAngle = Math.PI / count;
+                    const angle = (startAngle / 2) + (startAngle * i);
+                    const x = Math.round(radius * Math.cos(angle) * -1); // mirror so left-to-right
+                    const y = Math.round(-radius * Math.sin(angle));
+                    const delay = ((count - i - 1) * 0.04).toFixed(2);
+
+                    thumb.style.setProperty('--pop-x', `${x}px`);
+                    thumb.style.setProperty('--pop-y', `${y}px`);
+                    thumb.style.transitionDelay = `${delay}s`;
+                });
+            }
+
+            // Click / Tap Toggle (great for mobile & touchscreens)
+            folder.addEventListener('click', (e) => {
+                // If clicking an inner interactive link inside a thumbnail, don't prevent navigation
+                if (e.target.closest('a') && !e.target.closest('.folder-preview__wrapper')) return;
+
+                const isOpen = folder.classList.contains('is-open');
+                folders.forEach(f => f.classList.remove('is-open'));
+                if (!isOpen) {
+                    folder.classList.add('is-open');
+                }
+            });
+
+            // Keyboard Accessibility (Enter / Space to toggle)
+            folder.setAttribute('tabindex', '0');
+            folder.setAttribute('role', 'button');
+            folder.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    folder.classList.toggle('is-open');
+                }
+            });
+        });
+
+        // Close folders when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.folder-preview')) {
+                folders.forEach(f => f.classList.remove('is-open'));
+            }
+        });
+    },
+
+    // Obsidian Text Stream Component (Vertical Scroll Momentum)
+    initTextStream: () => {
+        const streams = document.querySelectorAll('.obsidian-text-stream');
+        if (!streams.length) return;
+
+        // Check reduced motion preference
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+        }
+
+        streams.forEach(stream => {
+            // Ignore pinned sections; handled by initTextStreamPinned
+            if (stream.closest('.text-stream-pinned-section')) return;
+
+            const viewport = stream.querySelector('.obsidian-text-stream__viewport');
+            const track = stream.querySelector('.obsidian-text-stream__track');
+            const initialCopy = stream.querySelector('.obsidian-text-stream__copy');
+            if (!viewport || !track || !initialCopy) return;
+
+            let items = [];
+            if (stream.dataset.items) {
+                try {
+                    items = JSON.parse(stream.dataset.items);
+                } catch (e) {
+                    console.warn('Invalid JSON in data-items:', stream.dataset.items);
+                }
+            }
+
+            if (items.length > 0) {
+                initialCopy.innerHTML = items.map(text => `<div class="obsidian-text-stream__item">${text}</div>`).join('');
+            }
+
+            let copyCount = 2;
+            let distance = 0;
+            let currentY = 0;
+            let currentVelocity = 0.6;
+            let targetVelocity = 0.6;
+            let lastScrollDirection = 1;
+            let scrollTimeout = null;
+            const baseSpeed = 0.6;
+            const maxBoost = 12;
+
+            function wrap(min, max, v) {
+                const range = max - min;
+                return ((((v - min) % range) + range) % range) + min;
+            }
+
+            function setupCopies() {
+                distance = initialCopy.offsetHeight;
+                const containerHeight = viewport.offsetHeight;
+                if (!distance || !containerHeight) return;
+
+                const neededCount = Math.max(2, Math.ceil(containerHeight / distance) + 2);
+                if (neededCount !== copyCount) {
+                    copyCount = neededCount;
+                    // Remove old copies except initialCopy
+                    const existingCopies = track.querySelectorAll('.obsidian-text-stream__copy');
+                    existingCopies.forEach((c, idx) => {
+                        if (idx > 0) c.remove();
+                    });
+
+                    // Add new copies
+                    for (let i = 1; i < copyCount; i++) {
+                        const clone = initialCopy.cloneNode(true);
+                        clone.setAttribute('aria-hidden', 'true');
+                        track.appendChild(clone);
+                    }
+                }
+
+                currentY = wrap(-distance, 0, currentY);
+                track.style.transform = `translateY(${currentY}px)`;
+            }
+
+            const applyScrollMotion = (delta) => {
+                if (!delta) return;
+                const direction = delta > 0 ? -1 : 1;
+                const boost = Math.min(maxBoost, baseSpeed + Math.pow(Math.abs(delta), 1.2) * 0.08);
+                lastScrollDirection = direction;
+                targetVelocity = direction * boost;
+
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    targetVelocity = lastScrollDirection * baseSpeed;
+                }, 120);
+            };
+
+            let lastScrollY = window.scrollY;
+            const handleScroll = () => {
+                const next = window.scrollY;
+                applyScrollMotion(next - lastScrollY);
+                lastScrollY = next;
+            };
+
+            const handleWheel = (e) => {
+                applyScrollMotion(e.deltaY);
+            };
+
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            window.addEventListener('wheel', handleWheel, { passive: true });
+
+            setupCopies();
+
+            if (window.ResizeObserver) {
+                const ro = new ResizeObserver(setupCopies);
+                ro.observe(initialCopy);
+                ro.observe(viewport);
+            }
+            window.addEventListener('resize', setupCopies);
+
+            let lastTime = performance.now();
+
+            function tick(now) {
+                const deltaTime = now - lastTime;
+                lastTime = now;
+                const frameFactor = Math.min(deltaTime / (1000 / 60), 3);
+
+                if (distance > 0) {
+                    currentVelocity += (targetVelocity - currentVelocity) * 0.14;
+                    currentY += currentVelocity * frameFactor;
+                    currentY = wrap(-distance, 0, currentY);
+                    track.style.transform = `translateY(${currentY}px)`;
+                }
+
+                requestAnimationFrame(tick);
+            }
+
+            requestAnimationFrame(tick);
+        });
+    },
+
+    // Sticky Pinned Text Stream Sequence (Homepage Scroll Exploration)
+    initTextStreamPinned: () => {
+        const pinnedSections = document.querySelectorAll('.text-stream-pinned-section');
+        if (!pinnedSections.length) return;
+
+        pinnedSections.forEach(section => {
+            const viewport = section.querySelector('.obsidian-text-stream__viewport');
+            const track = section.querySelector('.obsidian-text-stream__track');
+            const progressBar = section.querySelector('.text-stream-progress-bar');
+            const hintEl = section.querySelector('.text-stream-scroll-lock-hint');
+            if (!viewport || !track) return;
+
+            // Ensure single copy of items exists
+            const copies = track.querySelectorAll('.obsidian-text-stream__copy');
+            if (copies.length > 1) {
+                copies.forEach((c, idx) => {
+                    if (idx > 0) c.remove();
+                });
+            }
+
+            const items = Array.from(track.querySelectorAll('.obsidian-text-stream__item'));
+            if (!items.length) return;
+
+            let ticking = false;
+
+            const updatePinned = () => {
+                const rect = section.getBoundingClientRect();
+                const windowH = window.innerHeight;
+                const totalScroll = section.offsetHeight - windowH;
+                if (totalScroll <= 0) {
+                    ticking = false;
+                    return;
+                }
+
+                // Progress: 0 when top of section meets top of viewport, 1 when pinned scroll finishes
+                const rawProgress = -rect.top / totalScroll;
+                const progress = Math.min(Math.max(rawProgress, 0), 1);
+
+                // Update progress bar
+                if (progressBar) {
+                    progressBar.style.height = `${(progress * 100).toFixed(1)}%`;
+                }
+
+                // Update scroll lock hint indicator
+                if (hintEl) {
+                    if (progress >= 0.94) {
+                        hintEl.classList.add('unlocked');
+                        hintEl.innerHTML = '<span class="hint-text">Continue scrolling</span> <i class="fas fa-arrow-down"></i>';
+                    } else {
+                        hintEl.classList.remove('unlocked');
+                        hintEl.innerHTML = '<span class="hint-text">Scroll to explore</span> <i class="fas fa-chevron-down"></i>';
+                    }
+                }
+
+                // Center each item smoothly within viewport as user scrolls
+                const vCenter = viewport.offsetHeight / 2;
+                const firstItem = items[0];
+                const lastItem = items[items.length - 1];
+
+                const firstCenter = firstItem.offsetTop + (firstItem.offsetHeight / 2);
+                const lastCenter = lastItem.offsetTop + (lastItem.offsetHeight / 2);
+
+                const startY = vCenter - firstCenter;
+                const endY = vCenter - lastCenter;
+
+                const currentY = startY + (endY - startY) * progress;
+                track.style.transform = `translateY(${currentY.toFixed(2)}px)`;
+
+                // Focus styling: scale up and boost opacity of the currently active principle
+                const activeProgressIdx = progress * (items.length - 1);
+                items.forEach((item, idx) => {
+                    const dist = Math.abs(idx - activeProgressIdx);
+                    if (dist < 0.45) {
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1.02)';
+                    } else {
+                        const op = Math.max(0.28, 1 - dist * 0.42);
+                        item.style.opacity = op.toFixed(2);
+                        item.style.transform = 'scale(1)';
+                    }
+                });
+
+                ticking = false;
+            };
+
+            const onScroll = () => {
+                if (!ticking) {
+                    requestAnimationFrame(updatePinned);
+                    ticking = true;
+                }
+            };
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll, { passive: true });
+            updatePinned();
+        });
+    },
+
+    // Text Fill Animation (Obsidian UI Native Port for Hardware)
+    initTextFillAnimation: () => {
+        const sections = document.querySelectorAll('.obsidian-text-fill');
+        if (!sections.length) return;
+
+        sections.forEach(section => {
+            const heading = section.querySelector('.tfa-heading');
+            if (!heading) return;
+
+            // Preserve whitespace and split characters within inline-block words
+            const rawText = heading.textContent.trim();
+            const words = rawText.split(/\s+/);
+            
+            heading.innerHTML = '';
+            const allChars = [];
+
+            words.forEach((word, wordIdx) => {
+                const wordSpan = document.createElement('span');
+                wordSpan.className = 'tfa-word';
+                wordSpan.style.display = 'inline-block';
+                wordSpan.style.whiteSpace = 'nowrap';
+
+                for (let i = 0; i < word.length; i++) {
+                    const charSpan = document.createElement('span');
+                    charSpan.className = 'split-char';
+                    charSpan.textContent = word[i];
+                    wordSpan.appendChild(charSpan);
+                    allChars.push(charSpan);
+                }
+
+                heading.appendChild(wordSpan);
+
+                // Add space after word if not the last
+                if (wordIdx < words.length - 1) {
+                    heading.appendChild(document.createTextNode(' '));
+                }
+            });
+
+            section._chars = allChars;
+        });
+
+        let ticking = false;
+        const updateFill = () => {
+            const windowH = window.innerHeight;
+
+            sections.forEach(section => {
+                if (!section._chars || !section._chars.length) return;
+                const rect = section.getBoundingClientRect();
+                const totalScroll = section.offsetHeight - windowH;
+                if (totalScroll <= 0) return;
+
+                const rawProgress = -rect.top / totalScroll;
+                const progress = Math.min(Math.max(rawProgress, 0), 1);
+
+                // Continuous smooth light wave spanning ~8 characters (no harsh/strakke letter snaps)
+                const fillProgress = Math.min(Math.max((progress - 0.04) / 0.90, 0), 1);
+                const totalChars = section._chars.length;
+                const waveWidth = 8;
+                const floatPos = fillProgress * (totalChars + waveWidth);
+
+                for (let i = 0; i < totalChars; i++) {
+                    const charEl = section._chars[i];
+                    const dist = floatPos - i;
+
+                    if (dist >= waveWidth) {
+                        charEl.style.opacity = '1';
+                        charEl.style.color = '#ffffff';
+                    } else if (dist <= 0) {
+                        charEl.style.opacity = '0.2';
+                        charEl.style.color = 'rgba(255, 255, 255, 0.7)';
+                    } else {
+                        const t = dist / waveWidth;
+                        const s = t * t * (3 - 2 * t);
+
+                        charEl.style.opacity = (0.2 + 0.8 * s).toFixed(3);
+
+                        if (s < 0.5) {
+                            const f = s / 0.5;
+                            const r = Math.round(180 - (180 - 100) * f);
+                            const g = Math.round(200 - (200 - 190) * f);
+                            const b = Math.round(220 + (255 - 220) * f);
+                            charEl.style.color = `rgb(${r}, ${g}, ${b})`;
+                        } else {
+                            const f = (s - 0.5) / 0.5;
+                            const r = Math.round(100 + (255 - 100) * f);
+                            const g = Math.round(190 + (255 - 190) * f);
+                            const b = 255;
+                            charEl.style.color = `rgb(${r}, ${g}, ${b})`;
+                        }
+                    }
+                }
+            });
+
+            ticking = false;
+        };
+
+        const onScroll = () => {
+            if (!ticking) {
+                requestAnimationFrame(updateFill);
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        updateFill();
+    },
+
+    // Interactive Clinical Radial Q&A
+    initRadialQnA: () => {
+        const grid = document.getElementById('qna-radial-grid');
+        const wrapper = document.getElementById('qna-radial-wrapper');
+        const hubBtn = document.getElementById('qna-hub-btn');
+        const satellites = document.querySelectorAll('.qna-satellite-btn');
+
+        const placeholderEl = document.getElementById('qna-placeholder');
+        const contentEl = document.getElementById('qna-card-content');
+        const topicEl = document.getElementById('qna-topic-pill');
+        const indicatorEl = document.getElementById('qna-index-indicator');
+        const titleEl = document.getElementById('qna-card-title');
+        const bodyEl = document.getElementById('qna-card-body');
+
+        if (!wrapper || !satellites.length) return;
+
+        const qnaData = [
+            {
+                topic: 'Safety & Clinical Scope',
+                question: 'Is IINTS approved for clinical use on humans?',
+                answer: 'No. IINTS and IINTS-AF are independent, non-commercial scientific and educational research prototypes. They are strictly not intended for diagnosis, treatment, or insulin administration in humans.'
+            },
+            {
+                topic: 'Mission & Purpose',
+                question: 'Why build an insulin pump when commercial pumps already exist?',
+                answer: 'IINTS does not replace commercial medical devices. It was born from a patient\'s fundamental question: what actually happens behind the scenes of an insulin pump? Building the technology from scratch demystifies how mechanics, electronics, and software work together.'
+            },
+            {
+                topic: 'Digital Twin & Simulation',
+                question: 'What is IINTS-AF and what is a Digital Twin?',
+                answer: 'IINTS-AF is an open-source software research framework. It uses mathematical Digital Twins to model human glucose-insulin dynamics in simulation, enabling algorithmic evaluation without exposing patients to untested code.'
+            },
+            {
+                topic: 'AI Safety & Guardrails',
+                question: 'How do you safely evaluate AI and machine learning?',
+                answer: 'AI models operate strictly within offline simulation sandboxes and are governed by deterministic rule-based safety supervisors. No experimental AI autonomously delivers insulin on physical hardware.'
+            },
+            {
+                topic: 'Hardware Architecture',
+                question: 'Can I inspect and build the hardware demonstrator?',
+                answer: 'Yes. Schematics, CAD models, and RP2040 firmware are open source. The physical demonstrator reveals leadscrew displacement and stepper control to help researchers and makers understand pump mechanics.'
+            },
+            {
+                topic: 'Open Science & Reproducibility',
+                question: 'How does IINTS handle reproducibility and open science?',
+                answer: 'All simulations log parameter configurations, seed manifests, and boundary conditions. Results, algorithms, and documentation are published openly to foster collaborative scientific verification.'
+            }
+        ];
+
+        const selectTopic = (index) => {
+            if (index < 0 || index >= qnaData.length) return;
+            const data = qnaData[index];
+
+            // If the radial menu is collapsed when a topic is selected, open it
+            if (wrapper.classList.contains('is-collapsed')) {
+                wrapper.classList.remove('is-collapsed');
+                if (grid) grid.classList.remove('is-collapsed');
+                if (hubBtn) {
+                    hubBtn.setAttribute('aria-expanded', 'true');
+                    hubBtn.setAttribute('title', 'Close Radial Menu');
+                }
+            }
+
+            satellites.forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+
+            // Hide placeholder if visible
+            if (placeholderEl && placeholderEl.style.display !== 'none') {
+                placeholderEl.style.display = 'none';
+            }
+            if (contentEl && contentEl.style.display === 'none') {
+                contentEl.style.display = 'block';
+            }
+
+            if (contentEl) {
+                // Fluid reveal animation with forced layout reflow for consistent replay
+                contentEl.classList.remove('is-revealed');
+                void contentEl.offsetWidth;
+
+                if (titleEl) titleEl.textContent = data.question;
+                if (bodyEl) bodyEl.textContent = data.answer;
+                if (topicEl) topicEl.textContent = data.topic;
+                if (indicatorEl) indicatorEl.textContent = `0${index + 1} / 0${qnaData.length}`;
+
+                requestAnimationFrame(() => {
+                    contentEl.classList.add('is-revealed');
+                });
+            }
+        };
+
+        satellites.forEach((btn, i) => {
+            btn.addEventListener('click', () => {
+                selectTopic(i);
+            });
+        });
+
+        // Center hub toggle: collapsed by default, clicks toggle expand/collapse
+        if (hubBtn) {
+            hubBtn.addEventListener('click', () => {
+                const isNowCollapsed = wrapper.classList.toggle('is-collapsed');
+                if (grid) {
+                    grid.classList.toggle('is-collapsed', isNowCollapsed);
+                }
+                hubBtn.setAttribute('aria-expanded', !isNowCollapsed);
+                hubBtn.setAttribute('title', isNowCollapsed ? 'Open Radial Menu' : 'Close Radial Menu');
+            });
+        }
+    },
+
+    // Footer Email Clipboard Copy
+    initEmailCopy: () => {
+        const emailLinks = document.querySelectorAll('a[href^="mailto:rune.bobbaers@gmail.com"]');
+        if (!emailLinks.length) return;
+
+        emailLinks.forEach(link => {
+            link.setAttribute('title', 'Click to copy rune.bobbaers@gmail.com');
+            link.style.cursor = 'pointer';
+
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const email = 'rune.bobbaers@gmail.com';
+
+                navigator.clipboard.writeText(email).then(() => {
+                    const originalHTML = link.innerHTML;
+                    link.innerHTML = '<i class="fas fa-check" style="color: #10b981;"></i> Copied!';
+
+                    setTimeout(() => {
+                        link.innerHTML = originalHTML;
+                    }, 2200);
+                }).catch(err => {
+                    console.warn('Clipboard copy failed:', err);
+                    window.location.href = link.href;
+                });
+            });
+        });
     }
 };
 
