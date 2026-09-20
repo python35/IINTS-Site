@@ -693,7 +693,7 @@ const app = {
         });
     },
 
-    // Obsidian Text Stream Component (Vertical Scroll Momentum)
+    // Obsidian Text Stream Component (Smooth Step Rotator for Mobile / Inline)
     initTextStream: () => {
         const streams = document.querySelectorAll('.obsidian-text-stream');
         if (!streams.length) return;
@@ -704,14 +704,13 @@ const app = {
         }
 
         streams.forEach(stream => {
-            // On desktop, pinned sections use initTextStreamPinned; on mobile, pinned sections use the compact momentum stream
+            // On desktop (> 768px), pinned sections use initTextStreamPinned; on mobile, use this smooth step rotator
             const pinnedSec = stream.closest('.text-stream-pinned-section');
             if (pinnedSec && window.innerWidth > 768) return;
 
             const viewport = stream.querySelector('.obsidian-text-stream__viewport');
             const track = stream.querySelector('.obsidian-text-stream__track');
-            const initialCopy = stream.querySelector('.obsidian-text-stream__copy');
-            if (!viewport || !track || !initialCopy) return;
+            if (!viewport || !track) return;
 
             let items = [];
             if (stream.dataset.items) {
@@ -721,106 +720,78 @@ const app = {
                     console.warn('Invalid JSON in data-items:', stream.dataset.items);
                 }
             }
-
-            if (items.length > 0) {
-                initialCopy.innerHTML = items.map(text => `<div class="obsidian-text-stream__item">${text}</div>`).join('');
+            if (!items.length) {
+                const existingEls = Array.from(track.querySelectorAll('.obsidian-text-stream__item'));
+                items = existingEls.map(el => el.textContent.trim()).filter(Boolean);
             }
+            if (!items.length) return;
 
-            let copyCount = 2;
-            let distance = 0;
-            let currentY = 0;
-            let currentVelocity = 0.6;
-            let targetVelocity = 0.6;
-            let lastScrollDirection = 1;
-            let scrollTimeout = null;
-            const baseSpeed = 0.6;
-            const maxBoost = 12;
+            // Build track with items plus 1 clone of first item for seamless loop
+            const renderItems = [...items, items[0]];
+            track.innerHTML = renderItems.map(text => `<div class="obsidian-text-stream__item">${text}</div>`).join('');
+            const renderedEls = Array.from(track.querySelectorAll('.obsidian-text-stream__item'));
 
-            function wrap(min, max, v) {
-                const range = max - min;
-                return ((((v - min) % range) + range) % range) + min;
-            }
+            let currentIndex = 0;
+            let isTransitioning = false;
 
-            function setupCopies() {
-                distance = initialCopy.offsetHeight;
-                const containerHeight = viewport.offsetHeight;
-                if (!distance || !containerHeight) return;
+            const updateItemHeight = () => {
+                const vHeight = viewport.offsetHeight || 70;
+                renderedEls.forEach(el => {
+                    el.style.height = `${vHeight}px`;
+                    el.style.display = 'flex';
+                    el.style.alignItems = 'center';
+                    el.style.padding = '0';
+                    el.style.margin = '0';
+                });
+                return vHeight;
+            };
 
-                const neededCount = Math.max(2, Math.ceil(containerHeight / distance) + 2);
-                if (neededCount !== copyCount) {
-                    copyCount = neededCount;
-                    // Remove old copies except initialCopy
-                    const existingCopies = track.querySelectorAll('.obsidian-text-stream__copy');
-                    existingCopies.forEach((c, idx) => {
-                        if (idx > 0) c.remove();
-                    });
+            let itemHeight = updateItemHeight();
 
-                    // Add new copies
-                    for (let i = 1; i < copyCount; i++) {
-                        const clone = initialCopy.cloneNode(true);
-                        clone.setAttribute('aria-hidden', 'true');
-                        track.appendChild(clone);
-                    }
+            const goToIndex = (index, animated = true) => {
+                if (animated) {
+                    track.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+                } else {
+                    track.style.transition = 'none';
                 }
+                track.style.transform = `translateY(-${index * itemHeight}px)`;
 
-                currentY = wrap(-distance, 0, currentY);
-                track.style.transform = `translateY(${currentY}px)`;
-            }
-
-            const applyScrollMotion = (delta) => {
-                if (!delta) return;
-                const direction = delta > 0 ? -1 : 1;
-                const boost = Math.min(maxBoost, baseSpeed + Math.pow(Math.abs(delta), 1.2) * 0.08);
-                lastScrollDirection = direction;
-                targetVelocity = direction * boost;
-
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    targetVelocity = lastScrollDirection * baseSpeed;
-                }, 120);
+                renderedEls.forEach((el, i) => {
+                    const isCurrent = (i === index) || (index === items.length && i === 0);
+                    el.style.opacity = isCurrent ? '1' : '0.2';
+                    el.style.transform = isCurrent ? 'scale(1)' : 'scale(0.96)';
+                    el.style.transition = animated ? 'opacity 0.4s ease, transform 0.4s ease' : 'none';
+                });
             };
 
-            let lastScrollY = window.scrollY;
-            const handleScroll = () => {
-                const next = window.scrollY;
-                applyScrollMotion(next - lastScrollY);
-                lastScrollY = next;
-            };
+            goToIndex(0, false);
 
-            const handleWheel = (e) => {
-                applyScrollMotion(e.deltaY);
-            };
+            const nextStep = () => {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                currentIndex++;
+                goToIndex(currentIndex, true);
 
-            window.addEventListener('scroll', handleScroll, { passive: true });
-            window.addEventListener('wheel', handleWheel, { passive: true });
-
-            setupCopies();
-
-            if (window.ResizeObserver) {
-                const ro = new ResizeObserver(setupCopies);
-                ro.observe(initialCopy);
-                ro.observe(viewport);
-            }
-            window.addEventListener('resize', setupCopies);
-
-            let lastTime = performance.now();
-
-            function tick(now) {
-                const deltaTime = now - lastTime;
-                lastTime = now;
-                const frameFactor = Math.min(deltaTime / (1000 / 60), 3);
-
-                if (distance > 0) {
-                    currentVelocity += (targetVelocity - currentVelocity) * 0.14;
-                    currentY += currentVelocity * frameFactor;
-                    currentY = wrap(-distance, 0, currentY);
-                    track.style.transform = `translateY(${currentY}px)`;
+                if (currentIndex >= items.length) {
+                    setTimeout(() => {
+                        currentIndex = 0;
+                        goToIndex(0, false);
+                        isTransitioning = false;
+                    }, 520);
+                } else {
+                    setTimeout(() => {
+                        isTransitioning = false;
+                    }, 520);
                 }
+            };
 
-                requestAnimationFrame(tick);
-            }
+            // Calm, steady interval: holds for 2.4 seconds on each word, immune to page scroll speed!
+            const intervalId = setInterval(nextStep, 2400);
 
-            requestAnimationFrame(tick);
+            window.addEventListener('resize', () => {
+                itemHeight = updateItemHeight();
+                goToIndex(currentIndex, false);
+            });
         });
     },
 
