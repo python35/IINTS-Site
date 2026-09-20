@@ -3598,70 +3598,98 @@ a:hover {
 
 @media (max-width: 768px) {
     .text-stream-section {
-        min-height: 50vh;
-        padding: 2.5rem 1rem;
+        min-height: auto;
+        padding: 2rem 1rem;
     }
+
     .text-stream-pinned-section {
-        height: 180vh;
+        position: relative !important;
+        height: auto !important;
+        min-height: 0 !important;
+        padding: 2rem 1rem !important;
+        background: #f8fafc !important;
+        border-top: 1px solid #e2e8f0;
+        border-bottom: 1px solid #e2e8f0;
     }
-    .obsidian-text-stream {
-        height: 140px;
+
+    .text-stream-sticky-viewport {
+        position: static !important;
+        height: auto !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
-    .obsidian-text-stream__prefix {
-        width: 38%;
-        padding-right: 0.85rem;
+
+    .text-stream-progress-track {
+        display: none !important;
     }
-    .obsidian-text-stream__viewport {
-        width: 62%;
-        mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 15%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.2) 85%, rgba(0,0,0,0) 100%);
-        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 15%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.2) 85%, rgba(0,0,0,0) 100%);
-    }
-    .obsidian-text-stream__prefix-text {
-        font-size: clamp(1.4rem, 5vw, 2.2rem);
-    }
-    .obsidian-text-stream__item {
-        font-size: clamp(1.4rem, 5vw, 2.2rem);
-        padding: 0.35rem 0 0.35rem 0.5rem;
-    }
+
     .text-stream-scroll-lock-hint {
-        position: relative;
-        bottom: auto;
-        margin-top: 1.25rem;
-        font-size: 0.75rem;
+        display: none !important;
+    }
+
+    .obsidian-text-stream {
+        height: 80px !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    .obsidian-text-stream__prefix {
+        width: 38% !important;
+        padding-right: 0.75rem !important;
+    }
+
+    .obsidian-text-stream__viewport {
+        width: 62% !important;
+        height: 80px !important;
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 15%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%) !important;
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 15%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%) !important;
+    }
+
+    .obsidian-text-stream__prefix-text {
+        font-size: clamp(1.25rem, 5vw, 1.75rem) !important;
+        line-height: 1.1 !important;
+    }
+
+    .obsidian-text-stream__item {
+        font-size: clamp(1.25rem, 5vw, 1.75rem) !important;
+        line-height: 1.1 !important;
+        padding: 0.45rem 0 0.45rem 0.4rem !important;
     }
 }
 
 @media (max-width: 480px) {
     .text-stream-pinned-section {
-        height: 160vh;
+        padding: 1.75rem 0.75rem !important;
     }
+
     .obsidian-text-stream {
-        height: 100px;
+        height: 70px !important;
     }
-    .obsidian-text-stream__prefix {
-        width: 36%;
-        padding-right: 0.5rem;
-    }
+
     .obsidian-text-stream__viewport {
-        width: 64%;
-        mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 12%, rgba(0,0,0,1) 32%, rgba(0,0,0,1) 68%, rgba(0,0,0,0.25) 88%, rgba(0,0,0,0) 100%);
-        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 12%, rgba(0,0,0,1) 32%, rgba(0,0,0,1) 68%, rgba(0,0,0,0.25) 88%, rgba(0,0,0,0) 100%);
+        height: 70px !important;
+        width: 64% !important;
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 15%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%) !important;
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 15%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%) !important;
     }
+
+    .obsidian-text-stream__prefix {
+        width: 36% !important;
+        padding-right: 0.5rem !important;
+    }
+
     .obsidian-text-stream__prefix-text {
-        font-size: clamp(1.2rem, 4.5vw, 1.65rem);
+        font-size: clamp(1.15rem, 4.8vw, 1.5rem) !important;
     }
+
     .obsidian-text-stream__item {
-        font-size: clamp(1.2rem, 4.5vw, 1.65rem);
-        padding: 0.2rem 0 0.2rem 0.4rem;
-    }
-    .text-stream-progress-track {
-        right: 1.5vw;
-        height: 80px;
-        width: 3px;
-    }
-    .text-stream-scroll-lock-hint {
-        margin-top: 0.85rem;
-        font-size: 0.7rem;
+        font-size: clamp(1.15rem, 4.8vw, 1.5rem) !important;
+        padding: 0.35rem 0 0.35rem 0.35rem !important;
     }
 }
 

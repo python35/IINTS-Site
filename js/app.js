@@ -704,8 +704,9 @@ const app = {
         }
 
         streams.forEach(stream => {
-            // Ignore pinned sections; handled by initTextStreamPinned
-            if (stream.closest('.text-stream-pinned-section')) return;
+            // On desktop, pinned sections use initTextStreamPinned; on mobile, pinned sections use the compact momentum stream
+            const pinnedSec = stream.closest('.text-stream-pinned-section');
+            if (pinnedSec && window.innerWidth > 768) return;
 
             const viewport = stream.querySelector('.obsidian-text-stream__viewport');
             const track = stream.querySelector('.obsidian-text-stream__track');
@@ -834,6 +835,9 @@ const app = {
             const progressBar = section.querySelector('.text-stream-progress-bar');
             const hintEl = section.querySelector('.text-stream-scroll-lock-hint');
             if (!viewport || !track) return;
+
+            // On mobile (<= 768px), do not pin or lock scroll; handled by compact stream
+            if (window.innerWidth <= 768) return;
 
             // Ensure single copy of items exists
             const copies = track.querySelectorAll('.obsidian-text-stream__copy');
