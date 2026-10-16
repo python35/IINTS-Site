@@ -17,6 +17,7 @@ const app = {
         app.initTextFillAnimation(); // Obsidian UI text fill animation
         app.initRadialQnA(); // Interactive Clinical Radial Q&A
         app.initEmailCopy(); // Copy email to clipboard in footer
+        app.initCodeCopy(); // Copy terminal commands with visual feedback
     },
 
     initSDKVersion: async () => {
@@ -1137,6 +1138,33 @@ const app = {
                 }).catch(err => {
                     console.warn('Clipboard copy failed:', err);
                     window.location.href = link.href;
+                });
+            });
+        });
+    },
+
+    // Terminal Command Copy with Visual Feedback
+    initCodeCopy: () => {
+        const copyButtons = document.querySelectorAll('.copy-cmd-btn');
+        if (!copyButtons.length) return;
+
+        copyButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const textToCopy = btn.getAttribute('data-copy');
+                if (!textToCopy) return;
+
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    btn.innerHTML = '<i class="fas fa-check" style="color: #4ade80;"></i>';
+                    btn.style.background = 'rgba(74, 222, 128, 0.18)';
+                    btn.setAttribute('title', 'Copied!');
+
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-copy"></i>';
+                        btn.style.background = 'rgba(255,255,255,0.1)';
+                        btn.setAttribute('title', 'Copy to clipboard');
+                    }, 2000);
+                }).catch(err => {
+                    console.warn('Clipboard copy failed:', err);
                 });
             });
         });

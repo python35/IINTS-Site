@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://python35.github.io/IINTS-Site/index.html</loc>
-        <lastmod>2026-02-21</lastmod>
+        <loc>https://iints.org/</loc>
+        <lastmod>2026-10-16</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://python35.github.io/IINTS-Site/html/hardware.html</loc>
-        <lastmod>2026-02-21</lastmod>
+        <loc>https://iints.org/html/hardware.html</loc>
+        <lastmod>2026-10-16</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://python35.github.io/IINTS-Site/html/intelligence.html</loc>
-        <lastmod>2026-02-21</lastmod>
+        <loc>https://iints.org/html/software.html</loc>
+        <lastmod>2026-10-16</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://python35.github.io/IINTS-Site/html/about.html</loc>
-        <lastmod>2026-02-21</lastmod>
+        <loc>https://iints.org/html/about.html</loc>
+        <lastmod>2026-10-16</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
