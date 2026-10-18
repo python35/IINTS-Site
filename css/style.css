@@ -421,37 +421,40 @@ a:hover {
 .hero-section {
     position: relative;
     min-height: 75vh;
-    padding-top: 80px;
+    padding-top: 90px;
     /* Space for fixed nav */
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--bg-white);
-    /* Premium Radial */
     color: var(--text-primary);
+    overflow: hidden;
 }
 
 .hero-split {
     display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 2rem;
-    max-width: 1600px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: clamp(2rem, 4vw, 4rem);
+    max-width: 1440px;
     width: 100%;
-    padding: 2rem 4rem;
+    padding: 2.5rem clamp(1.5rem, 4vw, 4rem);
     align-items: center;
 }
 
 .hero-text {
     text-align: left;
+    min-width: 0;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-title {
-    font-size: 4.5rem;
+    font-size: clamp(2.35rem, 3.6vw, 4.25rem);
     font-weight: 800;
     letter-spacing: -0.04em;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
     color: var(--clinical-blue);
-    line-height: 1.05;
+    line-height: 1.08;
     background: -webkit-linear-gradient(45deg, var(--clinical-blue), var(--clinical-blue-light));
     -webkit-background-clip: text;
     background-clip: text;
@@ -459,40 +462,51 @@ a:hover {
 }
 
 .hero-subtitle {
-    font-size: 1.15rem;
+    font-size: clamp(1.02rem, 1.2vw, 1.15rem);
     font-weight: 400;
     color: var(--med-text-body);
-    margin-bottom: 3rem;
-    line-height: 1.8;
+    margin-bottom: 2.25rem;
+    line-height: 1.75;
     letter-spacing: -0.01em;
-    max-width: 650px;
+    max-width: 560px;
     border-left: 2px solid var(--med-blue-light);
-    padding-left: 2rem;
-    margin-left: 2rem;
+    padding-left: 1.25rem;
+    margin-left: 0;
 }
 
 .hero-visual {
     position: relative;
     width: 100%;
+    min-width: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 .hero-main-img {
-    width: 115%;
-    max-width: 900px;
+    width: 100%;
+    max-width: 780px;
     height: auto;
-    margin-left: -5%;
+    margin-left: 0;
+    display: block;
+    object-fit: contain;
     transition: all 0.3s ease;
-    /* No border-radius or box-shadow for a borderless look */
-
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1280px) and (min-width: 1025px) {
+    .hero-split {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+        gap: 2.25rem;
+        padding: 2rem 2.5rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2.2rem, 3.2vw, 3.2rem);
+    }
+
     .hero-main-img {
-        width: 100%;
-        margin-left: 0;
+        max-width: 580px;
     }
 }
 
@@ -1538,13 +1552,6 @@ a:hover {
 
 /* --- Tablet / Smaller Laptops (≤1024px) --- */
 @media (max-width: 1024px) {
-    .hero-split {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-        text-align: center;
-        padding-top: 4rem;
-    }
-
     .split-feature-section,
     .split-feature-section.reverse {
         grid-template-columns: 1fr;
@@ -1558,15 +1565,48 @@ a:hover {
     }
 }
 
+/* --- Smaller Laptops / Landscape Tablets (901px–1024px): keep clean 2-col hero --- */
+@media (max-width: 1024px) and (min-width: 901px) {
+    .hero-section {
+        padding-top: 5.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .hero-split {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+        gap: 2rem;
+        padding: 1.5rem 2rem;
+        text-align: left;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 3.1vw, 2.65rem);
+        margin-bottom: 1.25rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.75rem;
+        padding-left: 1rem;
+        margin-left: 0;
+    }
+
+    .hero-main-img {
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+}
+
 /* ================================================================
    MOBILE & TABLET ADJUSTMENTS (1024px and below)
    ================================================================ */
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
 
-    /* === HERO === */
+    /* === HERO (Stacked on tablets & mobile <= 900px) === */
     .hero-section {
         padding-top: 5rem;
-        padding-bottom: 1rem;
+        padding-bottom: 1.5rem;
         text-align: center;
     }
 
@@ -1583,8 +1623,8 @@ a:hover {
     }
 
     .hero-title {
-        font-size: clamp(2.2rem, 10vw, 2.8rem);
-        margin-bottom: 1.5rem;
+        font-size: clamp(2.1rem, 8vw, 2.8rem);
+        margin-bottom: 1.25rem;
         line-height: 1.1;
         background: linear-gradient(135deg, var(--clinical-blue), var(--clinical-blue-light));
         -webkit-background-clip: text;
@@ -1597,26 +1637,25 @@ a:hover {
         line-height: 1.7 !important;
         border-left: none !important;
         padding-left: 0 !important;
-        margin: 0 auto 2rem !important;
+        margin: 0 auto 1.75rem !important;
         max-width: 90% !important;
         text-align: center !important;
     }
 
     .hero-visual {
         min-height: 0;
-        overflow: visible;
+        overflow: hidden;
         display: flex;
         justify-content: center;
     }
 
     .hero-main-img {
-        width: 130% !important;
-        position: relative;
-        left: 50%;
-        transform: translateX(-42%) !important;
-        /* Subtle shift to the right on mobile */
-        margin-left: 0 !important;
-        /* Reset margin */
+        width: 100% !important;
+        max-width: 520px !important;
+        position: static !important;
+        left: auto !important;
+        transform: none !important;
+        margin: 0 auto !important;
     }
 
     .cta-group {
@@ -1629,6 +1668,9 @@ a:hover {
         padding: 1rem 1.5rem;
         font-size: 0.95rem;
     }
+}
+
+@media (max-width: 1024px) {
 
     /* === PATIENT FIRST SECTION === */
     .patient-first-section {
