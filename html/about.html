@@ -31,7 +31,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Specific Styles for the new Visual Layout */
+        /* Specific Styles for the About Page */
         .story-hero {
             height: 60vh;
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('../img/lezing4.jpg');
@@ -43,7 +43,6 @@
             color: white;
             text-align: center;
             margin-top: 60px;
-            /* Offset fixed nav */
             border-radius: 0;
             margin-bottom: 4rem;
         }
@@ -55,25 +54,103 @@
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-        .gallery-grid {
+        .eucys-award-section {
+            margin: 5rem 0 3rem;
+            padding: 3.5rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+        }
+
+        .eucys-top-split {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr 1.15fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .eucys-header-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 0.45rem 0.9rem;
+            border-radius: 8px;
+            margin-bottom: 1.25rem;
+        }
+
+        .eucys-header-meta img {
+            height: 26px;
+            width: auto;
+        }
+
+        .eucys-header-meta span {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--med-blue-dark);
+        }
+
+        .eucys-bottom-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
-            margin-bottom: 4rem;
         }
 
-        .gallery-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
+        .eucys-photo-card {
+            position: relative;
             border-radius: 12px;
-            transition: transform 0.3s ease;
+            overflow: hidden;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             box-shadow: var(--shadow-soft);
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .gallery-item img:hover {
-            transform: scale(1.03);
+        .eucys-photo-card:hover {
+            transform: translateY(-3px);
             box-shadow: var(--shadow-hover);
+        }
+
+        .eucys-photo-card img {
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            height: auto;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s ease;
+        }
+
+        .eucys-photo-card:hover img {
+            transform: scale(1.02);
+        }
+
+        .eucys-photo-caption {
+            padding: 0.75rem 1rem;
+            background: #ffffff;
+            border-top: 1px solid #f1f5f9;
+            font-size: 0.84rem;
+            color: #475569;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 992px) {
+            .eucys-award-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .eucys-top-split,
+            .eucys-bottom-pair {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -114,8 +191,6 @@
         <section class="content-section">
             <div class="container">
 
-                <!-- Personal Connection Quote (Retained) -->
-
                 <!-- Section 1: The Question That Changed Everything -->
                 <div class="grid"
                     style="grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 6rem;">
@@ -136,11 +211,11 @@
                             technology open, transparent, and understandable.
                         </p>
                     </div>
-                    <div>
+                    <div class="gallery-item" title="Click to enlarge">
                         <img src="../img/baby.jpg"
                             alt="Rune Bobbaers at a young age - the beginning of a lifelong journey with T1D"
                             class="hover-scale"
-                            style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;">
+                            style="width: 100%; height: auto; border-radius: 12px; object-fit: cover; cursor: pointer;">
                     </div>
                 </div>
 
@@ -148,13 +223,6 @@
                 <div class="grid"
                     style="grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 6rem;">
                     <div style="order: 2;">
-                        <!-- Image Left, Text Right visual balance if logic allows, or just standard text/img -->
-                        <!-- Actually, let's keep it Text Left, Image Right to match user's structure, 
-                             OR use order:2 on the image to flip it?
-                             To flip (Image Left, Text Right): Put Image div first in code, OR use flex/grid order.
-                             The current grid is 1fr 1fr. 
-                             Let's do Image Left, Text Right for visual interest. 
-                        -->
                         <h2 class="section-title" style="text-align: left;">Learning, Not Replacing</h2>
                         <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 1.5rem;">
                             IINTS is not about replacing medical devices. It's about learning from them.
@@ -168,29 +236,66 @@
                             The idea is simple: by making technology visible, we make it better and safer.
                         </p>
                     </div>
-                    <div style="order: 1;">
+                    <div style="order: 1;" class="gallery-item" title="Click to enlarge">
                         <img src="../img/IINTS.jpg"
                             alt="Close-up of the IINTS insulin pump prototype hardware showing RP2040 and OLED"
                             class="hover-scale"
-                            style="width: 100%; height: auto; border-radius: 12px; object-fit: cover;">
+                            style="width: 100%; height: auto; border-radius: 12px; object-fit: cover; cursor: pointer;">
                     </div>
                 </div>
 
-                <!-- Section 3: The Mission (Creative Update) -->
-                <div
-                    style="text-align: center; max-width: 800px; margin: 4rem auto 8rem auto; padding: 4rem 2rem; background: linear-gradient(145deg, #ffffff, #f0f4f8); border-radius: 24px; box-shadow: var(--shadow-soft);">
-                    <span class="badge badge-blue" style="margin-bottom: 2rem;">The Vision</span>
-                    <h2 class="section-title"
-                        style="font-size: 2.5rem; margin-bottom: 1.5rem; text-align: center; background: linear-gradient(45deg, var(--med-blue-dark), var(--med-blue-light)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
-                        Decoding the Future</h2>
-                    <p
-                        style="font-size: 1.3rem; color: #555; margin-bottom: 2.5rem; line-height: 1.7; font-weight: 500;">
-                        "We're not just building hardware; we're making the invisible visible. Bridging the gap between
-                        medical mystery and patient empowerment."
-                    </p>
-                    <a href="software.html" class="btn btn-primary"
-                        style="padding: 16px 40px; border-radius: 100px; box-shadow: 0 10px 20px rgba(0, 75, 135, 0.2);">Empower
-                        the Mission</a>
+                <!-- Section 3: EUCYS Award Recognition -->
+                <div class="eucys-award-section">
+                    <div class="eucys-top-split">
+                        <div>
+                            <div class="eucys-header-meta">
+                                <img src="../img/eucys.svg" alt="EUCYS Logo">
+                                <span>37th EUCYS &bull; Kiel 2026</span>
+                            </div>
+                            <h2 class="section-title" style="text-align: left; margin-bottom: 1.25rem;">
+                                Most Promising Digital Project
+                            </h2>
+                            <p style="font-size: 1.08rem; line-height: 1.8; color: #475569; margin-bottom: 1.25rem;">
+                                What started as a personal question at my desk grew into representing Belgium at the <strong>European Union Contest for Young Scientists (EUCYS)</strong>.
+                            </p>
+                            <p style="font-size: 1.08rem; line-height: 1.8; color: #475569; margin-bottom: 2rem;">
+                                During the 37th edition in Kiel, IINTS was awarded the prize for <strong>Most Promising Digital Project</strong>&mdash;an encouraging recognition that open, inspectable, and patient-driven medical technology research matters on a European stage.
+                            </p>
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <a href="software.html" class="btn btn-primary">Explore the Software</a>
+                                <a href="hardware.html" class="btn btn-secondary">Inspect the Hardware</a>
+                            </div>
+                        </div>
+
+                        <div class="eucys-photo-card gallery-item" title="Click to enlarge">
+                            <img src="../img/eucys/eucys-award-ceremony.jpg"
+                                alt="Rune Bobbaers receiving the Most Promising Digital Project award at the 37th EUCYS in Kiel">
+                            <div class="eucys-photo-caption">
+                                <span>Award presentation &mdash; Most Promising Digital Project</span>
+                                <i class="fas fa-expand" style="color: #94a3b8; font-size: 0.8rem;"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="eucys-bottom-pair">
+                        <div class="eucys-photo-card gallery-item" title="Click to enlarge">
+                            <img src="../img/eucys/eucys-stage-walk.jpg"
+                                alt="Rune Bobbaers walking to the stage at the EUCYS award ceremony">
+                            <div class="eucys-photo-caption">
+                                <span>Receiving the certificate during the EUCYS ceremony</span>
+                                <i class="fas fa-expand" style="color: #94a3b8; font-size: 0.8rem;"></i>
+                            </div>
+                        </div>
+
+                        <div class="eucys-photo-card gallery-item" title="Click to enlarge">
+                            <img src="../img/eucys/eucys-applause.jpg"
+                                alt="Audience applauding as Rune Bobbaers holds the EUCYS award certificate">
+                            <div class="eucys-photo-caption">
+                                <span>37th European Union Contest for Young Scientists, Kiel</span>
+                                <i class="fas fa-expand" style="color: #94a3b8; font-size: 0.8rem;"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
