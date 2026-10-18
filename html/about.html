@@ -54,102 +54,35 @@
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-        .eucys-award-section {
-            margin: 5rem 0 3rem;
-            padding: 3.5rem;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-        }
-
-        .eucys-top-split {
+        .eucys-photo-row {
             display: grid;
-            grid-template-columns: 1fr 1.15fr;
-            gap: 3rem;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .eucys-header-meta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            padding: 0.45rem 0.9rem;
-            border-radius: 8px;
-            margin-bottom: 1.25rem;
-        }
-
-        .eucys-header-meta img {
-            height: 26px;
-            width: auto;
-        }
-
-        .eucys-header-meta span {
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--med-blue-dark);
-        }
-
-        .eucys-bottom-pair {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.45fr 1fr;
             gap: 1.5rem;
+            margin-top: 2rem;
         }
 
-        .eucys-photo-card {
-            position: relative;
+        .eucys-photo-row .gallery-item {
             border-radius: 12px;
             overflow: hidden;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            box-shadow: var(--shadow-soft);
-            cursor: pointer;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            height: 350px;
         }
 
-        .eucys-photo-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .eucys-photo-card img {
+        .eucys-photo-row .gallery-item img {
             width: 100%;
-            aspect-ratio: 3 / 2;
-            height: auto;
+            height: 100%;
             object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
             display: block;
-            transition: transform 0.35s ease;
         }
 
-        .eucys-photo-card:hover img {
-            transform: scale(1.02);
-        }
-
-        .eucys-photo-caption {
-            padding: 0.75rem 1rem;
-            background: #ffffff;
-            border-top: 1px solid #f1f5f9;
-            font-size: 0.84rem;
-            color: #475569;
-            font-weight: 500;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        @media (max-width: 992px) {
-            .eucys-award-section {
-                padding: 2rem 1.5rem;
+        @media (max-width: 900px) {
+            .eucys-photo-row {
+                grid-template-columns: 1fr;
             }
 
-            .eucys-top-split,
-            .eucys-bottom-pair {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            .eucys-photo-row .gallery-item {
+                height: 300px;
             }
         }
     </style>
@@ -245,56 +178,45 @@
                 </div>
 
                 <!-- Section 3: EUCYS Award Recognition -->
-                <div class="eucys-award-section">
-                    <div class="eucys-top-split">
-                        <div>
-                            <div class="eucys-header-meta">
-                                <img src="../img/eucys.svg" alt="EUCYS Logo">
-                                <span>37th EUCYS &bull; Kiel 2026</span>
-                            </div>
-                            <h2 class="section-title" style="text-align: left; margin-bottom: 1.25rem;">
-                                Most Promising Digital Project
-                            </h2>
-                            <p style="font-size: 1.08rem; line-height: 1.8; color: #475569; margin-bottom: 1.25rem;">
-                                What started as a personal question at my desk grew into representing Belgium at the <strong>European Union Contest for Young Scientists (EUCYS)</strong>.
-                            </p>
-                            <p style="font-size: 1.08rem; line-height: 1.8; color: #475569; margin-bottom: 2rem;">
-                                During the 37th edition in Kiel, IINTS was awarded the prize for <strong>Most Promising Digital Project</strong>&mdash;an encouraging recognition that open, inspectable, and patient-driven medical technology research matters on a European stage.
-                            </p>
-                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                                <a href="software.html" class="btn btn-primary">Explore the Software</a>
-                                <a href="hardware.html" class="btn btn-secondary">Inspect the Hardware</a>
-                            </div>
-                        </div>
-
-                        <div class="eucys-photo-card gallery-item" title="Click to enlarge">
-                            <img src="../img/eucys/eucys-award-ceremony.jpg"
-                                alt="Rune Bobbaers receiving the Most Promising Digital Project award at the 37th EUCYS in Kiel">
-                            <div class="eucys-photo-caption">
-                                <span>Award presentation &mdash; Most Promising Digital Project</span>
-                                <i class="fas fa-expand" style="color: #94a3b8; font-size: 0.8rem;"></i>
-                            </div>
-                        </div>
+                <div class="grid"
+                    style="grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 2rem;">
+                    <div>
+                        <h2 class="section-title" style="text-align: left;">Most Promising Digital Project</h2>
+                        <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 1.5rem;">
+                            What started with early mechanical sketches in a notebook and prototypes on my desk grew into
+                            representing Belgium at the 37th European Union Contest for Young Scientists (EUCYS) in Kiel.
+                        </p>
+                        <p style="font-size: 1.1rem; line-height: 1.8; color: #555;">
+                            There, IINTS was awarded the prize for Most Promising Digital Project&mdash;an encouraging
+                            recognition that open, inspectable, and patient-driven medical technology research matters
+                            on a European stage.
+                        </p>
                     </div>
+                    <div class="gallery-item" title="Click to enlarge">
+                        <img src="../img/eucys/eucys-award-ceremony.jpg"
+                            alt="Rune Bobbaers receiving the Most Promising Digital Project award at the 37th EUCYS in Kiel"
+                            class="hover-scale"
+                            style="width: 100%; height: auto; border-radius: 12px; object-fit: cover; cursor: pointer;">
+                    </div>
+                </div>
 
-                    <div class="eucys-bottom-pair">
-                        <div class="eucys-photo-card gallery-item" title="Click to enlarge">
-                            <img src="../img/eucys/eucys-stage-walk.jpg"
-                                alt="Rune Bobbaers walking to the stage at the EUCYS award ceremony">
-                            <div class="eucys-photo-caption">
-                                <span>Receiving the certificate during the EUCYS ceremony</span>
-                                <i class="fas fa-expand" style="color: #94a3b8; font-size: 0.8rem;"></i>
-                            </div>
-                        </div>
-
-                        <div class="eucys-photo-card gallery-item" title="Click to enlarge">
-                            <img src="../img/eucys/eucys-applause.jpg"
-                                alt="Audience applauding as Rune Bobbaers holds the EUCYS award certificate">
-                            <div class="eucys-photo-caption">
-                                <span>37th European Union Contest for Young Scientists, Kiel</span>
-                                <i class="fas fa-expand" style="color: #94a3b8; font-size: 0.8rem;"></i>
-                            </div>
-                        </div>
+                <div class="eucys-photo-row">
+                    <div class="gallery-item" title="Click to enlarge">
+                        <img src="../img/eucys/sketchbook.jpg"
+                            alt="Hand-drawn mechanical notebook sketches for the IINTS lead-screw carriage mechanism"
+                            class="hover-scale"
+                            style="object-position: center 65%;">
+                    </div>
+                    <div class="gallery-item" title="Click to enlarge">
+                        <img src="../img/eucys/eucys-stage-walk.jpg"
+                            alt="Rune Bobbaers walking to the stage holding the Most Promising Digital Project certificate at EUCYS"
+                            class="hover-scale">
+                    </div>
+                    <div class="gallery-item" title="Click to enlarge">
+                        <img src="../img/eucys/eucys-kiel.jpg"
+                            alt="37th European Union Contest for Young Scientists in Kiel 2026"
+                            class="hover-scale"
+                            style="object-position: center 45%;">
                     </div>
                 </div>
 
